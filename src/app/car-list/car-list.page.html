@@ -1,0 +1,94 @@
+<ion-header [class.ios-search]="plateformCheck == 'ios'">
+  <ion-toolbar class="header_pd">
+    <ion-buttons slot="start">
+      <img src="assets/img/Menu.svg" (click)="toggleMenu()" />
+    </ion-buttons>
+    <ion-searchbar
+      class="marginSearch"
+      style="margin-top: 0px"
+      (ionChange)="onInput()"
+      [(ngModel)]="searchText"
+      placeholder="Search for Cars"
+    ></ion-searchbar>
+    <ion-buttons style="margin-top: 3px" slot="end" (click)="goToFilter()">
+      <img src="assets/img/filter.svg" />
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-list class="bg_list" [hidden]="autocompleteItems.length == 0">
+    <ion-item
+      lines="full"
+      style="--padding-top: 4px; --padding-bottom: 4px"
+      *ngFor="let item of autocompleteItems"
+      button="true"
+      (click)="SelectSearchResult(item.description)"
+    >
+      <ion-label>
+        <h2>{{ item.description }}</h2>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-header>
+<ion-content>
+  <p style="text-align: center" *ngIf="nocarlist == 0">No car available.</p>
+
+  <ng-container *ngIf="nocarlist != 0">
+    <ion-grid *ngFor="let p of cars_list_result; let i = index">
+      <ng-container *ngIf="p.veh_imgs">
+        <ion-row class="">
+          <ion-col class="main_div" >
+            <ng-container *ngFor="let image of p.veh_imgs;  let j = index">
+              <div class="heart">
+                <img
+                  src="assets/img/heart.svg"
+                  class=""
+                  (click)="favourite('add_fav',p.vehicles_id,p)"
+                  *ngIf="p.favourite == 'No'"
+                />
+                <img
+                  src="assets/img/heart_red.svg"
+                  class=""
+                  (click)="favourite('remove_fav',p.vehicles_id,p)"
+                  *ngIf="p.favourite == 'Yes'"
+                />
+              </div>
+              <img 
+              (click)="gotoDetail(p)"
+                *ngIf="j == 0 "
+                style="border-radius: 12px; height: 154px; width: 100%"
+                src="{{base_urls}}{{image}}"
+              />
+            </ng-container>
+            <div class="pentagon">
+              <img src="assets/img/pentagon.svg"  style="height: 65px;"  class="" />
+              <div class="badge">
+                <span class="badge_dollar">{{currency_symbol}}</span>
+                <span class="badge_price">{{p.charge_per_day}}</span>
+                <span class="badge_per">PER DAY</span>
+              </div>
+            </div>
+            <div class="bg_bottom">
+              <ion-row>
+                <ion-col size="8" class="fav_1">
+                  <h2>{{p.model_id}}</h2>
+                  <h5>{{p.make_id}}, {{p.year}}</h5>
+                </ion-col>
+              </ion-row>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ng-container>
+    </ion-grid>
+  </ng-container>
+
+  <ng-container *ngIf="notFound_error == true ">
+    <ion-row>
+      <ion-col style="text-align: center">
+        <img src="assets/img/noresult.PNG" />
+      </ion-col>
+    </ion-row>
+  </ng-container>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="" loadingText="">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

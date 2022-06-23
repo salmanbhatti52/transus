@@ -1,0 +1,129 @@
+<ion-header [class.ios-headers]="plateformCheck == 'ios'">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <img src="assets/img/Menu.svg" (click)="toggleMenu()" />
+    </ion-buttons>
+    <ion-title [class.globe_title]="plateformCheck == 'ios'">Listed Cars</ion-title>
+  </ion-toolbar>
+</ion-header>    
+<ion-content>   
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh"
+      refreshingSpinner="circles" refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ng-container *ngIf="vehicles_list?.length >0">
+    <ng-container *ngFor="let p of vehicles_list; let i = index">
+      <ng-container *ngIf="p.vehicle_imgs">
+        <ion-row class="pd_bs" *ngIf="i % 2 === 0">
+          
+          <ion-col style="margin-top: 1.5em" size="4" class="lambo">
+            <!--   <h4>{{p.model_name}}</h4> -->
+            <img *ngIf="!p.vehicle_imgs" src="assets/img/car_3.svg" />
+            <img *ngIf="p.vehicle_imgs" src="{{base_url}}{{p.vehicle_imgs[0]}}" />
+          </ion-col>
+          <ion-col class="trip_dates" size="4">
+            <p class="blue">Trip Dates</p>
+            <p class="primary">Start Date</p>
+            <p>{{p.start_date | customeDate}}</p>
+            <p class="primary">Charge per day</p>
+            <p style="margin-bottom: 27px">{{symbol}} {{p.charge_per_day}}</p>
+            <div class="give_rating list_issue" (click)="editDetail(p)">
+              Edit Details
+            </div>
+          </ion-col>
+          <ion-col class="trip_end_date" size="4">
+            <p class="primary">End Date</p>
+            <p>{{p.end_date | customeDate}}</p>
+
+            <div *ngIf="p.admin_status == 'Approved' " class="give_rating-status-aproved list_issue">
+              Approved
+            </div>
+            <div *ngIf="p.admin_status == 'Pending' " class="give_rating-status-panding list_issue">
+              Pending
+            </div>
+            <div *ngIf="p.admin_status == 'Rejected' " class="give_rating-status-rejected list_issue">
+              Rejected
+            </div>
+          </ion-col>
+          <ion-icon
+            name="trash"
+            class="bin"
+            (click)="removeImage(p,i)"
+            style="
+                position: absolute;
+                right: 15px;
+                top: 35px;
+            "
+
+          >
+          </ion-icon>
+        </ion-row>
+
+        <ion-row class="pd_bs bg_grey" *ngIf="i % 2 != 0">
+          <ion-col style="margin-top: 1.5em" size="4" class="lambo">
+            <!-- <h4>{{p.model_name}}</h4> -->
+            <!-- <img src="{{base_url}}{{p.vehicle_imgs[0]}}"> -->
+            <img *ngIf="!p.vehicle_imgs" src="assets/img/car_3.svg" />
+            <img *ngIf="p.vehicle_imgs" src="{{base_url}}{{p.vehicle_imgs[0]}}" />
+          </ion-col>
+          <ion-col class="trip_dates" size="4">
+            <p class="blue">Trip Dates</p>
+            <p class="primary">Start Date</p>
+            <p>{{p.start_date | customeDate}}</p>
+            <p class="primary">Charge per day</p>
+            <p style="margin-bottom: 27px">{{symbol}} {{p.charge_per_day}}</p>
+            <div class="give_rating list_issue" (click)="editDetail(p)">
+              Edit Details
+            </div>
+          </ion-col>
+          <ion-col class="trip_end_date" size="4">
+            <p class="primary">End Date</p>
+            <p>{{p.end_date | customeDate}}</p>
+
+            <div *ngIf="p.admin_status == 'Approved' " class="give_rating-status-aproved list_issue">
+              Approved
+            </div>
+            <div *ngIf="p.admin_status == 'Pending' " class="give_rating-status-panding list_issue">
+              Pending
+            </div>
+            <div *ngIf="p.admin_status == 'Rejected' " class="give_rating-status-rejected list_issue">
+              Rejected
+            </div>
+          </ion-col>
+          <ion-icon
+            name="trash"
+            class="bin"
+            (click)="removeImage(p,i)"
+            style="
+                position: absolute;
+                right: 15px;
+                top: 35px;
+            "
+
+          >
+          </ion-icon>
+        </ion-row>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="vehicles_list?.length == 0">
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <h2>Data Not Found!</h2>
+      </ion-col>
+    </ion-row>
+  </ng-container>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <ion-row>
+    <ion-col>
+      <ion-button color="primary" expand="block" shape="round" (click)="goToCarList()">List a Car</ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button color="primary" expand="block" shape="round" (click)="goToDraft()">Drafts</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>

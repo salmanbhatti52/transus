@@ -1,0 +1,48 @@
+<ion-header [class.ios-headers]="plateformCheck == 'ios'">
+  <ion-toolbar>
+    <ion-buttons [class.back_button]="plateformCheck == 'ios'" slot="start">
+      <img src="assets/img/Arrow.svg" (click)="goToHome()" />
+    </ion-buttons>
+    <ion-title [class.globe_title]="plateformCheck == 'ios'"
+      >List your car</ion-title
+    >
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="padding: 20px">
+    <ion-row>
+      <ion-col>
+        <h3>VIN Number</h3>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-input
+          placeholder="Enter VIN number here"
+          [(ngModel)]="vinNum"
+          class="input_list"
+          style="margin-bottom: 10px"
+        >
+        </ion-input>
+        <span *ngIf="LicensePlateError" class="error ion-padding">
+          Vin number is required.
+        </span>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <ion-row class="btn_footer">
+    <ion-col size="2"></ion-col>
+    <ion-col size="8">
+      <ion-button
+        color="primary"
+        expand="block"
+        shape="round"
+        (click)="goToNext()"
+        >Next</ion-button
+      >
+    </ion-col>
+  </ion-row>
+</ion-content>

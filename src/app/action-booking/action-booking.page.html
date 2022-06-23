@@ -1,0 +1,116 @@
+<ion-content>
+  <div style="padding: 10px !important">
+    <ion-row>
+      <ion-col class="text-right">
+        <img src="assets/img/minimize.svg" (click)="ok()" />
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col
+        class="text-center"
+        size="12"
+        *ngIf="booking_action =='cancel_booking'"
+      >
+        <h1 class="alura">Cancel?</h1>
+        <p class="alura m_0">
+          If you cancel this booking, Payment will not be refunded.
+        </p>
+      </ion-col>
+      <ion-col
+        class="text-center"
+        size="12"
+        *ngIf="booking_action =='accept_booking'"
+      >
+        <h1 class="alura">Accept?</h1>
+        <p class="alura m_0">Are you sure you want to accept this booking?</p>
+      </ion-col>
+      <ion-col
+        class="text-center"
+        size="12"
+        *ngIf="booking_action =='reject_booking'"
+      >
+        <h1 class="alura">Reject?</h1>
+        <p class="alura m_0">Are you sure you want to reject this request?</p>
+      </ion-col>
+      <ion-col
+        class="text-center"
+        size="12"
+        *ngIf="booking_action =='complete_booking'"
+      >
+        <h1 class="alura">Complete?</h1>
+        <p class="alura m_0">Are you sure you want to Complete this booking?</p>
+      </ion-col>
+
+      <ion-col
+        class="text-center"
+        size="12"
+        *ngIf="booking_action =='payment_booking'"
+      >
+        <h1 class="alura">Pay now</h1>
+        <p class="alura m_0">
+          Are you sure you want to book Now? The payment will be non-refundable.
+        </p>
+      </ion-col>
+
+      <ion-col class="text-center" size="12" *ngIf="booking_action =='veh_msg'">
+        <h1 class="alura">SORRY !</h1>
+        <p class="alura m_0">
+          Unable to edit vehicle details at the moment.Try again later.
+        </p>
+      </ion-col>
+      <ion-col class="text-center" size="12" *ngIf="booking_action =='logout'">
+        <h1 class="alura">Logout</h1>
+        <p class="alura m_0">Are you sure you want to logout?</p>
+      </ion-col>
+      <ion-col class="text-center" size="12" *ngIf="booking_action =='del_veh'">
+        <h1 class="alura">Delete</h1>
+        <p class="alura m_0">Are you sure you want to delete this car?</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="btn_top" [class.check_veh]="booking_action == 'veh_msg'">
+      <ion-col
+        size="6"
+        class="ion-text-center"
+        *ngIf="booking_action =='veh_msg'"
+      >
+        <ion-button
+          color="primary"
+          class="alura"
+          (click)="ok()"
+          shape="round"
+          expand="block"
+          >Ok</ion-button
+        >
+      </ion-col>
+      <ion-col
+        size="6"
+        *ngIf="booking_action !='veh_msg'"
+        class="ion-text-center"
+      >
+        <ion-button
+          color="primary"
+          class="alura"
+          (click)="actionBooking()"
+          shape="round"
+          expand="block"
+          >Yes</ion-button
+        >
+      </ion-col>
+      <ion-col
+        size="6"
+        *ngIf="booking_action !='veh_msg'"
+        class="ion-text-center"
+      >
+        <ion-button
+          color="secondary"
+          class="alura"
+          (click)="ok()"
+          shape="round"
+          expand="block"
+          >No</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

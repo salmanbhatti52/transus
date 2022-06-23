@@ -1,0 +1,65 @@
+<ion-header [class.ios-headers]="plateformCheck == 'ios'" >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <img src="assets/img/Menu.svg" (click)="toggleMenu()">
+    </ion-buttons>
+    <ion-title [class.globe_title]="plateformCheck == 'ios'">Favorite</ion-title>
+   </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher> 
+  <ng-container *ngIf="cars_list_result?.length >0">
+    
+  <ion-row  *ngFor="let p of cars_list_result; let i = index">
+    <ion-col class="main_div" (click)="gotoDetail(p)">
+      <img src="{{base_urls}}{{p.veh_imgs[0]}}" class="s_img" />
+      <div class="pentagon">
+        <img src="assets/img/pentagon.svg" class="" />
+        <div class="badge">
+          <span class="badge_dollar">{{currency_symbol}}</span>
+          <span class="badge_price">{{p.charge_per_day}}</span>
+          <span class="badge_per">PER DAY</span>
+        </div>
+      </div>
+      <div class="bg_bottom">
+        <ion-row>
+          <ion-col size="8" class="fav_1">
+            <h2>{{p.model_name}}</h2>
+            <h5>{{p.country_name}}</h5>
+          </ion-col>
+          <ion-col size="4" class="fav_2">
+            <!-- <p class="star_list">
+              <img src="assets/img/yellow_star.svg">
+              <img src="assets/img/yellow_star.svg">
+              <img src="assets/img/yellow_star.svg">
+              <img src="assets/img/yellow_star.svg">
+              <img src="assets/img/grey_star.svg">
+            </p> -->
+            <p>{{p.total_trips}} trips</p>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-col>
+  </ion-row>
+  
+</ng-container>
+<ng-container *ngIf="cars_list_result?.length == 0">
+  <ion-row>
+    <ion-col class="ion-text-center">
+      <img src="assets/img/heart_empty.svg">
+    </ion-col>
+  </ion-row>
+</ng-container>
+<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+  <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</ion-content>

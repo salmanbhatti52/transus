@@ -1,0 +1,70 @@
+<ion-header [class.ios-headers]="plateformCheck == 'ios'">
+  <ion-toolbar>
+    <ion-buttons [class.back_button]="plateformCheck == 'ios'" slot="start">
+      <img src="assets/img/Arrow.svg" (click)="goToHome()">
+    </ion-buttons>
+    <ion-title [class.globe_title]="plateformCheck == 'ios'">List your car</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <div style="padding: 20px;">
+
+
+
+    <ion-row>
+      <ion-col>
+        <h3>What car do you have?</h3>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-input placeholder="Car" [(ngModel)]="carDo" class="input_list">
+        </ion-input>
+        <span *ngIf="carDoError" class="error ion-padding">
+          License Plate is required.
+        </span>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col>
+        <p style="font-size: 12px;">VIN# {{vinNo}}</p>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+
+
+      <ion-col size="2" style="text-align: center;">
+        <ion-checkbox color="dark" [(ngModel)]="personalCar" (ionChange)="UpdatepersonalCar()" checked="true">
+        </ion-checkbox>
+      </ion-col>
+
+
+      <ion-col size="10"> 
+        <p class="margintoplistcar" style="font-size: 12px;">I'm listing a personal vehicle.</p>
+      </ion-col>
+    </ion-row>
+
+
+
+
+  </div>
+
+
+  <ion-row class="btn_footer">
+    <ion-col size="2"></ion-col>
+    <ion-col size="8">
+      <ion-button color="primary" expand="block" shape="round" (click)="goToNext()">Next</ion-button>
+    </ion-col>
+
+  </ion-row>
+
+
+</ion-content>

@@ -1,0 +1,152 @@
+ion-toolbar {
+    padding: 0em 0em 0 0;
+    --background: #c4932f;
+}
+
+ion-toolbar.ios {
+    margin-top: 3px;
+}
+
+.marginSearch.md {
+    margin-top: 5px !important;
+}
+.heart {
+    position: absolute;
+    right: 1em;
+    top: 1.3em;
+    z-index: 10;
+  }
+  .heart img {
+    z-index: 9999;
+  
+    width: 24px;
+  }
+.new-bottom {
+    position: relative;
+    bottom: 29px;
+    color: #ffffff;
+    background: #00000063;
+    width: 100%;
+    border-radius: 0px 0px 10px 10px;
+}
+
+@media only screen and(min-height : 800px) {
+    ion-toolbar {
+        padding: 0px 0px 5px 0;
+        --background: #c4932f;
+    }
+}
+
+ion-title {
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+    padding-left: 0px;
+}
+ion-header {
+    margin-bottom: 10px;
+}
+
+ion-searchbar {
+    --border-radius: 22px;
+    --box-shadow: none;
+    /*  padding: 0em 2em 0em 1.5em; */
+}
+.b_list1 {
+    margin: 0px;
+    font-size: 14px;
+}
+
+.s_img {
+    width: 100%;
+    border-radius: 12px;
+}
+.main_div {
+    width: 100%;
+    margin: 0px 8px;
+    height: 168px;
+}
+.pentagon {
+    position: absolute;
+    top: 17px;
+    left: 17px;
+    text-align: center;
+}
+.bg_bottom {
+    border-bottom-left-radius: 10px;
+    position: absolute;
+    right: 1.2%;
+    left: 1.2%;
+    background: #00000063;
+    color: #fff;
+    border-bottom-right-radius: 10px;
+    bottom: 9px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.fav_1 {
+    text-align: left;
+}
+.fav_2 {
+    text-align: right;
+}
+.fav_1 h2,
+h5 {
+    margin: 0px;
+}
+.fav_1 h5 {
+    font-size: 16px;
+}
+.fav_2 p {
+    margin: 0px;
+}
+.star_list img {
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+.badge {
+    position: absolute;
+    top: 14px;
+    left: 0px;
+    right: 0px;
+    line-height: 1.3;
+  }
+  .badge_dollar {
+    color: #c4932f;
+      font-size: 13px;
+      display: block;
+  }
+  .badge_price {
+    font-size: 13px;
+      color: #c4932f;
+      position: relative;
+      top: -9px;
+  }
+  .badge_per {
+    color: #fff;
+    font-size: 8px;
+    display: block;
+    margin-left: 1px;
+    margin-top: -11px;
+  }
+.tumbNail {
+    width: 100%;
+    height: 154.08px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+.tumbdiv {
+    padding: 3px 20px;
+    width: 100%;
+    margin-top: 6px;
+    margin-bottom: 13px;
+}
+.hidd_image {
+    display: none;
+}
+
+// .images_loadng{
+//     background:url('../../assets/img/imageLoader.gif')
+// }

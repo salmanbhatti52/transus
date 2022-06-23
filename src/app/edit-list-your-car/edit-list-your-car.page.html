@@ -1,0 +1,897 @@
+<ion-header  *ngIf="showSlide == 'no'" >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <img src="assets/img/Arrow.svg" (click)="goToHome()" />
+    </ion-buttons>
+    <ion-title >
+      Edit Car</ion-title
+    >
+  </ion-toolbar>
+</ion-header>
+<ion-content  *ngIf="showSlide == 'no'">
+  <div class="list_1">
+    <ion-row>
+      <ion-col>
+        <h3>Vehicle Info</h3>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row>
+      <ion-col>
+        <ion-select placeholder="Model" [(ngModel)]="Model" (ionBlur)="validateForm()">
+          <ion-select-option value="{{p.model_id}}" *ngFor="let p of model; let i = index">{{p.name}}</ion-select-option>
+        </ion-select>
+        <span *ngIf="ModelError" class="error ion-padding">
+          Model is required.
+        </span>
+      </ion-col>
+    </ion-row> -->
+    <!-- <ion-row>
+      <ion-col>
+        <ion-select placeholder="Make" [(ngModel)]="Make" (ionBlur)="validateForm()">
+          <ion-select-option value="{{p.veh_make_id}}" *ngFor="let p of make; let i = index">{{p.name}}</ion-select-option>
+        </ion-select>
+        <span *ngIf="MakeError" class="error ion-padding">
+          Make is required.
+        </span>
+      </ion-col>
+    </ion-row> -->
+
+    <ion-row>
+      <ion-col>
+        <div
+          *ngIf="document_oneLicencePlateToShow =='' || document_oneLicencePlateToShow ==undefined"
+          style="
+            border-radius: 10px;
+            width: 100%;
+            height: 150px;
+            background: #f7f8fa;
+            border: 1px dashed #d4dce1;
+          "
+          (click)="showPopup(0)"
+        >
+          <ion-row style="margin-top: 45px">
+            <ion-col style="text-align: center">
+              <img
+                src="assets/img/plusblack.png"
+                style="height: 20px; width: 20px"
+              />
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col style="text-align: center">
+              <p style="font-size: 13px; color: #b0b0b0">License</p>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div *ngIf="document_oneLicencePlateToShow" (click)="previewImage(document_oneLicencePlateToShow)" class="view_btn">
+          <p>View</p>
+        </div>
+        <img
+          style="width: 100%; border-radius: 10px; height: 150px"
+          (click)="showPopup(0)"
+          *ngIf="document_oneLicencePlateToShow"
+          src="{{document_oneLicencePlateToShow}}"
+        />
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-input
+          placeholder="License Plate"
+          [(ngModel)]="LicensePlate"
+          class="input_list"
+          (ionBlur)="checkingLiNo()"
+          (keyup)="checkingLiNo()"
+          (ionBlur)="validateForm()"
+        ></ion-input>
+        <span *ngIf="LicensePlateError" class="error ion-padding">
+          License Plate is required.
+        </span>
+        <span *ngIf="LicensePlateUnique" class="error ion-padding">
+          License Plate already exists.
+        </span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p class="upload_images">Upload Images</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="4">
+        <ion-row>
+          <ion-col
+            size="12"
+            class="list_2"
+            (click)="showPopup(1)"
+            *ngIf="document_one =='' || document_one ==undefined"
+          >
+            <img src="assets/img/plus.svg" />
+          </ion-col>
+          <ion-icon
+            name="trash"
+            class="bin"
+            (click)="removeImage(document_one_id,1)"
+            *ngIf="document_one"
+          ></ion-icon>
+          <ion-col size="12" class="real_image" *ngIf="document_one">
+            <img src="{{document_one}}" />
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="4">
+        <ion-row>
+          <ion-col
+            size="12"
+            class="list_2"
+            (click)="showPopup(2)"
+            *ngIf="document_two =='' || document_two ==undefined"
+          >
+            <img src="assets/img/plus.svg" />
+          </ion-col>
+          <ion-icon
+            name="trash"
+            class="bin"
+            (click)="removeImage(document_two_id,2)"
+            *ngIf="document_two"
+          ></ion-icon>
+          <ion-col size="12" class="real_image" *ngIf="document_two">
+            <img src="{{document_two}}" />
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="4">
+        <ion-row>
+          <ion-col
+            size="12"
+            class="list_2"
+            (click)="showPopup(3)"
+            *ngIf="document_three =='' || document_three ==undefined"
+          >
+            <img src="assets/img/plus.svg" />
+          </ion-col>
+          <ion-icon
+            name="trash"
+            class="bin"
+            (click)="removeImage(document_three_id,3)"
+            *ngIf="document_three"
+          >
+          </ion-icon>
+          <ion-col size="12" class="real_image" *ngIf="document_three">
+            <img src="{{document_three}}" />
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <span *ngIf="document_oneError" class="error ion-padding">
+        Document is required.
+      </span>
+      <span *ngIf="document_twoError" class="error ion-padding">
+        Document is required.
+      </span>
+      <span *ngIf="document_threeError" class="error ion-padding">
+        Document is required.
+      </span>
+    </ion-row>
+    <ion-row>
+      <ion-col size="4">
+        <ion-row>
+          <ion-col
+            size="12"
+            class="list_2"
+            (click)="showPopup(6)"
+            *ngIf="document_six =='' || document_six ==undefined"
+          >
+            <img src="assets/img/plus.svg" />
+          </ion-col>
+          <ion-icon
+            name="trash"
+            class="bin"
+            (click)="removeImage(document_six_id,6)"
+            *ngIf="document_six"
+          ></ion-icon>
+          <ion-col size="12" class="real_image" *ngIf="document_six">
+            <img src="{{document_six}}" />
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="4">
+        <ion-row>
+          <ion-col
+            size="12"
+            class="list_2"
+            (click)="showPopup(7)"
+            *ngIf="document_seven =='' || document_seven ==undefined"
+          >
+            <img src="assets/img/plus.svg" />
+          </ion-col>
+          <ion-icon
+            name="trash"
+            class="bin"
+            (click)="removeImage(document_seven_id,7)"
+            *ngIf="document_seven"
+          >
+          </ion-icon>
+          <ion-col size="12" class="real_image" *ngIf="document_seven">
+            <img src="{{document_seven}}" />
+          </ion-col>
+        </ion-row>
+      </ion-col>
+
+      <ion-col size="4">
+        <ion-row>
+          <ion-col
+            size="12"
+            class="list_2"
+            (click)="showPopup(8)"
+            *ngIf="document_eight =='' || document_eight ==undefined"
+          >
+            <img src="assets/img/plus.svg" />
+          </ion-col>
+          <ion-icon
+            name="trash"
+            class="bin"
+            (click)="removeImage(document_eight,8)"
+            *ngIf="document_eight"
+          >
+          </ion-icon>
+          <ion-col size="12" class="real_image" *ngIf="document_eight">
+            <img src="{{document_eight}}" />
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <!-- 9th -->
+      <ion-col size="4">
+        <ion-row>
+          <ion-col
+            size="12"
+            class="list_2"
+            (click)="showPopup(9)"
+            *ngIf="document_nine =='' || document_nine ==undefined"
+          >
+            <img src="assets/img/plus.svg" />
+          </ion-col>
+          <ion-icon
+            name="trash"
+            class="bin"
+            (click)="removeImage(document_nine_id,9)"
+            *ngIf="document_nine"
+          >
+          </ion-icon>
+          <ion-col size="12" class="real_image" *ngIf="document_nine">
+            <img src="{{document_nine}}" />
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <!-- 10th -->
+      <ion-col size="4">
+        <ion-row>
+          <ion-col
+            size="12"
+            class="list_2"
+            (click)="showPopup(10)"
+            *ngIf="document_ten =='' || document_ten ==undefined"
+          >
+            <img src="assets/img/plus.svg" />
+          </ion-col>
+          <ion-icon
+            name="trash"
+            class="bin"
+            (click)="removeImage(document_ten_id,10)"
+            *ngIf="document_ten"
+          >
+          </ion-icon>
+          <ion-col size="12" class="real_image" *ngIf="document_ten">
+            <img src="{{document_ten}}" />
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <!-- 11th -->
+      <ion-col size="4">
+        <ion-row>
+          <ion-col
+            size="12"
+            class="list_2"
+            (click)="showPopup(11)"
+            *ngIf="document_eleven =='' || document_eleven ==undefined"
+          >
+            <img src="assets/img/plus.svg" />
+          </ion-col>
+          <ion-icon
+            name="trash"
+            class="bin"
+            (click)="removeImage(document_eleven_id,11)"
+            *ngIf="document_eleven"
+          >
+          </ion-icon>
+          <ion-col size="12" class="real_image" *ngIf="document_eleven">
+            <!-- <div *ngIf="document_eleven" (click)="previewImage(document_eleven)" class="view_btn">
+              <p>View</p>
+            </div> -->
+            <img src="{{document_eleven}}" />
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <!-- 12th -->
+      <ion-col size="4">
+        <ion-row>
+          <ion-col
+            size="12"
+            class="list_2"
+            (click)="showPopup(12)"
+            *ngIf="document_twelve =='' || document_twelve ==undefined"
+          >
+            <img src="assets/img/plus.svg" />
+          </ion-col>
+          <ion-icon
+            name="trash"
+            class="bin"
+            (click)="removeImage(document_twelve_id,12)"
+            *ngIf="document_twelve"
+          >
+          </ion-icon>
+          <ion-col size="12" class="real_image" *ngIf="document_twelve">
+            <!-- <div *ngIf="document_twelve" (click)="previewImage(document_twelve)" class="view_btn">
+              <p>View</p>
+            </div> -->
+            <img src="{{document_twelve}}" />
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <span *ngIf="document_sixError" class="error ion-padding">
+        Document is required.
+      </span>
+      <span *ngIf="document_sevenError" class="error ion-padding">
+        Document is required.
+      </span>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-textarea
+          rows="6"
+          placeholder="Description"
+          [(ngModel)]="Description"
+          class="list_3"
+          (ionBlur)="validateForm()"
+        ></ion-textarea>
+        <span *ngIf="DescriptionError" class="error ion-padding">
+          Description is required.
+        </span>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-select
+          placeholder="Comfort Type"
+          [(ngModel)]="comfort"
+          (ionBlur)="validateForm()"
+        >
+          <ion-select-option
+            value="{{p.car_classes_id}}"
+            *ngFor="let p of comfortArray; let i = index"
+            >{{p.name}}
+          </ion-select-option>
+        </ion-select>
+        <span *ngIf="SeatsError" class="error ion-padding">
+          Comfort is required.
+        </span>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-select
+          placeholder="Car Type"
+          [(ngModel)]="carType"
+          (ionBlur)="validateForm()"
+        >
+          <ion-select-option
+            value="{{p.car_types_id}}"
+            *ngFor="let p of carTypeArray; let i = index"
+            >{{p.name}}
+          </ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-input
+          type="tel"
+          placeholder="Mobile Number"
+          [(ngModel)]="mobileNum"
+          class="input_list"
+          (ionBlur)="validateForm()"
+        >
+        </ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-select
+          placeholder="No. of seats"
+          [(ngModel)]="Seats"
+          (ionBlur)="validateForm()"
+        >
+          <ion-select-option
+            value="{{p.veh_seats_id}}"
+            *ngFor="let p of seats; let i = index"
+            >{{p.seat_no}}
+          </ion-select-option>
+        </ion-select>
+        <span *ngIf="SeatsError" class="error ion-padding">
+          Seat is required.
+        </span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-select
+          placeholder="No. of Door"
+          [(ngModel)]="Door"
+          (ionBlur)="validateForm()"
+        >
+          <ion-select-option
+            value="{{p.veh_doors_id}}"
+            *ngFor="let p of doors; let i = index"
+            >{{p.door_no}}
+          </ion-select-option>
+        </ion-select>
+        <span *ngIf="DoorError" class="error ion-padding">
+          Door is required.
+        </span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-select
+          placeholder="Gas"
+          [(ngModel)]="Gas"
+          (ionBlur)="validateForm()"
+        >
+          <ion-select-option
+            value="{{p.fuel_type_id}}"
+            *ngFor="let p of fuel_type; let i = index"
+            >{{p.name}}
+          </ion-select-option>
+        </ion-select>
+        <span *ngIf="GasError" class="error ion-padding">
+          Fuel Type is required.
+        </span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-select
+          placeholder="Gear Type"
+          [(ngModel)]="GearType"
+          (ionBlur)="validateForm()"
+        >
+          <ion-select-option
+            value="{{p.gear_type_id}}"
+            *ngFor="let p of gear_type; let i = index"
+            >{{p.name}}
+          </ion-select-option>
+        </ion-select>
+        <span *ngIf="GearTypeError" class="error ion-padding">
+          Gear Type is required.
+        </span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-select
+          placeholder="Convertable"
+          [(ngModel)]="Convertable"
+          (ionBlur)="validateForm()"
+        >
+          <ion-select-option
+            value="{{p.engine_type_id}}"
+            *ngFor="let p of roof_type; let i = index"
+            >{{p.name}}
+          </ion-select-option>
+        </ion-select>
+        <span *ngIf="ConvertableError" class="error ion-padding">
+          Roof Type is required.
+        </span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-select
+          placeholder="No. of wheels"
+          [(ngModel)]="wheels"
+          (ionBlur)="validateForm()"
+        >
+          <ion-select-option
+            value="{{p.veh_wheels_id}}"
+            *ngFor="let p of wheelss; let i = index"
+            >{{p.wheels_no}}
+          </ion-select-option>
+        </ion-select>
+        <span *ngIf="wheelsError" class="error ion-padding">
+          wheel is required.
+        </span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-textarea
+          rows="6"
+          placeholder="Other features"
+          [(ngModel)]="other_features"
+          class="list_3"
+          (ionBlur)="validateForm()"
+        >
+        </ion-textarea>
+        <span *ngIf="other_featuresError" class="error ion-padding">
+          other features is required.
+        </span>
+      </ion-col>
+    </ion-row>
+<!-- ---------------------------------1-------------------------------------- -->
+    <ion-row>
+      <ion-col>
+        <h3>Advance Notice</h3>
+        <p class="upload_images">How much advance notice do you need before a trip starts?</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-select
+          placeholder="Advance Notice"
+          [(ngModel)]="AdNotice"
+          (ionBlur)="validateForm()"
+        >
+          <ion-select-option value="6 hours">6 hours</ion-select-option>
+          <ion-select-option value="12 hours">12 hours</ion-select-option>
+          <ion-select-option value="1 day">1 day</ion-select-option>
+          <ion-select-option value="Instant">Instant</ion-select-option>
+        </ion-select>
+        <span *ngIf="AdNoticeError" class="error ion-padding">
+          Advance Notice is required.
+        </span>
+      </ion-col>
+    </ion-row>
+<!-- ---------------------------------2-------------------------------------- -->
+
+    <ion-row>
+      <ion-col>
+        <h3>Minimum Trip Duration</h3>
+        <p class="upload_images">What's the shortest possible trip you'll accept?</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-select
+          placeholder="Min Trip Duration"
+          [(ngModel)]="MinTrip"
+          (ionBlur)="validateForm()"
+        >
+          <ion-select-option value="1 day">1 day</ion-select-option>
+          <ion-select-option value="2 day">2 day</ion-select-option>
+          <ion-select-option value="3 day">3 day</ion-select-option>
+        </ion-select>
+        <span *ngIf="MinTripError" class="error ion-padding">
+         Min trip duration is required.
+        </span>
+      </ion-col>
+    </ion-row>
+
+<!-- ---------------------------------3-------------------------------------- -->
+
+    <ion-row>
+      <ion-col>
+        <h3>Maximum Trip Duration</h3>
+        <p class="upload_images">What's the longest possible trip you'll accept?</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-select
+          placeholder="Max Trip Duration"
+          [(ngModel)]="MaxTrip"
+          (ionBlur)="validateForm()"
+        >
+          <ion-select-option value="5 day">5 day</ion-select-option>
+          <ion-select-option value="1 week">1 week</ion-select-option>
+          <ion-select-option value="2 week">2 week</ion-select-option>
+          <ion-select-option value="2 week">1 month</ion-select-option>
+          <ion-select-option value="3 month">3 month</ion-select-option>
+          <ion-select-option value="Any">Any</ion-select-option>
+        </ion-select>
+        <span *ngIf="MaxTripError" class="error ion-padding">
+        Max trip duration is required.
+        </span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h3>Documents</h3>
+        <p class="upload_images">Upload Road Worthy and Insurance documents</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        <ion-row>
+          <ion-col
+            size="12"
+            class="list_9"
+            (click)="showPopup(4)"
+            *ngIf="document_four =='' || document_four ==undefined"
+          >
+            <img src="assets/img/Menu_Plus.svg" />
+            <p>Road Worthy</p>
+          </ion-col>
+          <ion-col
+            size="12"
+            class="real_image_2"
+            (click)="showPopup(4)"
+            *ngIf="document_four"
+          >
+            <img src="{{document_four}}" />
+          </ion-col>
+          <span *ngIf="document_fourError" class="error ion-padding">
+            Document is required.
+          </span>
+        </ion-row>
+      </ion-col>
+      <ion-col size="6">
+        <ion-row>
+          <ion-col
+            size="12"
+            class="list_9"
+            (click)="showPopup(5)"
+            *ngIf="document_five =='' || document_five ==undefined"
+          >
+            <img src="assets/img/Menu_Plus.svg" />
+            <p>Insurance</p>
+          </ion-col>
+          <ion-col
+            size="12"
+            class="real_image_2"
+            (click)="showPopup(5)"
+            *ngIf="document_five"
+          >
+            <img src="{{document_five}}" />
+          </ion-col>
+          <span *ngIf="document_fiveError" class="error ion-padding">
+            Document is required.
+          </span>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h3>Owner’s Details</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-textarea
+          rows="6"
+          placeholder="About"
+          [(ngModel)]="about"
+          class="list_3"
+          (ionBlur)="validateForm()"
+        >
+        </ion-textarea>
+        <span *ngIf="aboutError" class="error ion-padding">
+          about is required.
+        </span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-select
+          placeholder="Lives"
+          [(ngModel)]="Lives"
+          (ionBlur)="validateForm()"
+        >
+          <ion-select-option
+            value="{{p.id}}"
+            *ngFor="let p of countries; let i = index"
+            >{{p.name}}</ion-select-option
+          >
+        </ion-select>
+        <span *ngIf="LivesError" class="error ion-padding">
+          Lives is required.
+        </span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-input
+          placeholder="Work"
+          [(ngModel)]="work"
+          class="input_list"
+          (ionBlur)="validateForm()"
+        ></ion-input>
+        <span *ngIf="workError" class="error ion-padding">
+          Work is required.
+        </span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-select
+          placeholder="Language"
+          [(ngModel)]="Language"
+          (ionBlur)="validateForm()"
+        >
+          <ion-select-option
+            value="{{p.languages_id}}"
+            *ngFor="let p of languages; let i = index"
+            >{{p.name}}
+          </ion-select-option>
+        </ion-select>
+        <span *ngIf="LanguageError" class="error ion-padding">
+          Language is required.
+        </span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h3>Location Info</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="list_4">
+        <ion-row>
+          <ion-col size="1">
+            <div class="list_7"></div>
+            <div class="list_5"></div>
+            <div class="list_8"></div>
+          </ion-col>
+          <ion-col size="11">
+            <span (click)="goToLocation()">Pickup</span>
+            <p class="list_6" (click)="goToLocation()">{{pickup}}</p>
+            <span (click)="goToLocation()">Dropoff</span>
+            <p (click)="goToLocation()">{{dropoff}}</p>
+          </ion-col>
+        </ion-row>
+        <span *ngIf="RouteError" class="error ion-padding">
+          Route is required.
+        </span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h3>Price per day - ({{currency_symbol}})</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-input
+          type="number"
+          pattern="[0-9]*"
+          inputmode="numeric"
+          placeholder="Charges/day"
+          class="input_list"
+          [(ngModel)]="ChargesInfo"
+          (ionBlur)="validateForm()"
+        ></ion-input>
+        <span *ngIf="ChargesInfoError" class="error ion-padding">
+          Price per day is required.
+        </span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h3>Availability Calender</h3>
+        <p class="upload_images left_4">Start Date</p>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div class="calender_slider">
+    <ion-calendar
+      (click)="newDate()"
+      [(ngModel)]="dateRange"
+      (onChange)="onChange($event)"
+      [type]="type"
+      [options]="optionsRange"
+      [disabled]="false"
+      [format]="'YYYY-MM-DD'"
+    >
+    </ion-calendar>
+  </div>
+
+  <ion-row>
+    <ion-col>
+      <span *ngIf="fieldMissing" class="error ion-padding ion-text-center">
+        Please fill all the required fields.
+      </span>
+    </ion-col>
+  </ion-row>
+  <ion-row class="btn_footer">
+    <ion-col size="2"></ion-col>
+    <ion-col size="8">
+      <ion-button
+        color="primary"
+        expand="block"
+        shape="round"
+        (click)="submitForm()"
+        >Done</ion-button
+      >
+    </ion-col>
+  </ion-row>
+</ion-content>
+<div
+  [hidden]="popupHidden"
+  style="
+    height: 100%;
+    width: 100%;
+    background-color: rgb(0 0 0 / 68%);
+    position: absolute;
+  "
+>
+  <div
+    style="
+      left: 10%;
+      position: absolute;
+      top: 40%;
+      width: 80%;
+      height: 160px;
+      background-color: rgb(255, 255, 255);
+      border-radius: 20px;
+    "
+  >
+    <ion-row>
+      <ion-col
+        style="padding-top: 10 px; padding-right: 10px; text-align: right"
+      >
+        <img
+          style="height: 10px; width: 10px; margin-right: 4px; margin-top: 8px"
+          src="assets/img/close_black.svg"
+          (click)="hidePopup()"
+        />
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top: -4px">
+      <ion-col (click)="CameraSelected()" style="text-align: center">
+        <img style="height: 50px; width: 50px" src="assets/img/camera.svg" />
+        <p>Camera</p>
+      </ion-col>
+      <ion-col (click)="GalerySelected()" style="text-align: center">
+        <img style="height: 50px; width: 50px" src="assets/img/gallery.svg" />
+        <p>Gallery</p>
+      </ion-col>
+    </ion-row>
+  </div>
+</div>
+
+
+<div
+    *ngIf="showSlide == 'yes'"
+    [class.for_ios_pad]="plateformCheck == 'ios'"
+    style="background: #000000f5; height: 100%"
+  >
+    <ion-row>
+      <ion-col style="padding-left: 20px; padding-top: 20px">
+        <img
+          src="assets/img/close.png"
+          (click)="closeModel()"
+          style="height: 20px; width: 20px; padding: 3px; border-radius: 10px"
+        />
+      </ion-col>  
+    </ion-row>
+
+    <ion-row class="center">
+      <ion-col class="slider_main_slide" style="display: flex">
+        <ion-slides >
+          <ng-container >
+            <ion-slide style="width: 100%;">
+              <img style="max-height: 80%;" src="{{imageToShow}}" class="s_img_slide" />
+            </ion-slide>
+          </ng-container>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+
+  
+</div>

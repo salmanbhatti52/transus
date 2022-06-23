@@ -1,0 +1,154 @@
+<ion-header *ngIf="showSlide == 'no'" [class.ios-headers]="plateformCheck == 'ios'">
+  <ion-toolbar >
+    <ion-buttons [class.back_button]="plateformCheck == 'ios'" slot="start">
+      <img src="assets/img/Arrow.svg" (click)="back()">
+    </ion-buttons>
+    <ion-title [class.globe_title]="plateformCheck == 'ios'">{{booking_details.model_name}}</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+<div *ngIf="showSlide == 'no'">
+  <ion-row>
+    <ion-col class="slider_main">
+      <ion-slides pager="true" >
+
+        <ion-slide *ngFor="let p of vehicle_imgs; let i = index">
+          <div class="slide" >
+            <img src="{{base_url}}{{p}}" style="width: 100%;" class="s_img" (click)="previewImage(p)"/>
+          </div>
+        </ion-slide>
+      </ion-slides> 
+    </ion-col>
+  </ion-row>
+  <ion-row class="trip_cost">
+    <ion-col size="6" >
+      <h4>TRIP COST</h4>
+    </ion-col>
+    <ion-col size="6" class="ion-text-right">
+      <h4 class="primary_color">{{currency_symbol}}{{booking_details.trip_cost}}</h4>
+    </ion-col>
+  </ion-row>
+  <ion-row class="descr bg_white" >
+    <ion-col size="12">
+      <h4>{{userString}}</h4>
+    </ion-col>
+    <ion-col size="6">
+      <small>Name</small>
+      <p>{{booking_details.booked_by_user_details.user_name}} </p>
+    </ion-col>
+    <ion-col size="6">
+      <small>Phone</small>
+      <p>{{booking_details.booked_by_user_details.mobile_no}}</p>
+    </ion-col>
+  </ion-row>
+  <ion-row class="descr " >
+    <ion-col size="12">
+      <h4>Trip Dates</h4>
+    </ion-col>
+    <ion-col size="6">
+      <small>Start Date</small>
+      <p>{{booking_details.start_date | customeDate}}</p>
+    </ion-col>
+    <ion-col size="6">
+      <small>End Date</small>
+      <p>{{booking_details.end_date | customeDate}}</p>
+    </ion-col>
+  </ion-row>
+  <ion-row class="descr bg_white">
+    <ion-col size="12">
+      <h4>Trip Time</h4>
+    </ion-col>
+    <ion-col size="6">
+      <small>Start Time</small>
+      <p>{{start_time}}</p>
+    </ion-col>
+    <ion-col size="6">
+      <small>End Time</small>
+      <p>{{end_time}}</p>
+    </ion-col>
+  </ion-row>
+  <ion-row class="descr ">
+    <ion-col size="12">
+      <h4>Location</h4>
+    </ion-col>
+    <ion-col size="6">
+      <small>Pickup</small>
+      <p>{{booking_details.pickup_location}}</p>
+    </ion-col>
+    <ion-col size="6">
+      <small>Dropoff</small>
+      <p>{{booking_details.dropoff_location}}</p>
+    </ion-col>
+  </ion-row>
+  <ion-row class="descr bg_white">
+    <ion-col size="12">
+      <h4>Driving Liscense ID</h4>
+    </ion-col>
+    <ion-col size="12">
+      <img src="{{base_url}}{{booking_details.license_img_url}}">
+    </ion-col>
+    
+  </ion-row>
+
+  <ion-row *ngIf="booking_details.status == 'Accepted' && booking_details.payment_status == 'Paid' " class="btn_footer">
+    <ion-col size="12">
+      <ion-button color="primary" (click)="chatRequest(pageType,tabType,booking_details)" expand="block" shape="round">Chat</ion-button>
+    </ion-col>
+    <!-- <ion-col size="6">
+      <ion-button color="secondary" (click)="bookNow()" expand="block" shape="round">Book Now</ion-button>
+    </ion-col> -->
+  </ion-row>
+
+  <ion-row  *ngIf="booking_details.status == 'Cancelled' || booking_details.status == 'Completed' || booking_details.status == 'Rejected' || booking_details.status == 'Pending' || booking_details.status == 'Rejected' || booking_details.status == 'Waiting' || booking_details.status == 'Pending' || booking_details.payment_status == 'Unpaid' " class="btn_footer">
+    <ion-col size="12">
+      <ion-button color="primary" (click) = "chatAlert(booking_details.status,booking_details.end_date,booking_details.payment_status)" class=""  expand="block" shape="round">Chat</ion-button>
+    </ion-col>
+  </ion-row>
+</div>
+
+<div *ngIf="showSlide == 'yes'" [class.for_ios_pad]="plateformCheck == 'ios'" style="background: #000000f5; height: 100%;">
+
+  <ion-row>
+    <ion-col style="padding-left: 20px;
+  padding-top: 20px;">
+      <img src="assets/img/close.png" (click)="closeModel()" style="height: 20px;
+      width: 20px;
+      padding: 3px;
+      border-radius: 10px;">
+    </ion-col>
+  </ion-row>
+
+
+
+  <ion-row class="center">
+    <ion-col class="slider_main_slide">
+      <ion-slides (ionSlideDidChange)="slideChanged($event)" #slides>
+
+        <ng-container *ngIf="vehicle_imgs.length >0">
+          <ion-slide *ngFor="let p of vehicle_imgs; let i = index">
+
+            <img src="{{base_url}}{{p}}"  class="s_img_slide">
+
+          </ion-slide>
+
+        </ng-container>
+      </ion-slides>
+    </ion-col>
+  </ion-row>
+
+
+  <ion-row style="position: absolute;
+  text-align: center;
+  bottom: 80px;
+  width: 100%;">
+    <ion-col style="text-align: center;">
+      <ion-text style="color: white; ">{{indexOfSLide}} of {{vehicle_imgs.length}}</ion-text>
+    </ion-col>
+  </ion-row>
+
+
+
+</div>
+  
+</ion-content>

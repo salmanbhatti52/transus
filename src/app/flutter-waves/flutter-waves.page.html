@@ -1,0 +1,224 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <img src="assets/img/Arrow.svg" (click)="back()" />
+    </ion-buttons>
+    <ion-title>Payment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="background: #f9f9f9; padding-bottom: 20px">
+    <ion-row>
+      <h6 class="method">Method</h6>
+    </ion-row>
+
+    <ng-container *ngFor="let options of paymentGateways;">
+      <ion-row *ngIf="options.payment_methods_id != '3' ">
+        <ion-col (click)="checkActive(options)" size="1">
+          <h4>
+            <div
+              class="div-button-outer"
+              [class.activeRadio]="options.payment_methods_id == radioActive  "
+            ></div>
+          </h4>
+        </ion-col>
+        <ion-col size="11">
+          <h4 (click)="checkActive(options)" class="classh6">
+            {{options.name}}
+          </h4>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+
+    <!-- 
+
+     <ion-row>
+       <ion-col (click)="checkActive('1')" size="1">
+         <h4><div class="div-button-outer" [class.activeRadio]="radioActive == 1 "></div></h4>
+        </ion-col>
+       <ion-col  size="11"><h4 (click)="checkActive('1')" class="classh6">Google Pay/Apple Pay</h4></ion-col>
+     </ion-row>
+
+     <ion-row>
+      <ion-col (click)="checkActive('2')" size="1">
+        <h4><div class="div-button-outer" [class.activeRadio]="radioActive == 2 "></div></h4>
+       </ion-col>
+      <ion-col  size="11"><h4 (click)="checkActive('2')" class="classh6">Mobile Payment</h4></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col (click)="checkActive('3')" size="1">
+        <h4><div class="div-button-outer" [class.activeRadio]="radioActive == 3"></div></h4>
+       </ion-col>
+      <ion-col size="11"><h4 (click)="checkActive('3')"  class="classh6">Bank Transfer</h4></ion-col>
+    </ion-row>
+
+
+     -->
+  </div>
+
+  <ng-container
+    *ngIf="radioActive != '0' && radioActive != '3' && radioActive != '8'"
+  >
+    <ion-row>
+      <h6 class="method">{{paymentOption}}</h6>
+      <h6 class="methodAmount">( {{currency_symbol}} {{amountToShow}})</h6>
+    </ion-row>
+
+    <ion-row>
+      <div class="divClass">{{transferText}}</div>
+    </ion-row>
+  </ng-container>
+
+  <!-- <ion-row>
+    <ion-col>
+      <google-pay-button
+        environment="TEST"
+        buttonType="buy"
+        buttonColor="black"
+        [paymentRequest]="paymentGooglePay"
+        (loadpaymentdata)="onLoadPaymentData($event)">
+      </google-pay-button>
+    </ion-col>
+  </ion-row> -->
+
+  <!-- ///////////////////////////// start card  -->
+  <!-- <ion-card
+    *ngIf="radioActive == '7'"
+    (click)="active_card()"
+    class="main-form"
+    [class.active_card]="card_active == 'show'"
+  > -->
+  <div
+    *ngIf="radioActive == '8'"
+    (click)="active_card()"
+    class="main-form"
+    [class.active_card]="card_active == 'show'"
+  >
+     <!-- <div class="mini_main_form">
+      <div class="input_con_form">
+        <label>CARD NUMBER</label>
+        <ion-input
+          class="form_input"
+          (click)="active_card()"
+          maxlength="19"
+          [class.error_form]="card_error == 'error'"
+          (ionBlur)="card_test()"
+          (ionChange)="check_card()"
+          [(ngModel)]="card_number"
+          type="text"
+          placeholder="XXXX-XXXX-XXXX-XXXX"
+        ></ion-input>
+      </div>
+      <div class="d_form">
+        <div class="input_con_form">
+          <label>EXPIRATION DATE</label>
+          <ion-input
+            placeholder="MM/YY"
+            (click)="active_card()"
+            maxlength="5"
+            [class.error_form]="expiry_error == 'error'"
+            (ionChange)="check_expiry()"
+            (ionBlur)="expiry_test()"
+            [(ngModel)]="expri_date"
+            class="form_input"
+            type="text"
+          ></ion-input>
+        </div>
+        <div class="input_con_form">
+          <label>CV CODE</label>
+          <ion-input
+            placeholder="XXX"
+            (click)="active_card()"
+            maxlength="4"
+            [(ngModel)]="cvv"
+            class="form_input"
+            type="text"
+          ></ion-input>
+        </div>
+      </div>
+    </div>   -->
+    <buttton  angular4-paystack id="angularpaystack" class="paystack" [key]="'pk_live_e1fe04533542cf4313ce66133eb31296411c1a02'"
+      [email]="email" [amount]="amount" [ref]="reference" 
+      (paymentInit)="paymentInit()" [currency]="currency" (onClose)="paymentCancel()" (callback)="paymentDone($event)">
+      {{currency_symbol}}{{amountToShow}} Pay with Paystack 
+    </buttton>  
+    <!-- pk_live_e1fe04533542cf4313ce66133eb31296411c1a02 -->
+    <!-- pk_test_393a9e0b8393df40d3502bf0b37be35533408b81 -->
+    <!-- <button
+    style="background: #c4932f;
+    padding: 21px;
+    border-radius: 17px;
+    color: white;
+    font-size: 17px;
+    font-weight: 800;"
+    angular4-paystack
+    [paystackOptions]="options"
+    (paymentInit)="paymentInit()"
+    (onClose)="paymentCancel()"
+    (callback)="paymentDone($event)"
+  >
+    Pay with Paystack
+  </button> -->
+  </div>
+
+  <div class="footer">
+    <ng-container
+      *ngIf="radioActive != '0' && radioActive != '3' &&  radioActive != '8' "
+    >
+      <ion-row>
+        <ion-col style="text-align: center">
+          <div class="list_1">
+            <ion-row>
+              <ion-col>
+                <h3>Receipt</h3>
+                <p class="upload_images left_4">
+                  Upload Transaction screenshot
+                </p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12">
+                <ion-row>
+                  <ion-col
+                    size="12"
+                    class="list_2"
+                    (click)="uploadDocument()"
+                    *ngIf="document_one =='' || document_one ==undefined"
+                  >
+                    <img src="assets/img/Menu_Plus.svg" />
+                  </ion-col>
+                  <ion-col
+                    size="12"
+                    class="real_image"
+                    (click)="uploadDocument()"
+                    *ngIf="document_one"
+                  >
+                    <img src="{{document_one}}" class="imgh" />
+                  </ion-col>
+                  <span *ngIf="document_oneError" class="error ion-padding">
+                    Document is required.
+                  </span>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </div>
+          <!-- <ion-button (click)="uploadDocument()" class="btn" [class.btnActive]="imageGet != '' "  expand="block" shape="round"  >Upload Transaction screenshot</ion-button> -->
+        </ion-col>
+      </ion-row>
+    </ng-container>
+
+    <ion-row  *ngIf="radioActive != '8' && radioActive != '0'">
+      <!-- <ion-row  *ngIf="radioActive != '0'"> -->
+      <ion-col>
+        <ion-button
+          (click)="submit()"
+          style="width: 60%; margin-left: 20%; position: relative; bottom: 0em"
+          shape="round"
+          >Submit</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

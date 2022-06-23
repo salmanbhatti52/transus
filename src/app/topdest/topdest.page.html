@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar class="header_pd" style="--background: #c4932f">
+    <ion-buttons slot="start">
+      <img src="assets/img/Menu.svg" (click)="toggleMenu()" />
+    </ion-buttons>
+    <ion-searchbar
+      style="margin-top: 0px"
+      (ionChange)="onInput($event)"
+      placeholder="Search for cars"
+    >
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div *ngIf="searchData == ''">
+    <div
+      style="
+      height: 150px;
+      width: 100%;
+      background-image: url('{{place.destination_pic}}');
+      background-size: cover; "
+      *ngFor="let place of toprateddest"
+      (click)="goToTopRated(place)"
+    >
+      <div
+        style="height: 150px; width: 100%; background-color: rgb(0 0 0 / 51%)"
+      >
+        <ion-row style="font-size: 25px; padding-top: 50px; color: white">
+          <ion-col style="text-align: center">
+            <p>{{place.destination_name}}</p>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="searchData != ''">
+    <div
+      style="
+  height: 150px;
+  width: 100%;
+  background-image: url('{{place.destination_pic}}');
+  background-size: cover; "
+      *ngFor="let place of filteredTopDest"
+      (click)="goToTopRated(place)"
+    >
+      <div
+        style="height: 150px; width: 100%; background-color: rgb(0 0 0 / 51%)"
+      >
+        <ion-row style="font-size: 25px; padding-top: 50px; color: white">
+          <ion-col style="text-align: center">
+            <p>{{place.destination_name}}</p>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+  </div>
+
+  <!-- <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data..."
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll> -->
+</ion-content>

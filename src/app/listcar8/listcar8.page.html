@@ -1,0 +1,53 @@
+<ion-header [class.ios-headers]="plateformCheck == 'ios'">
+  <ion-toolbar>
+    <ion-buttons [class.back_button]="plateformCheck == 'ios'" slot="start">
+      <img src="assets/img/Arrow.svg" (click)="goToHome()">
+    </ion-buttons>
+    <ion-title [class.globe_title]="plateformCheck == 'ios'">List your car</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <div style="padding: 20px;">
+
+
+
+
+    <ion-row style="margin-top: 20px;">
+      <ion-col style="text-align: center;">
+        <img src="assets/img/done.svg" style="height: 200px; width: 200px;">
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <h3>All Done!</h3>
+      </ion-col>
+    </ion-row>
+
+
+
+    <ion-row>
+      <ion-col>
+        <p style="font-size: 12px;">We have all the necessary details to get you started. Sit tight while we verify your information and get you on the road.</p>
+      </ion-col>
+    </ion-row>
+
+
+
+  </div>
+
+
+
+
+  <ion-row class="btn_footer">
+    <ion-col size="2"></ion-col>
+    <ion-col size="8">
+      <ion-button color="primary" expand="block" shape="round" (click)="goToNext()">Next</ion-button>
+    </ion-col>
+
+  </ion-row>
+
+</ion-content>

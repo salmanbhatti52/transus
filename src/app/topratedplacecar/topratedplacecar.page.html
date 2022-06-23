@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar class="header_pd" style="--background: #c4932f">
+    <ion-buttons slot="start">
+      <img src="assets/img/Menu.svg" (click)="toggleMenu()" />
+    </ion-buttons>
+    <ion-searchbar
+      style="margin-top: 6px"
+      (click)="ifFound()"
+      (ionChange)="onInput()"
+      placeholder="Search for cars"
+    ></ion-searchbar>
+    <ion-buttons style="margin-top: 6px" slot="end" (click)="goToFilter()">
+      <img src="assets/img/filter.svg" />
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content> </ion-content>

@@ -1,0 +1,313 @@
+<ion-header [class.ios-headers]="plateformCheck == 'ios'">
+  <ion-toolbar>
+    <ion-buttons [class.back_button]="plateformCheck == 'ios'" slot="start">
+      <img src="assets/img/Arrow.svg" (click)="goToHome()" />
+    </ion-buttons>
+    <ion-title [class.globe_title]="plateformCheck == 'ios'"
+      >List your car</ion-title
+    >
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="padding: 20px">
+    <ion-row>
+      <ion-col>
+        <p class="upload_images">Upload Images</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="4">
+        <ion-row>
+          <ion-col
+            size="12"
+            class="list_2"
+            (click)="showPopup(1)"
+            *ngIf="document_one =='' || document_one ==undefined"
+          >
+            <img src="assets/img/plus.svg" />
+          </ion-col>
+          <ion-col
+            size="12"
+            class="real_image"
+            (click)="showPopup(1)"
+            *ngIf="document_one"
+          >
+            <img src="{{document_one}}" />
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="4">
+        <ion-row>
+          <ion-col
+            size="12"
+            class="list_2"
+            (click)="showPopup(2)"
+            *ngIf="document_two =='' || document_two ==undefined"
+          >
+            <img src="assets/img/plus.svg" />
+          </ion-col>
+          <ion-col
+            size="12"
+            class="real_image"
+            (click)="showPopup(2)"
+            *ngIf="document_two"
+          >
+            <img src="{{document_two}}" />
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="4">
+        <ion-row>
+          <ion-col
+            size="12"
+            class="list_2"
+            (click)="showPopup(3)"
+            *ngIf="document_three =='' || document_three ==undefined"
+          >
+            <img src="assets/img/plus.svg" />
+          </ion-col>
+          <ion-col
+            size="12"
+            class="real_image"
+            (click)="showPopup(3)"
+            *ngIf="document_three"
+          >
+            <img src="{{document_three}}" />
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <span *ngIf="document_oneError" class="error ion-padding">
+        Document is required.
+      </span>
+      <span *ngIf="document_twoError" class="error ion-padding">
+        Document is required.
+      </span>
+      <span *ngIf="document_threeError" class="error ion-padding">
+        Document is required.
+      </span>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="4">
+        <ion-row>
+          <ion-col
+            size="12"
+            class="list_2"
+            (click)="showPopup(6)"
+            *ngIf="document_six =='' || document_six ==undefined"
+          >
+            <img src="assets/img/plus.svg" />
+          </ion-col>
+          <ion-col
+            size="12"
+            class="real_image"
+            (click)="showPopup(6)"
+            *ngIf="document_six"
+          >
+            <img src="{{document_six}}" />
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="4">
+        <ion-row>
+          <ion-col
+            size="12"
+            class="list_2"
+            (click)="showPopup(7)"
+            *ngIf="document_seven =='' || document_seven ==undefined"
+          >
+            <img src="assets/img/plus.svg" />
+          </ion-col>
+          <ion-col
+            size="12"
+            class="real_image"
+            (click)="showPopup(7)"
+            *ngIf="document_seven"
+          >
+            <img src="{{document_seven}}" />
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="4">
+        <ion-row>
+          <ion-col
+            size="12"
+            class="list_2"
+            (click)="showPopup(8)"
+            *ngIf="document_eight =='' || document_eight ==undefined"
+          >
+            <img src="assets/img/plus.svg" />
+          </ion-col>
+          <ion-col
+            size="12"
+            class="real_image"
+            (click)="showPopup(8)"
+            *ngIf="document_eight"
+          >
+            <img src="{{document_eight}}" />
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="4">
+        <ion-row>
+          <ion-col
+            size="12"
+            class="list_2"
+            (click)="showPopup(9)"
+            *ngIf="document_nine =='' || document_nine ==undefined"
+          >
+            <img src="assets/img/plus.svg" />
+          </ion-col>
+          <ion-col
+            size="12"
+            class="real_image"
+            (click)="showPopup(9)"
+            *ngIf="document_nine"
+          >
+            <img src="{{document_nine}}" />
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="4">
+        <ion-row>
+          <ion-col
+            size="12"
+            class="list_2"
+            (click)="showPopup(10)"
+            *ngIf="document_ten =='' || document_ten ==undefined"
+          >
+            <img src="assets/img/plus.svg" />
+          </ion-col>
+          <ion-col
+            size="12"
+            class="real_image"
+            (click)="showPopup(10)"
+            *ngIf="document_ten"
+          >
+            <img src="{{document_ten}}" />
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="4">
+        <ion-row>
+          <ion-col
+            size="12"
+            class="list_2"
+            (click)="showPopup(11)"
+            *ngIf="document_eleven =='' || document_eleven ==undefined"
+          >
+            <img src="assets/img/plus.svg" />
+          </ion-col>
+          <ion-col
+            size="12"
+            class="real_image"
+            (click)="showPopup(11)"
+            *ngIf="document_eleven"
+          >
+            <img src="{{document_eleven}}" />
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="4">
+        <ion-row>
+          <ion-col
+            size="12"
+            class="list_2"
+            (click)="showPopup(12)"
+            *ngIf="document_twelve =='' || document_twelve ==undefined"
+          >
+            <img src="assets/img/plus.svg" />
+          </ion-col>
+          <ion-col
+            size="12"
+            class="real_image"
+            (click)="showPopup(7)"
+            *ngIf="document_twelve"
+          >
+            <img src="{{document_twelve}}" />
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <span *ngIf="document_sixError" class="error ion-padding">
+        Document is required.
+      </span>
+      <span *ngIf="document_sevenError" class="error ion-padding">
+        Document is required.
+      </span>
+      <span *ngIf="document_eightError" class="error ion-padding">
+        Document is required.
+      </span>
+      <span *ngIf="document_nineError" class="error ion-padding">
+        Document is required.
+      </span>
+      <span *ngIf="document_tenError" class="error ion-padding">
+        Document is required.
+      </span>
+      <span *ngIf="document_elevenError" class="error ion-padding">
+        Document is required.
+      </span>
+      <span *ngIf="document_new_twevlError" class="error ion-padding">
+        Document is required.
+      </span>
+    </ion-row>
+  </div>
+
+  <ion-row class="btn_footer">
+    <ion-col size="2"></ion-col>
+    <ion-col size="8">
+      <ion-button
+        color="primary"
+        expand="block"
+        shape="round"
+        (click)="goToNext()"
+        >Next</ion-button
+      >
+    </ion-col>
+  </ion-row>
+</ion-content>
+
+<div
+  [hidden]="popupHidden"
+  style="
+    height: 100%;
+    width: 100%;
+    background-color: rgb(0 0 0 / 68%);
+    position: absolute;
+  "
+>
+  <div
+    style="
+      left: 10%;
+      position: absolute;
+      top: 40%;
+      width: 80%;
+      height: 160px;
+      background-color: rgb(255, 255, 255);
+      border-radius: 20px;
+    "
+  >
+    <ion-row>
+      <ion-col
+        style="padding-top: 10 px; padding-right: 10px; text-align: right"
+      >
+        <img
+          style="height: 10px; width: 10px; margin-right: 4px; margin-top: 8px"
+          src="assets/img/close_black.svg"
+          (click)="hidePopup()"
+        />
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top: -4px">
+      <ion-col (click)="CameraSelected()" style="text-align: center">
+        <img style="height: 50px; width: 50px" src="assets/img/camera.svg" />
+        <p>Camera</p>
+      </ion-col>
+      <ion-col (click)="GalerySelected()" style="text-align: center">
+        <img style="height: 50px; width: 50px" src="assets/img/gallery.svg" />
+        <p>Gallery</p>
+      </ion-col>
+    </ion-row>
+  </div>
+</div>

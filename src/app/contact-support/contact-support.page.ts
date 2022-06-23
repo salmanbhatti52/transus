@@ -1,0 +1,178 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController, LoadingController, MenuController, Platform, ToastController } from '@ionic/angular';
+import { RestService } from '../rest.service';
+import { Storage } from '@ionic/storage';
+@Component({
+  selector: 'app-contact-support',
+  templateUrl: './contact-support.page.html',
+  styleUrls: ['./contact-support.page.scss'],
+})
+export class ContactSupportPage implements OnInit {
+  loading: HTMLIonLoadingElement;
+  validation: boolean = false;
+  Email: any = "";
+  Subject: any ="";
+  Description: any ="";
+  DescriptionError: boolean;
+  SubjectError: boolean;
+  EmailError: boolean;
+  response: any;
+  userID: any = '';
+  plateformCheck:any;
+  constructor(public loadingController: LoadingController, public activatedRoute: ActivatedRoute, private storage: Storage, public toastController: ToastController, public router: Router, public restService: RestService, public alertCtrl: AlertController,
+    public menuCtrl: MenuController,public plateform: Platform) {
+
+  }
+
+  ngOnInit() {
+    if(this.plateform.is('ios')){
+      this.plateformCheck = "ios";
+    }
+    else{
+      this.plateformCheck = "android";
+    }
+    this.storage.get('user_details').then((user_details) => {
+      console.log(user_details);
+      this.userID = user_details.users_id;
+      this.Email = user_details.email
+      if (this.userID) {
+
+      } else {
+        this.userID = '';
+      }
+    });
+  }
+
+  validateForm() {
+
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+
+    if (this.validation) {
+      if (re.test(this.Email)) {
+
+
+
+        this.EmailError = false;
+        this.SubjectError = false;
+        this.DescriptionError = false;
+
+        if (this.Email == '' || this.Email == undefined) {
+          this.EmailError = true;
+          return false;
+        } else if (this.Subject == '' || this.Subject == undefined) {
+          this.SubjectError = true;
+          return false;
+        } else if (this.Description == '' || this.Description == undefined) {
+          this.DescriptionError = true;
+          return false;
+        } else {
+          return true;
+        }
+
+      } else {
+        this.presentToast('Invalid Email')
+      }
+
+    } else {
+      this.presentToast('Invalid Subject or Description')
+    }
+  }
+  ShowLoading:boolean = false;
+  checkmail:boolean=false;
+  ValidateEmail(mail) {
+    if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail)) {
+       this.checkmail = true
+       return this.checkmail;
+    } else {
+      //alert("You have entered an invalid email address!")
+      this.checkmail = false;
+      return this.checkmail;
+      
+    }
+  }
+  submitForm() {
+    if(this.Email != ""){
+      if(this.ValidateEmail(this.Email)){
+        if (this.Subject != "" && this.Description != "") {
+          //alert('true');
+    
+          var stringy = JSON.stringify({
+            "requestType": 'send_request',
+            "email": this.Email,
+            "usersID": this.userID,
+            "subject": this.Subject,
+            "description": this.Description
+          });
+    
+          console.log(stringy);
+          this.present();
+          // this.ShowLoading = true
+          this.restService.customer_support(stringy).subscribe(response => {
+            this.response = JSON.parse(response['_body']);
+            console.log(this.response.status);
+            if (this.response.status == 'error') {
+              this.presentToast('Oops!something went wrong.');
+            } else if (this.response.status == 'success') {
+              this.presentToast('We received your query. We will try to get back to you as soon as possible. Thanks');
+    
+              this.router.navigate(['/']);
+    
+    
+            }
+            this.dismiss();
+            // this.ShowLoading = false;
+          }, err => {
+            this.dismiss();
+            // this.ShowLoading = false
+          });
+        }
+        else{
+          if(this.Subject == ""){
+            this.presentToast("subject is missing.")
+          }
+          else if(this.Description == ""){
+            this.presentToast("Description is missing.")
+          }
+        }
+      }
+      else{
+        this.presentToast("Email is not valid");
+      }
+    }
+    else{
+      this.presentToast("Email is missing.")
+    }
+    // console.log(this.document_four);
+    // if (this.validateForm() == true) {
+ 
+  }
+
+  toggleMenu() {
+    this.menuCtrl.toggle();
+  }
+  carDetail() {
+    this.router.navigate(['/car-detail']);
+  }
+  async presentToast(msg) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000,
+      position: 'top'
+    });
+    toast.present();
+  }
+  async present() {
+    this.loading = await this.loadingController.create({
+      message: 'Please wait...',
+    });
+    await this.loading.present();
+  }
+
+
+  async dismiss() {
+    await this.loading.dismiss();
+  }
+
+}

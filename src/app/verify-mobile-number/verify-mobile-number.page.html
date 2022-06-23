@@ -1,0 +1,43 @@
+
+<ion-content>
+  <div style="padding: 10px !important;">
+  <ion-row>
+    <ion-col class="text-right">
+      <img src="assets/img/minimize.svg" (click)="ok()">
+    </ion-col>
+  </ion-row>
+
+  
+  <ion-row *ngIf="ShowLoading" style="position: absolute; width: 100%; z-index: 9999;">
+    <ion-col style="text-align: center;">
+      <img style="width: 90px;" src="assets/img/Loader.gif">
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col class="text-center" size="12">
+      <h1 class="alura">Enter Code</h1>
+      <p class="alura m_0"> Enter the 4 digit code that you received via email or sms.</p>
+    </ion-col>
+  </ion-row>
+
+  <ion-grid>
+  
+    <ion-row style="display: flex;
+    justify-content: center;" >
+      <ng-otp-input  (onInputChange)="onOtpChange($event)"   [config]="{length:4,allowNumbersOnly:true}"></ng-otp-input>
+    </ion-row>
+  </ion-grid>
+
+
+
+  <ion-row>
+     <ion-col  size="3">
+
+     </ion-col>
+     <ion-col size="6" class="ion-text-center">
+        <ion-button color="primary" class="alura"  (click)="goToHome()" shape="round" expand="block">Next</ion-button>  
+        <p class="alura" (click)="resend()">Resend</p>
+    </ion-col>
+  </ion-row>
+  </div>
+</ion-content>

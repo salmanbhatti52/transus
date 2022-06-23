@@ -1,0 +1,217 @@
+<ion-header [class.ios-headers]="plateformCheck == 'ios'">
+  <ion-toolbar>
+    <ion-buttons [class.back_button]="plateformCheck == 'ios'" slot="start">
+      <img src="assets/img/Arrow.svg" (click)="goToHome()" />
+    </ion-buttons>
+    <ion-title [class.globe_title]="plateformCheck == 'ios'"
+      >List your car</ion-title
+    >
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="padding: 0px 20px 20px 20px">
+    <ion-row>
+      <ion-col>
+        <h3>Advance Notice</h3>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top: -15px">
+      <ion-col>
+        <p style="font-size: 10px; color: #c4932f">
+          How much advance notice do you need before a trip starts?
+        </p>
+      </ion-col>
+    </ion-row>
+
+    <ion-radio-group
+      (ionChange)="advanceNoticeChange($event)"
+      value="{{advance_notice}}"
+    >
+      <ion-row style="margin-top: 10px">
+        <ion-col size="2" style="text-align: left">
+          <ion-radio mode="md" value="6 hours"></ion-radio>
+        </ion-col>
+
+        <ion-col size="10" style="padding-top: 7px">
+          <p style="font-size: 13px; color: #000000">6 hours</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="2" style="text-align: left">
+          <ion-radio mode="md" value="12 hours"></ion-radio>
+        </ion-col>
+
+        <ion-col size="10" style="padding-top: 7px">
+          <p style="font-size: 13px; color: #000000">12 hours</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="2" style="text-align: left">
+          <ion-radio mode="md" value="1 day"></ion-radio>
+        </ion-col>
+
+        <ion-col size="10" style="padding-top: 7px">
+          <p style="font-size: 13px; color: #000000">1 day</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="2" style="text-align: left">
+          <ion-radio mode="md" value="Instant"></ion-radio>
+        </ion-col>
+
+        <ion-col size="10" style="padding-top: 7px">
+          <p style="font-size: 13px; color: #000000">Instant</p>
+        </ion-col>
+      </ion-row>
+    </ion-radio-group>
+
+    <!-- ---------------------------------2-------------------------------------- -->
+
+    <ion-row>
+      <ion-col>
+        <h3>Minimum Trip Duration</h3>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top: -15px">
+      <ion-col>
+        <p style="font-size: 10px; color: #c4932f">
+          What's the shortest possible trip you'll accept?
+        </p>
+      </ion-col>
+    </ion-row>
+
+    <ion-radio-group
+      (ionChange)="maximumTripChange($event)"
+      value="{{min_trip}}"
+    >
+      <ion-row style="margin-top: 10px">
+        <ion-col size="2" style="text-align: left">
+          <ion-radio mode="md" value="1 day"></ion-radio>
+        </ion-col>
+
+        <ion-col size="10" style="padding-top: 7px">
+          <p style="font-size: 13px; color: #000000">1 day</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="2" style="text-align: left">
+          <ion-radio mode="md" value="2 day"></ion-radio>
+        </ion-col>
+
+        <ion-col size="10" style="padding-top: 7px">
+          <p style="font-size: 13px; color: #000000">2 day</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="2" style="text-align: left">
+          <ion-radio mode="md" value="3 day"></ion-radio>
+        </ion-col>
+
+        <ion-col size="10" style="padding-top: 7px">
+          <p style="font-size: 13px; color: #000000">3 day</p>
+        </ion-col>
+      </ion-row>
+    </ion-radio-group>
+
+    <!-- ------------------------3------------------------------ -->
+
+    <ion-row>
+      <ion-col>
+        <h3>Maximum Trip Duration</h3>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top: -15px">
+      <ion-col>
+        <p style="font-size: 10px; color: #c4932f">
+          What's the shortest possible trip you'll accept?
+        </p>
+      </ion-col>
+    </ion-row>
+
+    <ion-radio-group
+      (ionChange)="maximumTripDurationChange($event)"
+      value="{{max_trip}}"
+    >
+      <ion-row style="margin-top: 10px">
+        <ion-col size="2" style="text-align: left">
+          <ion-radio mode="md" value="5 day"></ion-radio>
+        </ion-col>
+
+        <ion-col size="10" style="padding-top: 7px">
+          <p style="font-size: 13px; color: #000000">5 days</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="2" style="text-align: left">
+          <ion-radio mode="md" value="1 week"></ion-radio>
+        </ion-col>
+
+        <ion-col size="10" style="padding-top: 7px">
+          <p style="font-size: 13px; color: #000000">1 week</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="2" style="text-align: left">
+          <ion-radio mode="md" value="2 week"></ion-radio>
+        </ion-col>
+
+        <ion-col size="10" style="padding-top: 7px">
+          <p style="font-size: 13px; color: #000000">2 weeks</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="2" style="text-align: left">
+          <ion-radio mode="md" value="1 month"></ion-radio>
+        </ion-col>
+
+        <ion-col size="10" style="padding-top: 7px">
+          <p style="font-size: 13px; color: #000000">1 month</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="2" style="text-align: left">
+          <ion-radio mode="md" value="3 month"></ion-radio>
+        </ion-col>
+
+        <ion-col size="10" style="padding-top: 7px">
+          <p style="font-size: 13px; color: #000000">3 month</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="2" style="text-align: left">
+          <ion-radio mode="md" value="any"></ion-radio>
+        </ion-col>
+
+        <ion-col size="10" style="padding-top: 7px">
+          <p style="font-size: 13px; color: #000000">Any</p>
+        </ion-col>
+      </ion-row>
+    </ion-radio-group>
+
+    <ion-row>
+      <ion-col size="2"></ion-col>
+      <ion-col size="8">
+        <ion-button
+          color="primary"
+          expand="block"
+          shape="round"
+          (click)="submitForm()"
+          >Next</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

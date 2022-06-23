@@ -1,0 +1,229 @@
+<ion-header [class.ios-headers]="plateformCheck == 'ios'">
+  <ion-toolbar>
+    <ion-buttons [class.back_button]="plateformCheck == 'ios'" slot="start">
+      <img src="assets/img/Arrow.svg" (click)="goToHome()">
+    </ion-buttons>
+    <ion-title [class.globe_title]="plateformCheck == 'ios'">List your car</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <div style="padding:20px;">
+
+
+    <ion-row>
+      <ion-col>
+        <h3>Location Info</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="list_4">
+        <ion-row>
+          <ion-col size="1">
+            <div class="list_7"></div>
+            <div class="list_5"></div>
+            <div class="list_8"></div>
+          </ion-col>
+          <ion-col size="11">
+            <span (click)="goToLocation()">Pickup</span>
+            <p class="list_6" (click)="goToLocation()">{{pickup}}</p>
+            <span (click)="goToLocation()">Dropoff</span>
+            <p (click)="goToLocation()">{{dropoff}}</p>
+          </ion-col>
+        </ion-row>
+        <span *ngIf="RouteError" class="error ion-padding">
+          Route is required.
+        </span>
+      </ion-col>
+    </ion-row>
+
+
+
+    <ion-row>
+      <ion-col>
+        <h3>What car do you have?</h3>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-input placeholder="Identify your car" [(ngModel)]="idYourCar" class="input_list">
+        </ion-input>
+        <span *ngIf="LicensePlateError" class="error ion-padding">
+          License Plate is required.
+        </span>
+      </ion-col>
+    </ion-row>
+
+
+
+  </div>
+
+
+
+  <ion-row class="btn_footer">
+    <ion-col size="2"></ion-col>
+    <ion-col size="8">
+      <ion-button color="primary" expand="block" shape="round" (click)="showDiv()">Next</ion-button>
+    </ion-col>
+
+  </ion-row>
+
+</ion-content>
+
+
+<div [hidden]="TheDivHidden" style="width: 80%;
+background-color: rgba(0, 0, 0, 0.432);
+position: absolute;
+height: 100%;
+width: 100%;">
+
+
+
+  <div style="width: 80%;
+background-color: white;
+border-radius: 10px;
+position: absolute;
+top: 13%;
+height: auto;
+left: 10%;
+padding: 10px;">
+
+
+    <ion-row>
+      <ion-col style="text-align: right;">
+        <img (click)="hideDiv()" src="assets/img/close_btn.svg" style="height: 15px; width: 15px;">
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col style="text-align: center;">
+        <p style="color: #1A6BBE; font-size: 25px;">Your car</p>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col style="text-align: left;">
+        <p style="color: #000000; font-size: 12px;">We'll use your Vehicle Identification Number (VIN) to identify your
+          specific car. A VIN usually consists of 17 letters and numbers and has a barcode. It can be found in a few
+          stops:</p>
+      </ion-col>
+    </ion-row>
+
+
+
+    <ion-row>
+
+      <ion-col style="text-align: -webkit-center;" size="2">
+        <div style="background-color: #C4932F;
+    height: 25px;
+    width: 25px;
+    border-radius: 20px;
+    color: wheat;
+    padding-top: 4px;">1</div>
+      </ion-col>
+      <ion-col style="text-align: left ;     padding-top: 6px;" size="10">
+        <p style="color: #000000; font-size: 17px; ">Driver-side door </p>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+
+      <ion-col style="text-align: -webkit-center;" size="2">
+
+      </ion-col>
+      <ion-col style="text-align: left ;     padding-top: 6px;" size="10">
+        <p style="color: #000000; font-size: 12px; ">With the door open, look on the edge of the door or doorpost (where
+          the door latches when its closed).</p>
+      </ion-col>
+    </ion-row>
+
+
+
+
+
+
+    <ion-row>
+
+      <ion-col style="text-align: -webkit-center;" size="2">
+        <div style="background-color: #C4932F;
+    height: 25px;
+    width: 25px;
+    border-radius: 20px;
+    color: wheat;
+    padding-top: 4px;">2</div>
+      </ion-col>
+      <ion-col style="text-align: left ;     padding-top: 6px;" size="10">
+        <p style="color: #000000; font-size: 17px; ">Driver-side dashboard</p>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+
+      <ion-col style="text-align: -webkit-center;" size="2">
+
+      </ion-col>
+      <ion-col style="text-align: left ;     padding-top: 6px;" size="10">
+        <p style="color: #000000; font-size: 12px; ">Stand outside the car and look through the windshield at the bottom
+          corner of your dashboard.</p>
+      </ion-col>
+    </ion-row>
+
+
+
+
+
+    <ion-row>
+
+      <ion-col style="text-align: -webkit-center;" size="2">
+        <div style="background-color: #C4932F;
+    height: 25px;
+    width: 25px;
+    border-radius: 20px;
+    color: wheat;
+    padding-top: 4px;">3</div>
+      </ion-col>
+      <ion-col style="text-align: left ;     padding-top: 6px;" size="10">
+        <p style="color: #000000; font-size: 17px; ">Documentation</p>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+
+      <ion-col style="text-align: -webkit-center;" size="2">
+
+      </ion-col>
+      <ion-col style="text-align: left ;     padding-top: 6px;" size="10">
+        <p style="color: #000000; font-size: 12px; ">Check your car title, registration, or insurance documents.</p>
+      </ion-col>
+    </ion-row>
+
+
+
+
+    <ion-row>
+      <ion-col style="text-align: left;">
+        <p style="color: #000000; font-size: 12px;">If you can't find your VIN, check your car manual or manufacturer's
+          website for instructions.</p>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+
+      <ion-col style="text-align:  -webkit-center;">
+        <ion-button style="width: 150px;" color="primary" expand="block" shape="round" (click)="goToNext()">Next
+        </ion-button>
+      </ion-col>
+
+    </ion-row>
+
+  </div>
+
+</div>

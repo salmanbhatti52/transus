@@ -1,0 +1,7 @@
+{
+  "name": "transus_clone",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

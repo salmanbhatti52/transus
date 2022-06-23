@@ -1,0 +1,216 @@
+ion-toolbar {
+    --background: #C4932F;
+    // padding: 0.3em 0.5em;
+}
+
+.header_pd {
+    padding: 0.8em 0.1em 0 0;
+}
+
+@media only screen and(min-height : 800px) {
+    .header_pd {
+        padding: 0.5em 0.1em 8px 0;
+    }
+}
+
+ion-title {
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+}
+
+ion-button {
+    --padding-bottom: 1.5em;
+    --padding-top: 1.5em;
+    --box-shadow: none;
+    text-transform: capitalize;
+}
+
+.cstomHeader {
+    --background: #fff;
+}
+
+.segment-button-checked {
+    background: #F7F8FA;
+    color: #464646;
+}
+
+.bg_grey {
+    background: #F9F9F9;
+}
+
+.pd_bs {
+    padding: 0.7em 1em;
+    position: relative;
+    padding-bottom: 35px !important;
+}
+
+.lambo h4 {
+    margin: 0px;
+    margin-bottom: 3px;
+}
+
+.trip_dates {
+    font-size: 10px;
+    padding-top: 2.4em;
+    padding-left: 1.3em;
+}
+
+.trip_dates p {
+    margin: 0px;
+    margin-top: 6px;
+}
+
+.blue {
+    color: #1A6BBE;
+}
+
+.primary {
+    color: #C4932F;
+}
+
+.trip_end_date {
+    font-size: 10px;
+    padding-top: 4.2em;
+    padding-left: 1.3em;
+}
+
+.trip_end_date p {
+    margin: 0px;
+    margin-top: 6.2px;
+}
+
+.star img:first-child {
+    margin-left: 0px !important;
+}
+
+.star img {
+    margin-left: 4px;
+}
+
+.give_rating {
+    background: #C4932F;
+    color: #fff;
+    padding: 0.7em;
+    border-radius: 25px;
+    width: 100%;
+    text-align: center;
+    margin: 0px;
+    margin-top: 10px !important;
+}
+
+.danger {
+    // background: #D93A3A;
+    // color: #fff;
+    // padding: 0.7em;
+    // border-radius: 25px;
+    // width: 100%;
+    // text-align: center;
+    // margin: 0px;
+    // margin-top: 14px !important;
+
+    background: #D93A3A;
+    color: #fff;
+    padding: 0.7em;
+    border-radius: 25px;
+    width: 100%;
+    text-align: center;
+    margin: 0px;
+    /* margin-top: 10px !important; */
+    position: absolute;
+    width: 85%;
+    position: absolute;
+    border: 0px;
+}
+
+.chatBtn {
+    // background: #D93A3A;
+    // color: #fff;
+    // padding: 0.7em;
+    // border-radius: 25px;
+    // width: 100%;
+    // text-align: center;
+    // margin: 0px;
+    // margin-top: 14px !important;
+
+    background: #c4932f;
+    color: #fff;
+    padding: 0.7em;
+    border-radius: 25px;
+    width: 100%;
+    text-align: center;
+    margin: 0px;
+    /* margin-top: 10px !important; */
+    position: absolute;
+    width: 85%;
+    position: absolute;
+    border: 0px;
+}
+
+.accept {
+    background: #1A6BBE;
+    color: #fff;
+    padding: 0.7em;
+    border-radius: 25px;
+    text-align: center;
+    margin: 0px;
+    /* margin-top: 10px !important; */
+    position: absolute;
+    width: 85%;
+    position: absolute;
+}
+
+.accept-unpaid {
+    background: #82d93a;
+    color: #fff;
+    padding: 0.7em;
+    border-radius: 25px;
+    text-align: center;
+    margin: 0px;
+    position: absolute;
+    width: 85%;
+
+}
+
+.name_tabs {
+    font-size: 13px;
+    font-weight: 400;
+    display: grid;
+    justify-content: center;
+    padding: 17px 14px;
+}
+
+.main_tab {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-gap: 1px;
+}
+
+.active_tab {
+    background-color: #f7f8fa;
+    border-bottom: 2px solid #c4932f;
+    font-weight: 500;
+}
+
+.btn_fixed {
+    position: relative;
+    left: auto;
+    right: auto;
+    text-align: center;
+    bottom: 13px;
+    justify-content: center;
+    margin: 6px 20px;
+}
+
+.footer-md::before {
+    background: none;
+}
+
+.footer-ios::before {
+    background: none;
+}
+
+h4 {
+    font-size: 18px !important;
+}
