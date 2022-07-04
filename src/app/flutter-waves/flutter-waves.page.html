@@ -139,7 +139,7 @@
         </div>
       </div>
     </div>   -->
-    <buttton  angular4-paystack id="angularpaystack" class="paystack" [key]="'pk_live_e1fe04533542cf4313ce66133eb31296411c1a02'"
+    <buttton  angular4-paystack id="angularpaystack" class="paystack" [key]="'pk_test_393a9e0b8393df40d3502bf0b37be35533408b81'"
       [email]="email" [amount]="amount" [ref]="reference" 
       (paymentInit)="paymentInit()" [currency]="currency" (onClose)="paymentCancel()" (callback)="paymentDone($event)">
       {{currency_symbol}}{{amountToShow}} Pay with Paystack 

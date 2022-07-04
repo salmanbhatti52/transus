@@ -123,6 +123,7 @@ export class EarningPage implements OnInit {
   loading: HTMLIonLoadingElement;
   plateformCheck: any;
   totalBookings: any;
+  transactionDetails = [];
   constructor(
     public loadingController: LoadingController,
     public toastController: ToastController,
@@ -159,7 +160,8 @@ export class EarningPage implements OnInit {
     this.restService.transactions(stringy).subscribe(
       (response) => {
         this.response = JSON.parse(response['_body']);
-        console.log(this.response);
+        this.transactionDetails = this.response.earning_details;
+        console.log(this.response.earning_details,"With errrinngg");
         if (this.response.status == 'NotFound') {
         } else if (this.response.status == 'Found') {
           this.total_earning = this.response.total_earning;
