@@ -486,8 +486,8 @@ module.exports = content.locals || {};
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Volumes/Office/Moaviz/ionic apps/transus-updates/transUS-----updated/src/theme/variables.scss */"./src/theme/variables.scss");
-module.exports = __webpack_require__(/*! /Volumes/Office/Moaviz/ionic apps/transus-updates/transUS-----updated/src/global.scss */"./src/global.scss");
+__webpack_require__(/*! /Volumes/Office/Moaviz/github/transus/src/theme/variables.scss */"./src/theme/variables.scss");
+module.exports = __webpack_require__(/*! /Volumes/Office/Moaviz/github/transus/src/global.scss */"./src/global.scss");
 
 
 /***/ })

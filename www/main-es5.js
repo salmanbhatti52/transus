@@ -3732,7 +3732,7 @@
     /***/
     function _(module, exports, __webpack_require__) {
       module.exports = __webpack_require__(
-      /*! /Volumes/Office/Moaviz/ionic apps/transus-updates/transUS-----updated/src/main.ts */
+      /*! /Volumes/Office/Moaviz/github/transus/src/main.ts */
       "./src/main.ts");
       /***/
     }
