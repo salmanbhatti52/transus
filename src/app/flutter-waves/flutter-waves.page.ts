@@ -22,8 +22,8 @@ import { PaystackOptions } from 'angular4-paystack';
 })
 export class FlutterWavesPage implements OnInit {
   // PayStack
-   currency = "NGN"; // for test
-    // currency = "GHS"; //for live
+   //currency = "NGN"; // for test
+    currency = "GHS"; //for live
   reference = `${Math.ceil(Math.random() * 10e10)}`;
   title = '';
   // options: PaystackOptions = {
