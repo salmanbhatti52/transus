@@ -256,13 +256,22 @@
                 <img src="assets/img/Lambo.svg">
               </ng-container>
           </ion-col>
-          <ion-col (click)="ViewNow(p)" class="trip_dates" size="4">
-              <p class="blue">Trip Dates</p>
-              <p class="primary">Start Date</p>
-              <p>{{p.start_date | customeDate}}</p>
-              <p class="primary">Total Cost</p>
-              <p>{{currency_symbol}} {{p.trip_cost}}</p>
-           
+          <ion-col  class="trip_dates" size="4">
+              <p (click)="ViewNow(p)" class="blue">Trip Dates</p>
+              <p (click)="ViewNow(p)" class="primary">Start Date</p>
+              <p (click)="ViewNow(p)">{{p.start_date | customeDate}}</p>
+              <p  (click)="ViewNow(p)" class="primary">Total Cost</p>
+              <p (click)="ViewNow(p)" >{{currency_symbol}} {{p.trip_cost}}</p>
+              <p class="action"  *ngIf="p.payment_status == 'Paid' && p.owner_response == 'notDeliver' && p.renter_response == 'notRecevied'" (click)="finalAction('listed_booking',p,'Deliver',i)">Deliver</p>
+
+              <p class="action"  *ngIf="p.payment_status == 'Paid' && p.owner_response == 'Delivered' && p.renter_response == 'notRecevied'" >Waiting</p>
+
+              <p class="action" style="background-color:#57be1a"  *ngIf="p.payment_status == 'Paid' && p.owner_response == 'Delivered' && p.renter_response == 'Recevied'" >Delivered</p>
+
+              <p class="action"  *ngIf="p.payment_status == 'Paid' && p.owner_response == 'notRecevied' && p.renter_response == 'Delivered'" (click)="finalAction('listed_booking',p,'Recevie',i)">Recevie</p>
+
+               <p class="action"  *ngIf="p.payment_status == 'Paid' && p.owner_response == 'Recevied' && p.renter_response == 'Delivered'" >Recevied</p>
+
           </ion-col>
           <ion-col class="trip_end_date" size="4">
             <p class="primary"> End Date</p>

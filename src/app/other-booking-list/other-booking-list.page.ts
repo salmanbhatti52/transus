@@ -604,4 +604,40 @@ ViewNow(bookingdetails){
     const { role } = await alert.onDidDismiss();
     console.log('onDidDismiss resolved with role', role);
   }
+
+  finalAction(actionType,bookingDetails,type) {
+    console.log("bookingDetails----",bookingDetails);
+  
+    // this.currentBooking[0].owner_response = 'Delivered';
+    console.log("currentBooking----",this.currentBooking);
+    
+    this.present();
+    var stringy = JSON.stringify({
+      requestType : 'action',
+      usersID : this.userID,
+      actionType : actionType,
+      type : type,
+      bookingID : bookingDetails.bookings_id,
+    });
+    console.log(stringy);
+    this.restService.booking_action(stringy).subscribe(
+      (response) => {
+        this.response = JSON.parse(response['_body']);
+        this.dismiss();
+        console.log("this.response------ booking action",this.response);
+        if(this.response.status=='success'){
+          
+           if(type=='Deliver'){
+            bookingDetails.renter_response = 'Delivered';
+            bookingDetails.owner_response = 'notRecevied';
+            this.giveRating(bookingDetails.bookings_id);
+           }
+           if(type=='Recevie'){
+             bookingDetails.renter_response = 'Recevied';
+           }
+        }
+      },
+      (err) => {}
+    );
+  }
 }

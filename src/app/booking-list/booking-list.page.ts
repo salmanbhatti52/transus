@@ -146,6 +146,42 @@ export class BookingListPage implements OnInit {
     );
   }
 
+  finalAction(actionType,bookingDetails,type,index) {
+    console.log("bookingDetails----",bookingDetails);
+  
+    // this.currentBooking[0].owner_response = 'Delivered';
+    console.log("currentBooking----",this.currentBooking);
+    
+    this.present();
+    var stringy = JSON.stringify({
+      requestType : 'action',
+      usersID : this.userID,
+      actionType : actionType,
+      type : type,
+      bookingID : bookingDetails.bookings_id,
+    });
+    console.log(stringy);
+    this.restService.booking_action(stringy).subscribe(
+      (response) => {
+        this.response = JSON.parse(response['_body']);
+        this.dismiss();
+        console.log("this.response------ booking action",this.response);
+        if(this.response.status=='success'){
+          
+           if(type=='Deliver'){
+            bookingDetails.owner_response = 'Delivered';
+           }
+           if(type=='Recevie'){
+            bookingDetails.owner_response = 'Recevied';
+            this.currentBooking.splice(index,1);
+            this.pet = "previous";
+           }
+        }
+      },
+      (err) => {}
+    );
+  }
+
   toggleMenu() {
     this.menuCtrl.toggle();
   }
