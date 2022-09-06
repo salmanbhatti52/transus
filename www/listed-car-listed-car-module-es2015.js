@@ -212,11 +212,9 @@ let ListedCarPage = class ListedCarPage {
         this.menuCtrl.toggle();
     }
     goToCarList() {
-        //this.router.navigate(['/list-your-car']);
         this.router.navigate(['/listcar1']);
     }
     goToDraft() {
-        //this.router.navigate(['/list-your-car']);
         this.router.navigate(['/mydraftcar']);
     }
     editDetail(car_details) {
@@ -230,7 +228,7 @@ let ListedCarPage = class ListedCarPage {
                 this.response = JSON.parse(response['_body']);
                 this.dismiss();
                 if (this.response.status == 'success') {
-                    this.popover();
+                    this.popover('veh_msg');
                 }
                 else {
                     var myData = JSON.stringify({
@@ -260,13 +258,13 @@ let ListedCarPage = class ListedCarPage {
             yield this.loading.dismiss();
         });
     }
-    popover() {
+    popover(type) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const popover = yield this.popoverController.create({
                 component: _action_booking_action_booking_page__WEBPACK_IMPORTED_MODULE_6__["ActionBookingPage"],
                 translucent: true,
                 componentProps: {
-                    "booking": 'veh_msg',
+                    "booking": type,
                 },
             });
             popover.onWillDismiss().then(data => {
@@ -277,7 +275,23 @@ let ListedCarPage = class ListedCarPage {
         });
     }
     removeImage(detail, i) {
-        this.action(detail, 'del_veh', i);
+        this.present();
+        var stringy = JSON.stringify({
+            "requestType": "check_veh_req",
+            "veh_id": detail.vehicles_id
+        });
+        this.restService.check_vehicles(stringy).subscribe(response => {
+            this.response = JSON.parse(response['_body']);
+            this.dismiss();
+            if (this.response.status == 'success') {
+                this.popover('veh_delete');
+            }
+            else {
+                this.action(detail, 'del_veh', i);
+            }
+        }, err => {
+            console.log(err);
+        });
     }
     action(veh_details, action, i) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {

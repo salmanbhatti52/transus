@@ -132,13 +132,11 @@ export class CarBookingPage implements OnInit {
   }
   ionViewWillEnter(){
     var date   = new Date();
+    console.log("current date",date);
     var month = date.getMonth() +1;
     var fMonth = this.monthList(month);
     this.end_date_month = fMonth;
     this.start_date_month = fMonth;
-
-
-    
     this.startmonthCounter = month;
     this.endmonthCounter = month;
     this.start_month_index = month;
@@ -208,6 +206,8 @@ this.activatedRoute.queryParams.subscribe((res) => {
   var startDatesss   = new Date(this.response.start_date.replace(/-/g, "/")); 
   var currentDate = new Date(); 
   var startVar;
+  var startDatesss   = new Date(this.response.start_date.replace(/-/g, "/")); 
+  var currentDate = new Date(); 
   if(startDatesss.getTime() > currentDate.getTime()){
     startVar = new Date(stDate[0], stDate[1]-1, stDate[2]) 
   } 
@@ -316,14 +316,29 @@ this.activatedRoute.queryParams.subscribe((res) => {
      this.dayDiff = moment(EndTime.replace(/-/g, "/")).diff(moment(StartTime.replace(/-/g, "/")), 'hours');
      this.currentCost = this.currentCost * this.dayDiff;
      this.currentCost = this.currentCost.toFixed(2);
-    if(this.dayDiff < 1){
-      var stD = new Date(StartTime.replace(/-/g, "/")); 
-      var etD = new Date(EndTime.replace(/-/g, "/")); 
 
+    var stD = new Date(StartTime.replace(/-/g, "/")); 
+    var etD = new Date(EndTime.replace(/-/g, "/")); 
+    var currentDate = new Date(); 
+    console.log("ionic debug-- currentDate",this.getFullDate(currentDate));
+    console.log("ionic debug-- stD",this.getFullDate(stD));
+    
+    // Booking on today an the select the previous time
+    if(this.getFullDate(stD) == this.getFullDate(currentDate)){
+      if(currentDate.getTime() > stD.getTime()){
+        console.log("ionic debug-- current Time",currentDate.getTime());
+        console.log("ionic debug-- Start Time",stD.getTime());
+        this.printTimeErrorBoolen = true;
+        this.printTimeError="Could not book in the previous hours." 
+        this.presentToast('Could not book in the previous hours.');
+      }
+    } 
+    else{ 
+      this.printTimeError="";
+    }
+    if(this.dayDiff < 1){
      if(stD.getTime() === etD.getTime()){
-       
        //same date
-  
        this.printTimeErrorBoolen = true;
        this.printTimeError="Start time and end time is same" 
        this.presentToast('Start time and end time is same');
@@ -331,17 +346,14 @@ this.activatedRoute.queryParams.subscribe((res) => {
        // false
      }
      else{
-
       this.printTimeError="Start time and end time is same" 
       this.currentCostBooking = this.currentCost;
      }
-
      if(stD.getTime() > etD.getTime()){
       //date 1 is newer
       this.printTimeError="Start Time is greater then End Time";
       this.presentToast('Start Time is greater then End Time');
       this.printTimeErrorBoolen = true;
-
       // fasle
       this.currentCostBooking = "test";
     }
@@ -374,7 +386,17 @@ this.activatedRoute.queryParams.subscribe((res) => {
    
   }
 }
+  getFullDate(date){
+    const yyyy = date.getFullYear();
+    let mm = date.getMonth() + 1; // Months start at 0!
+    let dd = date.getDate();
 
+    if (dd < 10) var days = '0' + dd;
+    if (mm < 10) var mints = '0' + mm;
+
+    return  days + '/' + mints + '/' + yyyy;
+
+  }
   ShowLoading:boolean=false;
   checkCurrentTime:any;
   

@@ -364,12 +364,19 @@
                   <p (click)="ViewNow(p)">{{currency_symbol}}{{p.trip_cost}}</p>
                   <p class="chatBtn"  *ngIf="p.payment_status == 'Paid'" (click)="chatRequest('other_booking','',p)">Start chat</p>
               </ion-col>
-              <ion-col (click)="ViewNow(p)"  class="trip_end_date" size="4">
-                <p class="primary"> End Date</p>
-                <p>{{p.end_date | customeDate}}</p>
+              <ion-col   class="trip_end_date" size="4">
+                <p (click)="ViewNow(p)" class="primary"> End Date</p>
+                <p (click)="ViewNow(p)">{{p.end_date | customeDate}}</p>
                 <p (click)="ViewNow(p)" class="primary"> Booking Status</p>
                 <p (click)="ViewNow(p)">{{p.status}}</p>
-                <p class="complete"  (click)="completeBooking(p, i)">Complete</p>
+                <!-- <p class="complete"  (click)="completeBooking(p, i)">Complete</p> -->
+                <p class="complete"  *ngIf="p.payment_status == 'Paid' && p.owner_response == 'Delivered' && p.renter_response == 'notRecevied'" (click)="finalAction('other_booking',p,'Recevie')">Recevie</p>
+  
+                <p class="complete" (click)="finalAction('other_booking',p,'Deliver')"  *ngIf="p.payment_status == 'Paid' && p.owner_response == 'Delivered' && p.renter_response == 'Recevied'" >Deliver</p>
+  
+                <p class="complete"  *ngIf="p.payment_status == 'Paid' && p.owner_response == 'notRecevied' && p.renter_response == 'Delivered'" >Waiting</p>
+  
+                 <p class="complete" style="background-color:#57be1a" *ngIf="p.payment_status == 'Paid' && p.owner_response == 'Recevied' && p.renter_response == 'Delivered'" (click)="finalAction('other_booking','',p)">Delivered</p>
               </ion-col>
             </ion-row> 
           </ng-container>

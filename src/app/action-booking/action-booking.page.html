@@ -58,6 +58,12 @@
           Unable to edit vehicle details at the moment.Try again later.
         </p>
       </ion-col>
+      <ion-col class="text-center" size="12" *ngIf="booking_action =='veh_delete'">
+        <h1 class="alura">SORRY !</h1>
+        <p class="alura m_0">
+          Unable to delete vehicle details at the moment.Try again later.
+        </p>
+      </ion-col>
       <ion-col class="text-center" size="12" *ngIf="booking_action =='logout'">
         <h1 class="alura">Logout</h1>
         <p class="alura m_0">Are you sure you want to logout?</p>

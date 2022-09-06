@@ -99,15 +99,11 @@ export class ListedCarPage implements OnInit {
     this.menuCtrl.toggle();
   }
   goToCarList() {
-    //this.router.navigate(['/list-your-car']);
-
     this.router.navigate(['/listcar1']);
   }
 
 
   goToDraft() {
-    //this.router.navigate(['/list-your-car']);
-    
     this.router.navigate(['/mydraftcar']);
   }
 
@@ -121,7 +117,7 @@ export class ListedCarPage implements OnInit {
       this.response = JSON.parse(response['_body']);
       this.dismiss();
       if (this.response.status == 'success') {
-        this.popover();
+        this.popover('veh_msg');
       }
       else {
         var myData = JSON.stringify({
@@ -154,12 +150,12 @@ export class ListedCarPage implements OnInit {
   async dismiss() {
     await this.loading.dismiss();
   }
-  async popover() {
+  async popover(type) {
     const popover = await this.popoverController.create({
       component: ActionBookingPage,
       translucent: true,
       componentProps: {
-        "booking": 'veh_msg',
+        "booking": type,
       },
     });
 
@@ -171,7 +167,26 @@ export class ListedCarPage implements OnInit {
   }
 
   removeImage(detail,i){
-    this.action(detail, 'del_veh',i);
+    this.present();
+    var stringy = JSON.stringify({
+      "requestType": "check_veh_req",
+      "veh_id": detail.vehicles_id
+    });
+    this.restService.check_vehicles(stringy).subscribe(response => {
+      this.response = JSON.parse(response['_body']);
+      this.dismiss();
+      if (this.response.status == 'success') {
+        this.popover('veh_delete');
+      }
+      else {
+        this.action(detail, 'del_veh',i);
+      }
+
+
+    }, err => {
+      console.log(err);
+    });
+   
   }
 
   async action(veh_details, action,i) {

@@ -94,11 +94,6 @@ export class LocationPage implements OnInit {
     
     this.storage.set('pickup', this.source);
     this.storage.set('dropoff', this.destination);
- 
-    //this.navController.navigateBack(this.back);
-    //this.router.navigate(['/car-documents']);
-    //this.router.navigate(['..']);
-
   }
   ngAfterViewInit(): void {
     const map = new google.maps.Map(this.mapNativeElement.nativeElement, {
@@ -177,11 +172,9 @@ export class LocationPage implements OnInit {
     this.destination = address;//May be delete
     console.log(this.destination);
     this.detinationCompleteItems = []
-
   }
   getpickuplatlog(address) {
     this.present();
-
     let options: NativeGeocoderOptions = {
       useLocale: true,
       maxResults: 5
@@ -196,7 +189,7 @@ export class LocationPage implements OnInit {
         this.dismiss();
       }).catch((error: any) => {
         this.errorMsg = JSON.stringify(error);
-        console.log(this.errorMsg);
+        console.log('Location error',this.errorMsg);
         this.dismiss();
         this.presentToast(this.errorMsg);
 

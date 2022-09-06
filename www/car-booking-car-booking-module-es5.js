@@ -379,6 +379,7 @@
             var _this2 = this;
 
             var date = new Date();
+            console.log("current date", date);
             var month = date.getMonth() + 1;
             var fMonth = this.monthList(month);
             this.end_date_month = fMonth;
@@ -441,6 +442,8 @@
               var startDatesss = new Date(_this2.response.start_date.replace(/-/g, "/"));
               var currentDate = new Date();
               var startVar;
+              var startDatesss = new Date(_this2.response.start_date.replace(/-/g, "/"));
+              var currentDate = new Date();
 
               if (startDatesss.getTime() > currentDate.getTime()) {
                 startVar = new Date(stDate[0], stDate[1] - 1, stDate[2]);
@@ -545,11 +548,25 @@
               this.dayDiff = moment__WEBPACK_IMPORTED_MODULE_10__(EndTime.replace(/-/g, "/")).diff(moment__WEBPACK_IMPORTED_MODULE_10__(StartTime.replace(/-/g, "/")), 'hours');
               this.currentCost = this.currentCost * this.dayDiff;
               this.currentCost = this.currentCost.toFixed(2);
+              var stD = new Date(StartTime.replace(/-/g, "/"));
+              var etD = new Date(EndTime.replace(/-/g, "/"));
+              var currentDate = new Date();
+              console.log("ionic debug-- currentDate", this.getFullDate(currentDate));
+              console.log("ionic debug-- stD", this.getFullDate(stD)); // Booking on today an the select the previous time
+
+              if (this.getFullDate(stD) == this.getFullDate(currentDate)) {
+                if (currentDate.getTime() > stD.getTime()) {
+                  console.log("ionic debug-- current Time", currentDate.getTime());
+                  console.log("ionic debug-- Start Time", stD.getTime());
+                  this.printTimeErrorBoolen = true;
+                  this.printTimeError = "Could not book in the previous hours.";
+                  this.presentToast('Could not book in the previous hours.');
+                }
+              } else {
+                this.printTimeError = "";
+              }
 
               if (this.dayDiff < 1) {
-                var stD = new Date(StartTime.replace(/-/g, "/"));
-                var etD = new Date(EndTime.replace(/-/g, "/"));
-
                 if (stD.getTime() === etD.getTime()) {
                   //same date
                   this.printTimeErrorBoolen = true;
@@ -589,6 +606,17 @@
                 }
               }
             }
+          }
+        }, {
+          key: "getFullDate",
+          value: function getFullDate(date) {
+            var yyyy = date.getFullYear();
+            var mm = date.getMonth() + 1; // Months start at 0!
+
+            var dd = date.getDate();
+            if (dd < 10) var days = '0' + dd;
+            if (mm < 10) var mints = '0' + mm;
+            return days + '/' + mints + '/' + yyyy;
           }
         }, {
           key: "submitForm",

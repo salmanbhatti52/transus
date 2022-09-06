@@ -373,13 +373,11 @@
         }, {
           key: "goToCarList",
           value: function goToCarList() {
-            //this.router.navigate(['/list-your-car']);
             this.router.navigate(['/listcar1']);
           }
         }, {
           key: "goToDraft",
           value: function goToDraft() {
-            //this.router.navigate(['/list-your-car']);
             this.router.navigate(['/mydraftcar']);
           }
         }, {
@@ -404,7 +402,7 @@
                         _this3.dismiss();
 
                         if (_this3.response.status == 'success') {
-                          _this3.popover();
+                          _this3.popover('veh_msg');
                         } else {
                           var myData = JSON.stringify({
                             vehiclesID: car_details.vehicles_id
@@ -475,7 +473,7 @@
           }
         }, {
           key: "popover",
-          value: function popover() {
+          value: function popover(type) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
               var popover;
               return regeneratorRuntime.wrap(function _callee4$(_context4) {
@@ -487,7 +485,7 @@
                         component: _action_booking_action_booking_page__WEBPACK_IMPORTED_MODULE_6__["ActionBookingPage"],
                         translucent: true,
                         componentProps: {
-                          "booking": 'veh_msg'
+                          "booking": type
                         }
                       });
 
@@ -510,13 +508,32 @@
         }, {
           key: "removeImage",
           value: function removeImage(detail, i) {
-            this.action(detail, 'del_veh', i);
+            var _this4 = this;
+
+            this.present();
+            var stringy = JSON.stringify({
+              "requestType": "check_veh_req",
+              "veh_id": detail.vehicles_id
+            });
+            this.restService.check_vehicles(stringy).subscribe(function (response) {
+              _this4.response = JSON.parse(response['_body']);
+
+              _this4.dismiss();
+
+              if (_this4.response.status == 'success') {
+                _this4.popover('veh_delete');
+              } else {
+                _this4.action(detail, 'del_veh', i);
+              }
+            }, function (err) {
+              console.log(err);
+            });
           }
         }, {
           key: "action",
           value: function action(veh_details, _action, i) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
-              var _this4 = this;
+              var _this5 = this;
 
               var popover;
               return regeneratorRuntime.wrap(function _callee5$(_context5) {
@@ -540,9 +557,9 @@
                       popover = _context5.sent;
                       popover.onWillDismiss().then(function (data) {
                         if (data.data.val == 'ok') {
-                          _this4.vehicles_list.splice(i, 1);
+                          _this5.vehicles_list.splice(i, 1);
 
-                          _this4.presentToast('Car deleted successfully');
+                          _this5.presentToast('Car deleted successfully');
                         }
                       });
                       _context5.next = 6;

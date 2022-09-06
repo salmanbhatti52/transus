@@ -216,6 +216,7 @@ let CarBookingPage = class CarBookingPage {
     }
     ionViewWillEnter() {
         var date = new Date();
+        console.log("current date", date);
         var month = date.getMonth() + 1;
         var fMonth = this.monthList(month);
         this.end_date_month = fMonth;
@@ -284,6 +285,8 @@ let CarBookingPage = class CarBookingPage {
             var startDatesss = new Date(this.response.start_date.replace(/-/g, "/"));
             var currentDate = new Date();
             var startVar;
+            var startDatesss = new Date(this.response.start_date.replace(/-/g, "/"));
+            var currentDate = new Date();
             if (startDatesss.getTime() > currentDate.getTime()) {
                 startVar = new Date(stDate[0], stDate[1] - 1, stDate[2]);
             }
@@ -372,9 +375,25 @@ let CarBookingPage = class CarBookingPage {
             this.dayDiff = moment__WEBPACK_IMPORTED_MODULE_10__(EndTime.replace(/-/g, "/")).diff(moment__WEBPACK_IMPORTED_MODULE_10__(StartTime.replace(/-/g, "/")), 'hours');
             this.currentCost = this.currentCost * this.dayDiff;
             this.currentCost = this.currentCost.toFixed(2);
+            var stD = new Date(StartTime.replace(/-/g, "/"));
+            var etD = new Date(EndTime.replace(/-/g, "/"));
+            var currentDate = new Date();
+            console.log("ionic debug-- currentDate", this.getFullDate(currentDate));
+            console.log("ionic debug-- stD", this.getFullDate(stD));
+            // Booking on today an the select the previous time
+            if (this.getFullDate(stD) == this.getFullDate(currentDate)) {
+                if (currentDate.getTime() > stD.getTime()) {
+                    console.log("ionic debug-- current Time", currentDate.getTime());
+                    console.log("ionic debug-- Start Time", stD.getTime());
+                    this.printTimeErrorBoolen = true;
+                    this.printTimeError = "Could not book in the previous hours.";
+                    this.presentToast('Could not book in the previous hours.');
+                }
+            }
+            else {
+                this.printTimeError = "";
+            }
             if (this.dayDiff < 1) {
-                var stD = new Date(StartTime.replace(/-/g, "/"));
-                var etD = new Date(EndTime.replace(/-/g, "/"));
                 if (stD.getTime() === etD.getTime()) {
                     //same date
                     this.printTimeErrorBoolen = true;
@@ -417,6 +436,16 @@ let CarBookingPage = class CarBookingPage {
                 }
             }
         }
+    }
+    getFullDate(date) {
+        const yyyy = date.getFullYear();
+        let mm = date.getMonth() + 1; // Months start at 0!
+        let dd = date.getDate();
+        if (dd < 10)
+            var days = '0' + dd;
+        if (mm < 10)
+            var mints = '0' + mm;
+        return days + '/' + mints + '/' + yyyy;
     }
     submitForm() {
         if (this.start_date != '' && this.end_date != '') {
