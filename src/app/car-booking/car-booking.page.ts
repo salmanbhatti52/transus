@@ -42,11 +42,11 @@ export class CarBookingPage implements OnInit {
 
   dateRange: any;
   olddateRange: any;
-
+  pastdateCheck:boolean = true;
   dayDiff:any;
   imgLicense : any;
   hours: Array<any> = [];
-  mints: Array<any> = [];
+  mints: Array<any> = []; 
   start_date_month: string = '';
   end_date_month: string = '';
   start_month_index: number = 1;
@@ -329,8 +329,12 @@ this.activatedRoute.queryParams.subscribe((res) => {
         console.log("ionic debug-- current Time",currentDate.getTime());
         console.log("ionic debug-- Start Time",stD.getTime());
         this.printTimeErrorBoolen = true;
+        this.pastdateCheck=false;
         this.printTimeError="Could not book in the previous hours." 
         this.presentToast('Could not book in the previous hours.');
+      }
+      else{
+        this.pastdateCheck=true;
       }
     } 
     else{ 
@@ -520,7 +524,7 @@ this.activatedRoute.queryParams.subscribe((res) => {
 
     this.document_oneError = false;
 
-      if (this.start_date != '' && this.end_date != '' && this.document_one != null && this.document_one != "" && this.availableDate == false) {
+      if (this.start_date != '' && this.end_date != '' && this.document_one != null && this.document_one != "" && this.availableDate == false && this.pastdateCheck==true) {
   
         this.sHours = document.querySelector(".s_hours .swiper-slide-active p").textContent;
         this.sMints = document.querySelector(".s_mints .swiper-slide-active p").textContent;
@@ -583,6 +587,10 @@ this.activatedRoute.queryParams.subscribe((res) => {
       }
       else if(this.document_one == ''){
         this.document_oneError = true;
+      }
+      else if(this.pastdateCheck==false){
+        this.presentToast('Could not select the previous date and time')
+
       }
       // this.presentToast('please select the booking dates')
       

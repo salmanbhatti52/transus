@@ -169,6 +169,7 @@ let CarBookingPage = class CarBookingPage {
             centeredSlides: true,
             centeredSlidesBounds: true
         };
+        this.pastdateCheck = true;
         this.hours = [];
         this.mints = [];
         this.start_date_month = '';
@@ -386,8 +387,12 @@ let CarBookingPage = class CarBookingPage {
                     console.log("ionic debug-- current Time", currentDate.getTime());
                     console.log("ionic debug-- Start Time", stD.getTime());
                     this.printTimeErrorBoolen = true;
+                    this.pastdateCheck = false;
                     this.printTimeError = "Could not book in the previous hours.";
                     this.presentToast('Could not book in the previous hours.');
+                }
+                else {
+                    this.pastdateCheck = true;
                 }
             }
             else {
@@ -527,7 +532,7 @@ let CarBookingPage = class CarBookingPage {
             this.eMints = document.querySelector(".e_mints .swiper-slide-active p").textContent;
             this.eV = document.querySelector(".e_v .swiper-slide-active p").textContent;
             this.document_oneError = false;
-            if (this.start_date != '' && this.end_date != '' && this.document_one != null && this.document_one != "" && this.availableDate == false) {
+            if (this.start_date != '' && this.end_date != '' && this.document_one != null && this.document_one != "" && this.availableDate == false && this.pastdateCheck == true) {
                 this.sHours = document.querySelector(".s_hours .swiper-slide-active p").textContent;
                 this.sMints = document.querySelector(".s_mints .swiper-slide-active p").textContent;
                 this.sV = document.querySelector(".s_v .swiper-slide-active p").textContent;
@@ -578,6 +583,9 @@ let CarBookingPage = class CarBookingPage {
                 }
                 else if (this.document_one == '') {
                     this.document_oneError = true;
+                }
+                else if (this.pastdateCheck == false) {
+                    this.presentToast('Could not select the previous date and time');
                 }
                 // this.presentToast('please select the booking dates')
             }

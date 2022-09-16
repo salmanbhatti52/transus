@@ -20,6 +20,7 @@ import { UsersService } from "../users.service";
 })
 export class ProfilePage implements OnInit {
   Email: any;
+  phone: any;
   firstName: any;
   lastName: any;
   About: any;
@@ -34,6 +35,7 @@ export class ProfilePage implements OnInit {
   LivesError: boolean = false;
   WorksError: boolean = false;
   EmailError: boolean = false;
+  phoneError: boolean = false;
   LanguageError: boolean = false;
   base64Error: boolean = false;
   CurrencyError: boolean = false;
@@ -105,6 +107,7 @@ export class ProfilePage implements OnInit {
       // this.accountTitle = user_details.bank_acc_title;
       //  this.base64 = user_details.profile_image;
       this.Email = user_details.email;
+      this.phone = user_details.mobile_no;
       this.firstName = user_details.first_name;
       this.lastName = user_details.last_name;
       if (user_details.bank_details.length != 0) {
@@ -161,6 +164,7 @@ export class ProfilePage implements OnInit {
       var stringy = JSON.stringify({
         usersID: this.userID,
         email: this.Email,
+        phone: this.phone,
         firstName: this.firstName,
         lastName: this.lastName,
         about: this.About,
@@ -246,13 +250,19 @@ export class ProfilePage implements OnInit {
     this.accountNameError = false;
     this.firstNameError = false;
     this.lastNameError = false;
+    this.phoneError = false;
 
     this.CurrenciesError = false;
     if (this.About == "" || this.About == undefined) {
       this.AboutError = true;
       return false;
+      
     } else if (this.Email == "" || this.Email == undefined) {
       this.EmailError = true;
+      return false;
+    }
+    else if (this.phone == "" || this.phone == undefined) {
+      this.phoneError = true;
       return false;
     } else if (this.firstName == "" || this.firstName == undefined) {
       this.firstNameError = true;

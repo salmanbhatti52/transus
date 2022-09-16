@@ -311,6 +311,7 @@
             centeredSlides: true,
             centeredSlidesBounds: true
           };
+          this.pastdateCheck = true;
           this.hours = [];
           this.mints = [];
           this.start_date_month = '';
@@ -559,8 +560,11 @@
                   console.log("ionic debug-- current Time", currentDate.getTime());
                   console.log("ionic debug-- Start Time", stD.getTime());
                   this.printTimeErrorBoolen = true;
+                  this.pastdateCheck = false;
                   this.printTimeError = "Could not book in the previous hours.";
                   this.presentToast('Could not book in the previous hours.');
+                } else {
+                  this.pastdateCheck = true;
                 }
               } else {
                 this.printTimeError = "";
@@ -709,7 +713,7 @@
                       this.eV = document.querySelector(".e_v .swiper-slide-active p").textContent;
                       this.document_oneError = false;
 
-                      if (!(this.start_date != '' && this.end_date != '' && this.document_one != null && this.document_one != "" && this.availableDate == false)) {
+                      if (!(this.start_date != '' && this.end_date != '' && this.document_one != null && this.document_one != "" && this.availableDate == false && this.pastdateCheck == true)) {
                         _context.next = 26;
                         break;
                       }
@@ -770,6 +774,8 @@
                         this.presentToast('please select the booking dates');
                       } else if (this.document_one == '') {
                         this.document_oneError = true;
+                      } else if (this.pastdateCheck == false) {
+                        this.presentToast('Could not select the previous date and time');
                       } // this.presentToast('please select the booking dates')
 
 
