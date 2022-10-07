@@ -526,11 +526,11 @@
     /***/
     function _(module, exports, __webpack_require__) {
       __webpack_require__(
-      /*! /Volumes/Office/Ali/github/transus/src/theme/variables.scss */
+      /*! /Volumes/Office/Ali/github/transus2/src/theme/variables.scss */
       "./src/theme/variables.scss");
 
       module.exports = __webpack_require__(
-      /*! /Volumes/Office/Ali/github/transus/src/global.scss */
+      /*! /Volumes/Office/Ali/github/transus2/src/global.scss */
       "./src/global.scss");
       /***/
     }

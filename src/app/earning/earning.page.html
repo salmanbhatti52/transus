@@ -14,16 +14,27 @@
     <ion-row class="wallet_inner">
       <ion-col size="6">
         <p class="dark_p_color">Wallet Balance</p>
-        <h3 class="dark_p_color">{{currency_symbol}}{{wallet_amount}}</h3>
+        <h3 class="dark_p_color">{{currency_symbol}}{{wallet_amount | number}}</h3>
       </ion-col>
       <ion-col size="6">
-        <ion-button
+        <ion-button   *ngIf="wallet_amount > 0"
           color="secondary"
           expand="block"
           shape="round"
           (click)="withdrawRequest()"
           >Withdraw</ion-button
         >
+
+        <ion-button *ngIf="wallet_amount == 0"
+       style="color: white;
+       --background: #77afff;"
+        expand="block"
+        shape="round"
+        (click)="earntoWithdraw()"
+        >Withdraw</ion-button
+      >
+
+        
       </ion-col>
     </ion-row>
   </div>

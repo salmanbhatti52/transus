@@ -22,7 +22,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header [class.ios-headers]=\"plateformCheck == 'ios'\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <img src=\"assets/img/Menu.svg\" (click)=\"toggleMenu()\" />\n    </ion-buttons>\n    <ion-title [class.globe_title]=\"plateformCheck == 'ios'\"\n      >Edit Profile</ion-title\n    >\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-row class=\"bys\">\n    <ion-col size=\"3\" class=\"ion-text-center\"> </ion-col>\n    <ion-col size=\"6\" class=\"ion-text-center\">\n      <ng-container *ngIf=\"profileImage == '' || profileImage == undefined\">\n        <img src=\"assets/img/place_holder.svg\" />\n        <img\n          src=\"assets/img/Edit_button.svg\"\n          class=\"btn_edit_profile\"\n          (click)=\"uploadProfile()\"\n        />\n      </ng-container>\n      <ng-container *ngIf=\"profileImage\">\n        <img src=\"{{profileImage}}\" class=\"solid_img\" />\n        <img\n          src=\"assets/img/Edit_button.svg\"\n          class=\"btn_edit_profile\"\n          (click)=\"uploadProfile()\"\n        />\n      </ng-container>\n    </ion-col>\n    <ion-col size=\"3\" class=\"ion-text-center\"> </ion-col>\n    <ion-col size=\"12\">\n      <ion-textarea\n        rows=\"6\"\n        placeholder=\"About\"\n        [(ngModel)]=\"About\"\n        class=\"list_3\"\n        (ionBlur)=\"validateForm()\"\n      >\n      </ion-textarea>\n      <span *ngIf=\"AboutError\" class=\"error ion-padding\">\n        About is required.\n      </span>\n    </ion-col>\n    <ion-col size=\"12\">\n      <ion-input\n        placeholder=\"First name\"\n        class=\"input_list ot_auto\"\n        [(ngModel)]=\"firstName\"\n        (ionBlur)=\"validateForm()\"\n      ></ion-input>\n      <span *ngIf=\"firstNameError\" class=\"error ion-padding\">\n        First name is required.\n      </span>\n    </ion-col>\n    <ion-col size=\"12\">\n      <ion-input\n        placeholder=\"Last name\"\n        class=\"input_list ot_auto\"\n        [(ngModel)]=\"lastName\"\n        (ionBlur)=\"validateForm()\"\n      ></ion-input>\n      <span *ngIf=\"lastNameError\" class=\"error ion-padding\">\n        Last name is required.\n      </span>\n    </ion-col>\n    <ion-col size=\"12\">\n      <ion-input\n        placeholder=\"Email\"\n        class=\"input_list ot_auto\"\n        [(ngModel)]=\"Email\"\n        (ionBlur)=\"validateForm()\"\n        readonly=\"\"\n      ></ion-input>\n      <span *ngIf=\"EmailError\" class=\"error ion-padding\">\n        Email is required.\n      </span>\n    </ion-col>\n    <ion-col size=\"12\">\n      <ion-input\n        placeholder=\"Phone\"\n        class=\"input_list ot_auto\"\n        [(ngModel)]=\"phone\"\n        (ionBlur)=\"validateForm()\"\n      ></ion-input>\n      <span *ngIf=\"phoneError\" class=\"error ion-padding\">\n        Phone is required.\n      </span>\n    </ion-col>\n\n    <ion-col size=\"12\">\n      <ion-input\n        placeholder=\"Works\"\n        class=\"input_list ot_auto\"\n        [(ngModel)]=\"Works\"\n        (ionBlur)=\"validateForm()\"\n      >\n      </ion-input>\n      <span *ngIf=\"WorksError\" class=\"error ion-padding\">\n        Works is required.\n      </span>\n    </ion-col>\n    <ion-col size=\"12\">\n      <ion-select\n        placeholder=\"Language\"\n        [(ngModel)]=\"Language\"\n        (ionBlur)=\"validateForm()\"\n      >\n        <ion-select-option\n          value=\"{{p.languages_id}}\"\n          *ngFor=\"let p of languages; let i = index\"\n          >{{p.name}}\n        </ion-select-option>\n      </ion-select>\n      <span *ngIf=\"LanguageError\" class=\"error ion-padding\">\n        Language is required.\n      </span>\n    </ion-col>\n    <ion-col size=\"12\">\n      <ion-select\n        [(ngModel)]=\"Lives\"\n        placeholder=\"Country\"\n        (ionBlur)=\"validateForm()\"\n      >\n        <ion-select-option\n          value=\"{{p.id}}\"\n          *ngFor=\"let p of countries; let i = index\"\n          >{{p.name}}</ion-select-option\n        >\n      </ion-select>\n      <span *ngIf=\"LivesError\" class=\"error ion-padding\">\n        Country is required.\n      </span>\n    </ion-col>\n    <ion-col size=\"12\">\n      <ion-select\n        placeholder=\"currencies\"\n        [(ngModel)]=\"Currencies\"\n        placeholder=\"Currencies\"\n        (ionBlur)=\"validateForm()\"\n      >\n        <ion-select-option\n          value=\"{{p.currencies_id}}\"\n          *ngFor=\"let p of currencies; let i = index\"\n          >{{p.name}} - ({{p.symbol}})</ion-select-option\n        >\n      </ion-select>\n      <span *ngIf=\"CurrencyError\" class=\"error ion-padding\">\n        Currency is required.\n      </span>\n    </ion-col>\n    <ion-col size=\"12\" style=\"display: flex; justify-content: space-evenly\">\n      <label\n        >Banking details\n        <span\n          (click)=\"addBank()\"\n          style=\"\n            background: #c4932f;\n            border: 1px solid white;\n            border-radius: 27px;\n            padding: 2px 9px;\n            color: white;\n            font-size: 16px;\n            font-weight: 400;\n          \"\n          >+</span\n        ></label\n      >\n    </ion-col>\n    <ng-container *ngFor=\"let accounts of accountDetails;let i = index\">\n      <ion-col size=\"12\">\n        <label\n          >Account {{i+1}}\n          <span\n            *ngIf=\"i!=0\"\n            (click)=\"removeBank(i)\"\n            style=\"\n              background: #c42f2fe8;\n              border: 1px solid white;\n              border-radius: 27px;\n              padding: 2px 9px;\n              color: white;\n              font-size: 16px;\n              font-weight: 400;\n            \"\n            >-</span\n          ></label\n        >\n        <ion-input\n          placeholder=\"Account Title\"\n          class=\"input_list ot_auto\"\n          [(ngModel)]=\"accounts.accountTitle\"\n          (ionBlur)=\"validateForm()\"\n        ></ion-input>\n        <ng-container *ngIf=\"i==0\">\n          <span *ngIf=\"accountTitleError\" class=\"error ion-padding\">\n            Account Title is required.\n          </span>\n        </ng-container>\n      </ion-col>\n      <ion-col size=\"12\">\n        <ion-input\n          placeholder=\"Account Name\"\n          class=\"input_list ot_auto\"\n          [(ngModel)]=\"accounts.accountName\"\n          (ionBlur)=\"validateForm()\"\n        ></ion-input>\n        <ng-container *ngIf=\"i==0\">\n          <span *ngIf=\"accountNameError\" class=\"error ion-padding\">\n            Account Title is required.\n          </span>\n        </ng-container>\n      </ion-col>\n      <ion-col size=\"12\">\n        <ion-input\n          placeholder=\"Account Number\"\n          class=\"input_list ot_auto\"\n          [(ngModel)]=\"accounts.accountNumber\"\n          (ionBlur)=\"validateForm()\"\n        ></ion-input>\n        <ng-container *ngIf=\"i==0\">\n          <span *ngIf=\"accountNumberError\" class=\"error ion-padding\">\n            Account Number is required.\n          </span>\n        </ng-container>\n      </ion-col>\n    </ng-container>\n  </ion-row>\n  <ion-row>\n    <ion-col size=\"2\"></ion-col>\n    <ion-col size=\"8\">\n      <ion-button\n        color=\"primary\"\n        expand=\"block\"\n        shape=\"round\"\n        (click)=\"submitForm()\"\n        >Update</ion-button\n      >\n    </ion-col>\n  </ion-row>\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header [class.ios-headers]=\"plateformCheck == 'ios'\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <img src=\"assets/img/Menu.svg\" (click)=\"toggleMenu()\" />\n    </ion-buttons>\n    <ion-title [class.globe_title]=\"plateformCheck == 'ios'\"\n      >Edit Profile</ion-title\n    >\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-row class=\"bys\">\n    <ion-col size=\"3\" class=\"ion-text-center\"> </ion-col>\n    <ion-col size=\"6\" class=\"ion-text-center\">\n      <ng-container *ngIf=\"profileImage == '' || profileImage == undefined\">\n        <img src=\"assets/img/place_holder.svg\" />\n        <img\n          src=\"assets/img/Edit_button.svg\"\n          class=\"btn_edit_profile\"\n          (click)=\"uploadProfile()\"\n        />\n      </ng-container>\n      <ng-container *ngIf=\"profileImage\">\n        <img src=\"{{profileImage}}\" class=\"solid_img\" />\n        <img\n          src=\"assets/img/Edit_button.svg\"\n          class=\"btn_edit_profile\"\n          (click)=\"uploadProfile()\"\n        />\n      </ng-container>\n    </ion-col>\n\n    <!-- ghana card image here -->\n    \n    <ion-col size=\"12\">\n\n    <ion-row>\n      <ion-col>\n        <div\n          *ngIf=\"ghanacardImage =='' || ghanacardImage ==undefined\"\n          style=\"\n            border-radius: 10px;\n            width: 100%;\n            height: 150px;\n            background: #f7f8fa;\n            border: 1px dashed #d4dce1;\n          \"\n          (click)=\"uploadProfileGhana()\"\n        >\n          <ion-row style=\"margin-top: 45px\">\n            <ion-col style=\"text-align: center\">\n              <img\n                src=\"assets/img/plusblack.png\"\n                style=\"height: 20px; width: 20px\"\n              />\n            </ion-col>\n          </ion-row>\n\n          <ion-row>\n            <ion-col style=\"text-align: center\">\n              <p style=\"font-size: 13px; color: #b0b0b0\">Ghana Card</p>\n            </ion-col>\n          </ion-row>\n        </div>\n        <img\n          style=\"width: 100%; border-radius: 10px; height: 150px\"\n          (click)=\"uploadProfileGhana()\"\n          *ngIf=\"ghanacardImage\"\n          src=\"{{ghanacardImage}}\"\n        />\n      </ion-col>\n    </ion-row>\n\n    <span *ngIf=\"ghancardError\" class=\"error ion-padding\">\n      Ghana Card required.\n    </span>\n  </ion-col>\n\n    <!-- ghana card image end here -->\n\n\n    <ion-col size=\"3\" class=\"ion-text-center\"> </ion-col>\n    <ion-col size=\"12\">\n      <ion-textarea\n        rows=\"6\"\n        placeholder=\"About\"\n        [(ngModel)]=\"About\"\n        class=\"list_3\"\n        (ionBlur)=\"validateForm()\"\n      >\n      </ion-textarea>\n      <span *ngIf=\"AboutError\" class=\"error ion-padding\">\n        About is required.\n      </span>\n    </ion-col>\n    <ion-col size=\"12\">\n      <ion-input\n        placeholder=\"First name\"\n        class=\"input_list ot_auto\"\n        [(ngModel)]=\"firstName\"\n        (ionBlur)=\"validateForm()\"\n      ></ion-input>\n      <span *ngIf=\"firstNameError\" class=\"error ion-padding\">\n        First name is required.\n      </span>\n    </ion-col>\n    <ion-col size=\"12\">\n      <ion-input\n        placeholder=\"Last name\"\n        class=\"input_list ot_auto\"\n        [(ngModel)]=\"lastName\"\n        (ionBlur)=\"validateForm()\"\n      ></ion-input>\n      <span *ngIf=\"lastNameError\" class=\"error ion-padding\">\n        Last name is required.\n      </span>\n    </ion-col>\n    <ion-col size=\"12\">\n      <ion-input\n        placeholder=\"Email\"\n        class=\"input_list ot_auto\"\n        [(ngModel)]=\"Email\"\n        (ionBlur)=\"validateForm()\"\n        readonly=\"\"\n      ></ion-input>\n      <span *ngIf=\"EmailError\" class=\"error ion-padding\">\n        Email is required.\n      </span>\n    </ion-col>\n    <ion-col size=\"12\">\n      <ion-input\n        placeholder=\"Phone\"\n        class=\"input_list ot_auto\"\n        [(ngModel)]=\"phone\"\n        (ionBlur)=\"validateForm()\"\n      ></ion-input>\n      <span *ngIf=\"phoneError\" class=\"error ion-padding\">\n        Phone is required.\n      </span>\n    </ion-col>\n\n    <ion-col size=\"12\">\n      <ion-input\n        placeholder=\"Works\"\n        class=\"input_list ot_auto\"\n        [(ngModel)]=\"Works\"\n        (ionBlur)=\"validateForm()\"\n      >\n      </ion-input>\n      <span *ngIf=\"WorksError\" class=\"error ion-padding\">\n        Works is required.\n      </span>\n    </ion-col>\n    <ion-col size=\"12\">\n      <ion-select\n        placeholder=\"Language\"\n        [(ngModel)]=\"Language\"\n        (ionBlur)=\"validateForm()\"\n      >\n        <ion-select-option\n          value=\"{{p.languages_id}}\"\n          *ngFor=\"let p of languages; let i = index\"\n          >{{p.name}}\n        </ion-select-option>\n      </ion-select>\n      <span *ngIf=\"LanguageError\" class=\"error ion-padding\">\n        Language is required.\n      </span>\n    </ion-col>\n    <ion-col size=\"12\">\n      <ion-select\n        [(ngModel)]=\"Lives\"\n        placeholder=\"Country\"\n        (ionBlur)=\"validateForm()\"\n      >\n        <ion-select-option\n          value=\"{{p.id}}\"\n          *ngFor=\"let p of countries; let i = index\"\n          >{{p.name}}</ion-select-option\n        >\n      </ion-select>\n      <span *ngIf=\"LivesError\" class=\"error ion-padding\">\n        Country is required.\n      </span>\n    </ion-col>\n    <ion-col size=\"12\">\n      <ion-select\n        placeholder=\"currencies\"\n        [(ngModel)]=\"Currencies\"\n        placeholder=\"Currencies\"\n        (ionBlur)=\"validateForm()\"\n      >\n        <ion-select-option\n          value=\"{{p.currencies_id}}\"\n          *ngFor=\"let p of currencies; let i = index\"\n          >{{p.name}} - ({{p.symbol}})</ion-select-option\n        >\n      </ion-select>\n      <span *ngIf=\"CurrencyError\" class=\"error ion-padding\">\n        Currency is required.\n      </span>\n    </ion-col>\n    <ion-col size=\"12\" style=\"display: flex; justify-content: space-evenly\">\n      <label\n        >Banking details\n        <span\n          (click)=\"addBank()\"\n          style=\"\n            background: #c4932f;\n            border: 1px solid white;\n            border-radius: 27px;\n            padding: 2px 9px;\n            color: white;\n            font-size: 16px;\n            font-weight: 400;\n          \"\n          >+</span\n        ></label\n      >\n    </ion-col>\n    <ng-container *ngFor=\"let accounts of accountDetails;let i = index\">\n      <ion-col size=\"12\">\n        <label\n          >Account {{i+1}}\n          <span\n            *ngIf=\"i!=0\"\n            (click)=\"removeBank(i)\"\n            style=\"\n              background: #c42f2fe8;\n              border: 1px solid white;\n              border-radius: 27px;\n              padding: 2px 9px;\n              color: white;\n              font-size: 16px;\n              font-weight: 400;\n            \"\n            >-</span\n          ></label\n        >\n        <ion-input\n          placeholder=\"Account Title\"\n          class=\"input_list ot_auto\"\n          [(ngModel)]=\"accounts.accountTitle\"\n          (ionBlur)=\"validateForm()\"\n        ></ion-input>\n        <ng-container *ngIf=\"i==0\">\n          <span *ngIf=\"accountTitleError\" class=\"error ion-padding\">\n            Account Title is required.\n          </span>\n        </ng-container>\n      </ion-col>\n      <ion-col size=\"12\">\n        <ion-input\n          placeholder=\"Account Name\"\n          class=\"input_list ot_auto\"\n          [(ngModel)]=\"accounts.accountName\"\n          (ionBlur)=\"validateForm()\"\n        ></ion-input>\n        <ng-container *ngIf=\"i==0\">\n          <span *ngIf=\"accountNameError\" class=\"error ion-padding\">\n            Account Title is required.\n          </span>\n        </ng-container>\n      </ion-col>\n      <ion-col size=\"12\">\n        <ion-input\n          placeholder=\"Account Number\"\n          class=\"input_list ot_auto\"\n          [(ngModel)]=\"accounts.accountNumber\"\n          (ionBlur)=\"validateForm()\"\n        ></ion-input>\n        <ng-container *ngIf=\"i==0\">\n          <span *ngIf=\"accountNumberError\" class=\"error ion-padding\">\n            Account Number is required.\n          </span>\n        </ng-container>\n      </ion-col>\n    </ng-container>\n  </ion-row>\n  <ion-row>\n    <ion-col size=\"2\"></ion-col>\n    <ion-col size=\"8\">\n      <ion-button\n        color=\"primary\"\n        expand=\"block\"\n        shape=\"round\"\n        (click)=\"submitForm()\"\n        >Update</ion-button\n      >\n    </ion-col>\n  </ion-row>\n</ion-content>\n";
       /***/
     },
 
@@ -252,9 +252,15 @@
       var _users_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
       /*! ../users.service */
       "./src/app/users.service.ts");
+      /* harmony import */
+
+
+      var _ionic_native_image_picker_ngx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+      /*! @ionic-native/image-picker/ngx */
+      "./node_modules/@ionic-native/image-picker/__ivy_ngcc__/ngx/index.js");
 
       var ProfilePage = /*#__PURE__*/function () {
-        function ProfilePage(loadingController, subjectEvents, popoverController, storage, toastController, router, restService, alertCtrl, imageService, menuCtrl, usersService, plateform) {
+        function ProfilePage(loadingController, subjectEvents, popoverController, storage, toastController, router, restService, alertCtrl, imageService, menuCtrl, usersService, plateform, imagePicker) {
           _classCallCheck(this, ProfilePage);
 
           this.loadingController = loadingController;
@@ -269,6 +275,7 @@
           this.menuCtrl = menuCtrl;
           this.usersService = usersService;
           this.plateform = plateform;
+          this.imagePicker = imagePicker;
           this.base64 = "";
           this.AboutError = false;
           this.firstNameError = false;
@@ -280,6 +287,7 @@
           this.LanguageError = false;
           this.base64Error = false;
           this.CurrencyError = false;
+          this.ghancardError = false;
           this.validation = false;
           this.CurrenciesError = false;
           this.accountTitleError = false;
@@ -289,6 +297,7 @@
             accountName: "",
             accountNumber: ""
           }];
+          this.ghanacardImage = "";
         }
 
         _createClass(ProfilePage, [{
@@ -334,6 +343,10 @@
               _this.phone = user_details.mobile_no;
               _this.firstName = user_details.first_name;
               _this.lastName = user_details.last_name;
+
+              if (user_details.ghanacard) {
+                _this.ghanacardImage = _this.restService.ghanacardBaseURL + user_details.ghanacard;
+              }
 
               if (user_details.bank_details.length != 0) {
                 _this.accountDetails = [];
@@ -410,6 +423,7 @@
                 // accountName: this.accountName,
                 // accountTitle: this.accountTitle,
                 accountDetails: this.accountDetails,
+                ghanacard: this.base64ghana,
                 requestType: "update"
               });
               console.log("selected bank detailss---", this.accountDetails);
@@ -490,7 +504,13 @@
             this.firstNameError = false;
             this.lastNameError = false;
             this.phoneError = false;
+            this.ghancardError = false;
             this.CurrenciesError = false;
+
+            if (this.ghanacardImage == "" || this.ghanacardImage == undefined) {
+              this.ghancardError = true;
+              return false;
+            }
 
             if (this.About == "" || this.About == undefined) {
               this.AboutError = true;
@@ -668,6 +688,89 @@
                 }
               }, _callee4, this);
             }));
+          } //------- here function of ghana card image start
+
+        }, {
+          key: "uploadProfileGhana",
+          value: function uploadProfileGhana() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+              var _this8 = this;
+
+              var alert;
+              return regeneratorRuntime.wrap(function _callee5$(_context5) {
+                while (1) {
+                  switch (_context5.prev = _context5.next) {
+                    case 0:
+                      _context5.next = 2;
+                      return this.alertCtrl.create({
+                        message: "Upload Ghana Card Image?",
+                        buttons: [{
+                          text: "Take image from camera",
+                          handler: function handler() {
+                            _this8.takeImageFromCameraGhana();
+                          }
+                        }, {
+                          text: "Upload image from gallery",
+                          handler: function handler() {
+                            _this8.getImageFromGalleryGhana();
+                          }
+                        }]
+                      });
+
+                    case 2:
+                      alert = _context5.sent;
+                      alert.present();
+
+                    case 4:
+                    case "end":
+                      return _context5.stop();
+                  }
+                }
+              }, _callee5, this);
+            }));
+          }
+        }, {
+          key: "takeImageFromCameraGhana",
+          value: function takeImageFromCameraGhana() {
+            var _this9 = this;
+
+            console.log('entered in ghanacard cameraaaa');
+            this.imageService.selectImageInCamera().then(function (imageData) {
+              _this9.ghanacardImage = "data:image/png;base64,".concat(imageData);
+              _this9.base64ghana = "".concat(imageData);
+              console.log('ghana card camera---', imageData);
+            })["catch"](function (err) {
+              return console.error('Error in camera', err);
+            });
+          } // getImageFromGalleryGhana() {
+          //   this.imageService 
+          //     .selectImageInGallery()   
+          //     .then((imageData) => {
+          //       this.ghanacardImage = `data:image/png;base64,${imageData}`;
+          //       this.base64ghana = `${imageData}`;
+          //     })
+          //     .catch((err) => console.error(err));
+          // }
+
+        }, {
+          key: "getImageFromGalleryGhana",
+          value: function getImageFromGalleryGhana() {
+            var _this10 = this;
+
+            var options = {
+              maximumImagesCount: 1,
+              outputType: 1,
+              quality: 90
+            };
+            this.imagePicker.getPictures(options).then(function (result) {
+              _this10.ghanacardImage = "data:image/png;base64,".concat(result); // this.imageCompress.compressFile(base64, 0, 80, 80).then((result) => {
+
+              _this10.base64ghana = "".concat(result); //this.base64ghana = result;
+
+              console.log('ghana card gallery---', result); // });
+            }, function (err) {
+              console.log(err, "error in images??");
+            });
           }
         }]);
 
@@ -699,6 +802,8 @@
           type: _users_service__WEBPACK_IMPORTED_MODULE_8__["UsersService"]
         }, {
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Platform"]
+        }, {
+          type: _ionic_native_image_picker_ngx__WEBPACK_IMPORTED_MODULE_9__["ImagePicker"]
         }];
       };
 

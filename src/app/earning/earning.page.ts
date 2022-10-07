@@ -160,6 +160,8 @@ export class EarningPage implements OnInit {
     this.restService.transactions(stringy).subscribe(
       (response) => {
         this.response = JSON.parse(response['_body']);
+        console.log('this.response------',this.response);
+        
         this.transactionDetails = this.response.earning_details;
         console.log(this.response.earning_details,"With errrinngg");
         if (this.response.status == 'NotFound') {
@@ -260,5 +262,9 @@ export class EarningPage implements OnInit {
 
   async dismiss() {
     await this.loading.dismiss();
+  }
+
+  earntoWithdraw(){
+    this.presentToast('Oops! You cannot withdraw as your wallet seems to be empty.');
   }
 }

@@ -1899,6 +1899,7 @@ let RestService = class RestService {
         // https://cors-anywhere.herokuapp.com/
         this.domain = "https://app.transusdrives.com/webservices/";
         this.domainOfCar = "https://app.transusdrives.com/uploads/vehicles/";
+        this.ghanacardBaseURL = "https://app.transusdrives.com/uploads/users/ghanacard/";
         //https://app.transusdrives.com/
         this.fromHomeToSearch = null;
         this.sourceToSearch = null;
@@ -2419,7 +2420,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Volumes/Office/Ali/github/transus/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Volumes/Office/Ali/github/transus2/src/main.ts */"./src/main.ts");
 
 
 /***/ })

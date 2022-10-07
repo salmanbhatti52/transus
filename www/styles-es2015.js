@@ -486,8 +486,8 @@ module.exports = content.locals || {};
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Volumes/Office/Ali/github/transus/src/theme/variables.scss */"./src/theme/variables.scss");
-module.exports = __webpack_require__(/*! /Volumes/Office/Ali/github/transus/src/global.scss */"./src/global.scss");
+__webpack_require__(/*! /Volumes/Office/Ali/github/transus2/src/theme/variables.scss */"./src/theme/variables.scss");
+module.exports = __webpack_require__(/*! /Volumes/Office/Ali/github/transus2/src/global.scss */"./src/global.scss");
 
 
 /***/ })

@@ -13,6 +13,9 @@ import { RestService } from "../rest.service";
 import { Storage } from "@ionic/storage";
 import { SubjectEventsService } from "../subject-events.service";
 import { UsersService } from "../users.service";
+
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
+
 @Component({
   selector: "app-profile",
   templateUrl: "./profile.page.html",
@@ -39,6 +42,8 @@ export class ProfilePage implements OnInit {
   LanguageError: boolean = false;
   base64Error: boolean = false;
   CurrencyError: boolean = false;
+  ghancardError: boolean = false;
+
   profileImage: string;
   response: any;
   userID: any;
@@ -63,6 +68,8 @@ export class ProfilePage implements OnInit {
       accountNumber: "",
     },
   ];
+  ghanacardImage: string = "";
+  base64ghana: any;
   constructor(
     public loadingController: LoadingController,
     public subjectEvents: SubjectEventsService,
@@ -75,7 +82,8 @@ export class ProfilePage implements OnInit {
     public imageService: CameraimageService,
     public menuCtrl: MenuController,
     public usersService: UsersService,
-    public plateform: Platform
+    public plateform: Platform,
+    public imagePicker: ImagePicker,
   ) {}
 
   ngOnInit() {
@@ -110,6 +118,10 @@ export class ProfilePage implements OnInit {
       this.phone = user_details.mobile_no;
       this.firstName = user_details.first_name;
       this.lastName = user_details.last_name;
+      if(user_details.ghanacard){
+        this.ghanacardImage = this.restService.ghanacardBaseURL + user_details.ghanacard
+      }
+    
       if (user_details.bank_details.length != 0) {
         this.accountDetails = [];
         user_details.bank_details.map((data, index) => {
@@ -133,7 +145,7 @@ export class ProfilePage implements OnInit {
     this.storage.get("profile_img_url").then((profile_img_url) => {
       this.storage.get("base_urls").then((base_url) => {
         this.profileImage = base_url + "" + profile_img_url;
-        console.log(this.profileImage);
+        console.log('profile image of user----',this.profileImage);
       });
     });
   }
@@ -177,6 +189,7 @@ export class ProfilePage implements OnInit {
         // accountName: this.accountName,
         // accountTitle: this.accountTitle,
         accountDetails: this.accountDetails,
+        ghanacard: this.base64ghana,
         requestType: "update",
       });
 
@@ -251,9 +264,14 @@ export class ProfilePage implements OnInit {
     this.firstNameError = false;
     this.lastNameError = false;
     this.phoneError = false;
+    this.ghancardError = false
 
     this.CurrenciesError = false;
-    if (this.About == "" || this.About == undefined) {
+    if (this.ghanacardImage == "" || this.ghanacardImage == undefined) {
+      this.ghancardError = true;
+      return false;
+      
+    } if (this.About == "" || this.About == undefined) {
       this.AboutError = true;
       return false;
       
@@ -362,4 +380,84 @@ export class ProfilePage implements OnInit {
   async dismiss() {
     await this.loading.dismiss();
   }
+
+
+
+
+  //------- here function of ghana card image start
+
+
+
+  async uploadProfileGhana() {
+    let alert = await this.alertCtrl.create({
+      message: "Upload Ghana Card Image?",
+      buttons: [
+        {
+          text: "Take image from camera",
+          handler: () => {
+            this.takeImageFromCameraGhana();
+          },
+        },
+        {
+          text: "Upload image from gallery",
+          handler: () => {
+            this.getImageFromGalleryGhana();
+          },
+        },
+      ],
+    });
+    alert.present();
+  }
+  takeImageFromCameraGhana() {
+
+    console.log('entered in ghanacard cameraaaa')
+    this.imageService
+      .selectImageInCamera()
+      .then((imageData) => {
+        this.ghanacardImage = `data:image/png;base64,${imageData}`;
+
+        this.base64ghana = `${imageData}`;
+
+        console.log('ghana card camera---', imageData);
+        
+      })
+      .catch((err) => console.error('Error in camera',err));
+  }
+  // getImageFromGalleryGhana() {
+  //   this.imageService 
+  //     .selectImageInGallery()   
+  //     .then((imageData) => {
+  //       this.ghanacardImage = `data:image/png;base64,${imageData}`;
+  //       this.base64ghana = `${imageData}`;
+  //     })
+  //     .catch((err) => console.error(err));
+  // }
+
+
+  getImageFromGalleryGhana() {
+    var options = {
+      maximumImagesCount: 1,
+      outputType: 1,
+      quality: 90,
+    };
+    this.imagePicker.getPictures(options).then(
+      (result) => {
+        
+        this.ghanacardImage = `data:image/png;base64,${result}`;
+        // this.imageCompress.compressFile(base64, 0, 80, 80).then((result) => {
+          this.base64ghana = `${result}`;
+            //this.base64ghana = result;
+            console.log('ghana card gallery---', result);
+         
+         
+        // });
+      },
+      (err) => {
+        console.log(err, "error in images??");
+      }
+    );
+  }
+
+  
+
 }

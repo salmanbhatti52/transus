@@ -9,6 +9,7 @@ export class RestService {
   // https://cors-anywhere.herokuapp.com/
   domain = "https://app.transusdrives.com/webservices/";
   domainOfCar = "https://app.transusdrives.com/uploads/vehicles/";
+  ghanacardBaseURL = "https://app.transusdrives.com/uploads/users/ghanacard/"
 
   //https://app.transusdrives.com/
 

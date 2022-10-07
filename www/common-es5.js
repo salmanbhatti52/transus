@@ -1067,12 +1067,11 @@
               // allowEdit: true,
               //correctOrientation: true,
               quality: 100,
-              allowEdit: false,
+              // allowEdit: false,
               destinationType: this.camera.DestinationType.DATA_URL,
               encodingType: this.camera.EncodingType.JPEG,
               mediaType: this.camera.MediaType.PICTURE,
-              saveToPhotoAlbum: false,
-              correctOrientation: true
+              saveToPhotoAlbum: false
             };
             return this.camera.getPicture(CAMERA_OPTIONS);
           } // choose image from gallery
