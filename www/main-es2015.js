@@ -1335,7 +1335,7 @@ let AppComponent = class AppComponent {
                 if (user_details) {
                     this.storage.get('profile_img_url').then((profile_img_url) => {
                         this.storage.get('base_urls').then((base_url) => {
-                            this.profile_image = base_url + '' + profile_img_url;
+                            this.profile_image = base_url + "" + profile_img_url;
                             this.usersService.profileVar = this.profile_image;
                             this.profile_image = this.usersService.profileVar;
                             // this.profile_image = this.usersService.getUserData();

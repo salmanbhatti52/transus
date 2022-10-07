@@ -372,7 +372,7 @@
             this.storage.get("profile_img_url").then(function (profile_img_url) {
               _this.storage.get("base_urls").then(function (base_url) {
                 _this.profileImage = base_url + "" + profile_img_url;
-                console.log(_this.profileImage);
+                console.log('profile image of user----', _this.profileImage);
               });
             });
           }

@@ -1910,7 +1910,7 @@
                 if (user_details) {
                   _this4.storage.get('profile_img_url').then(function (profile_img_url) {
                     _this4.storage.get('base_urls').then(function (base_url) {
-                      _this4.profile_image = base_url + '' + profile_img_url;
+                      _this4.profile_image = base_url + "" + profile_img_url;
                       _this4.usersService.profileVar = _this4.profile_image;
                       _this4.profile_image = _this4.usersService.profileVar; // this.profile_image = this.usersService.getUserData();
                       // localStorage.setItem("email", this.userData.email);

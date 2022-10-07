@@ -233,7 +233,7 @@ let ProfilePage = class ProfilePage {
         this.storage.get("profile_img_url").then((profile_img_url) => {
             this.storage.get("base_urls").then((base_url) => {
                 this.profileImage = base_url + "" + profile_img_url;
-                console.log(this.profileImage);
+                console.log('profile image of user----', this.profileImage);
             });
         });
     }
