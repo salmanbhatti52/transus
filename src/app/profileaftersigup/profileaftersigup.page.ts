@@ -4,6 +4,7 @@ import {
   AlertController,
   LoadingController,
   MenuController,
+  NavController,
   Platform,
   PopoverController,
   ToastController,
@@ -17,11 +18,13 @@ import { UsersService } from "../users.service";
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 
 @Component({
-  selector: "app-profile",
-  templateUrl: "./profile.page.html",
-  styleUrls: ["./profile.page.scss"],
+  selector: 'app-profileaftersigup',
+  templateUrl: './profileaftersigup.page.html',
+  styleUrls: ['./profileaftersigup.page.scss'],
 })
-export class ProfilePage implements OnInit {
+export class ProfileaftersigupPage implements OnInit {
+
+  
   Email: any;
   phone: any;
   firstName: any;
@@ -84,6 +87,7 @@ export class ProfilePage implements OnInit {
     public usersService: UsersService,
     public plateform: Platform,
     public imagePicker: ImagePicker,
+    public navCtrl:NavController
   ) {}
 
   ngOnInit() {
@@ -200,14 +204,14 @@ export class ProfilePage implements OnInit {
       this.restService.editProfile(stringy).subscribe(
         (response) => {
           this.response = JSON.parse(response["_body"]);
-          console.log('profileupdated-----',this.response);
+          console.log(this.response.status);
           if (this.response.status == "error") {
             this.presentToast(this.response.msg);
           } else if (this.response.status == "success") {
-            // this.usersService.profileVar = this.response.image;
-            // this.subjectEvents.publishImgData(this.usersService.profileVar);
+            this.usersService.profileVar = this.response.image + "?asass";
+            this.subjectEvents.publishImgData(this.usersService.profileVar);
             this.subjectEvents.publishCityData(this.response.country);
-            // console.log(this.usersService.profileVar, "testttttt");
+            console.log(this.usersService.profileVar, "testttttt");
             this.presentToast(this.response.msg);
             console.log(this.usersService.cityVar, "testttttt_city");
 
@@ -235,11 +239,6 @@ export class ProfilePage implements OnInit {
         console.log("usererrrrr---- after updatinf", this.response);
         if (this.response.status == "NotFound") {
         } else if (this.response.status == "Found") {
-
-          this.usersService.profileVar = this.response.profile_img_url;
-          this.subjectEvents.publishImgData(this.response.profile_img_url);
-
-
           this.storage.set("user_details", this.response.user_details);
           this.storage.set("profile_img_url", this.response.profile_img_url);
           this.storage.set("country_name", this.response.country_name);
@@ -248,7 +247,7 @@ export class ProfilePage implements OnInit {
             "currency_symbol",
             this.response.user_details.symbol
           );
-
+          this.navCtrl.navigateRoot("/");
           /* this.subjectEvents.publishSomeData({
           sidebar: 'sidebar'
         }); */
@@ -463,7 +462,6 @@ export class ProfilePage implements OnInit {
     );
   }
 
-  
   handleImgError(ev: any, item: any, url) {
     let source = ev.srcElement;
     let imgSrc = `assets/img/placeholder.jpg`;

@@ -50,6 +50,7 @@ export class ChatDetailPage implements OnInit {
       this.storage.get('base_urls').then((base_urls) => {
         this.base_url = base_urls;
         this.userData = JSON.parse(res.value);
+        console.log("this.base_url=====",this.base_url);
         console.log(res);
         this.sender_id = this.userData.userID;
 

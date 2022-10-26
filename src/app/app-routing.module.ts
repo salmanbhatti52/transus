@@ -278,6 +278,10 @@ const routes: Routes = [
     path: 'view-image',
     loadChildren: () => import('./view-image/view-image.module').then( m => m.ViewImagePageModule)
   },
+  {
+    path: 'profileaftersigup',
+    loadChildren: () => import('./profileaftersigup/profileaftersigup.module').then( m => m.ProfileaftersigupPageModule)
+  },
 
 
 

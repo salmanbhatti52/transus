@@ -1,7 +1,7 @@
 <ion-header [class.ios-headers]="plateformCheck == 'ios'">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <img src="assets/img/Menu.svg" (click)="toggleMenu()" />
+      <!-- <img src="assets/img/Menu.svg" (click)="toggleMenu()" /> -->
     </ion-buttons>
     <ion-title [class.globe_title]="plateformCheck == 'ios'"
       >Edit Profile</ion-title
@@ -22,7 +22,7 @@
         />
       </ng-container>
       <ng-container *ngIf="profileImage">
-        <img src="{{profileImage}}" class="solid_img" (error)="handleImgError($event, userIMG)" />
+        <img src="{{profileImage}}" class="solid_img"  (error)="handleImgError($event, userIMG)"/>
         <img
           src="assets/img/Edit_button.svg"
           class="btn_edit_profile"

@@ -238,14 +238,23 @@ export class AppComponent implements OnInit {
   userData: any;
   noty_length: any;
   prof_image: any;
+  handleImgError(ev: any, item: any, url) {
+    let source = ev.srcElement;
+    let imgSrc = `assets/img/placeholder.jpg`;
+    source.src = imgSrc;
+  }
   getProfileData() {
     this.storage.get('user_details').then((user_details) => {
       console.log('my user detail ====', user_details);
+      this.storage.get('base_urls').then((base_url) => {
+        console.log('base_url ====', base_url);
 
+      })
       if (user_details) {
         this.userData = user_details;
         console.log(user_details);
-        if (user_details) {
+        if(user_details.ghanacard){
+       if (user_details) {
           this.storage.get('profile_img_url').then((profile_img_url) => {
             this.storage.get('base_urls').then((base_url) => {
               this.profile_image = base_url + "" + profile_img_url;
@@ -279,6 +288,9 @@ export class AppComponent implements OnInit {
         } else {
           this.profile_image = 'assets/img/usericon.svg';
         }
+      }else{
+        this.navCtrl.navigateRoot(['/profileaftersigup']);
+      }
         this.user_name = user_details.user_name;
         this.usersService.nameVar = this.user_name;
         this.user_name = this.usersService.nameVar;
