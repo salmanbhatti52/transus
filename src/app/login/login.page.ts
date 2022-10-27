@@ -86,9 +86,15 @@ export class LoginPage implements OnInit {
               "users_id",
               this.response.user_details.users_id
             );
-            console.log("login detailssss----", this.response.user_details);
+
+
+            localStorage.setItem('imageofuserprofile',this.restService.baseURLforProfileimg + "" +   this.response.user_details.profile_image)
+            this.restService.imageofuserprofile = this.restService.baseURLforProfileimg + "" +   this.response.user_details.profile_image;
+
+
+            console.log("login detailssss----", this.response);
             this.storage.set("user_details", this.response.user_details);
-            this.storage.set("profile_img_url", this.response.profile_img_url);
+            this.storage.set("profile_img_url", this.response.user_details.profile_image);
             this.storage.set("country_name", this.response.country_name);
             this.storage.set("base_urls", this.baseUrl);
             this.storage.set(

@@ -70,6 +70,7 @@ export class ProfilePage implements OnInit {
   ];
   ghanacardImage: string = "";
   base64ghana: any;
+  userprofilefromuserdetail: any;
   constructor(
     public loadingController: LoadingController,
     public subjectEvents: SubjectEventsService,
@@ -108,6 +109,7 @@ export class ProfilePage implements OnInit {
     this.present();
     this.storage.get("user_details").then((user_details) => {
       console.log("userDetailsss-----", user_details);
+      this.userprofilefromuserdetail = user_details.profile_image
       this.userID = user_details.users_id;
       this.About = user_details.about;
       this.Works = user_details.work;
@@ -144,7 +146,9 @@ export class ProfilePage implements OnInit {
 
     this.storage.get("profile_img_url").then((profile_img_url) => {
       this.storage.get("base_urls").then((base_url) => {
-        this.profileImage = base_url + "" + profile_img_url;
+        
+        // this.profileImage = base_url + "" + profile_img_url;
+        this.profileImage = this.restService.baseURLforProfileimg + "" +   this.userprofilefromuserdetail;
         console.log('profile image of user----',this.profileImage);
       });
     });
@@ -235,6 +239,9 @@ export class ProfilePage implements OnInit {
         console.log("usererrrrr---- after updatinf", this.response);
         if (this.response.status == "NotFound") {
         } else if (this.response.status == "Found") {
+
+          localStorage.setItem('imageofuserprofile',this.restService.baseURLforProfileimg + "" +   this.response.user_details.profile_image)
+           this.restService.imageofuserprofile = this.restService.baseURLforProfileimg + "" +   this.response.user_details.profile_image;
 
           this.usersService.profileVar = this.response.profile_img_url;
           this.subjectEvents.publishImgData(this.response.profile_img_url);

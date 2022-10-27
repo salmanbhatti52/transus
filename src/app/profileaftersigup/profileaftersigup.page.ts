@@ -23,8 +23,6 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
   styleUrls: ['./profileaftersigup.page.scss'],
 })
 export class ProfileaftersigupPage implements OnInit {
-
-  
   Email: any;
   phone: any;
   firstName: any;
@@ -73,6 +71,7 @@ export class ProfileaftersigupPage implements OnInit {
   ];
   ghanacardImage: string = "";
   base64ghana: any;
+  userprofilefromuserdetail: any;
   constructor(
     public loadingController: LoadingController,
     public subjectEvents: SubjectEventsService,
@@ -87,7 +86,6 @@ export class ProfileaftersigupPage implements OnInit {
     public usersService: UsersService,
     public plateform: Platform,
     public imagePicker: ImagePicker,
-    public navCtrl:NavController
   ) {}
 
   ngOnInit() {
@@ -112,6 +110,7 @@ export class ProfileaftersigupPage implements OnInit {
     this.present();
     this.storage.get("user_details").then((user_details) => {
       console.log("userDetailsss-----", user_details);
+      this.userprofilefromuserdetail = user_details.profile_image
       this.userID = user_details.users_id;
       this.About = user_details.about;
       this.Works = user_details.work;
@@ -148,7 +147,9 @@ export class ProfileaftersigupPage implements OnInit {
 
     this.storage.get("profile_img_url").then((profile_img_url) => {
       this.storage.get("base_urls").then((base_url) => {
-        this.profileImage = base_url + "" + profile_img_url;
+        
+        // this.profileImage = base_url + "" + profile_img_url;
+        this.profileImage = this.restService.baseURLforProfileimg + "" +   this.userprofilefromuserdetail;
         console.log('profile image of user----',this.profileImage);
       });
     });
@@ -204,14 +205,14 @@ export class ProfileaftersigupPage implements OnInit {
       this.restService.editProfile(stringy).subscribe(
         (response) => {
           this.response = JSON.parse(response["_body"]);
-          console.log(this.response.status);
+          console.log('profileupdated-----',this.response);
           if (this.response.status == "error") {
             this.presentToast(this.response.msg);
           } else if (this.response.status == "success") {
-            this.usersService.profileVar = this.response.image + "?asass";
-            this.subjectEvents.publishImgData(this.usersService.profileVar);
+            // this.usersService.profileVar = this.response.image;
+            // this.subjectEvents.publishImgData(this.usersService.profileVar);
             this.subjectEvents.publishCityData(this.response.country);
-            console.log(this.usersService.profileVar, "testttttt");
+            // console.log(this.usersService.profileVar, "testttttt");
             this.presentToast(this.response.msg);
             console.log(this.usersService.cityVar, "testttttt_city");
 
@@ -239,6 +240,14 @@ export class ProfileaftersigupPage implements OnInit {
         console.log("usererrrrr---- after updatinf", this.response);
         if (this.response.status == "NotFound") {
         } else if (this.response.status == "Found") {
+
+          localStorage.setItem('imageofuserprofile',this.restService.baseURLforProfileimg + "" +   this.response.user_details.profile_image)
+          this.restService.imageofuserprofile = this.restService.baseURLforProfileimg + "" +   this.response.user_details.profile_image;
+
+          this.usersService.profileVar = this.response.profile_img_url;
+          this.subjectEvents.publishImgData(this.response.profile_img_url);
+
+
           this.storage.set("user_details", this.response.user_details);
           this.storage.set("profile_img_url", this.response.profile_img_url);
           this.storage.set("country_name", this.response.country_name);
@@ -247,7 +256,7 @@ export class ProfileaftersigupPage implements OnInit {
             "currency_symbol",
             this.response.user_details.symbol
           );
-          this.navCtrl.navigateRoot("/");
+
           /* this.subjectEvents.publishSomeData({
           sidebar: 'sidebar'
         }); */
@@ -462,6 +471,7 @@ export class ProfileaftersigupPage implements OnInit {
     );
   }
 
+  
   handleImgError(ev: any, item: any, url) {
     let source = ev.srcElement;
     let imgSrc = `assets/img/placeholder.jpg`;

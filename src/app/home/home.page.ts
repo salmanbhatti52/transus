@@ -81,6 +81,12 @@ export class HomePage implements OnInit {
   oneDataSet: any;
   userDetail: any;
   usersDetail: any;
+
+  ionViewWillEnter(){
+   
+  this.restService.imageofuserprofile =  localStorage.getItem('imageofuserprofile');
+
+  } 
   ionViewDidEnter() {
     const gesture: Gesture = this.gestureCtrl.create(
       {

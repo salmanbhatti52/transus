@@ -181,10 +181,12 @@ export class AppComponent implements OnInit {
 
         console.log('my gmail loginnnnnnnnn----', this.login);
       });
-      this.subjectEvents.getImgObservable().subscribe((data) => {
-        console.log('img Data received', data);
-        this.profile_image = data;
-      });
+      // this.subjectEvents.getImgObservable().subscribe((data) => {
+      //   console.log('img Data received', data);
+      //   this.profile_image = data;
+      // });
+
+     
       this.subjectEvents.getCityObservable().subscribe((data) => {
         console.log('City Data received', data);
         this.country = data;
@@ -257,9 +259,10 @@ export class AppComponent implements OnInit {
        if (user_details) {
           this.storage.get('profile_img_url').then((profile_img_url) => {
             this.storage.get('base_urls').then((base_url) => {
-              this.profile_image = base_url + "" + profile_img_url;
-              this.usersService.profileVar = this.profile_image;
-              this.profile_image = this.usersService.profileVar;
+              this.profile_image = this.restService.baseURLforProfileimg + "" +   user_details.profile_image;
+              // this.profile_image = base_url + "" + profile_img_url;
+              // this.usersService.profileVar = this.profile_image;
+              // this.profile_image = this.usersService.profileVar;
               // this.profile_image = this.usersService.getUserData();
 
               // localStorage.setItem("email", this.userData.email);

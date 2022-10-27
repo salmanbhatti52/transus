@@ -10,6 +10,7 @@ export class RestService {
   domain = "https://app.transusdrives.com/webservices/";
   domainOfCar = "https://app.transusdrives.com/uploads/vehicles/";
   ghanacardBaseURL = "https://app.transusdrives.com/uploads/users/ghanacard/"
+  baseURLforProfileimg = "https://app.transusdrives.com/uploads/users/profile_pic/"
 
   //https://app.transusdrives.com/
 
@@ -18,6 +19,7 @@ export class RestService {
   scroolFlag: boolean = true;
 
   carlistdata: any;
+  imageofuserprofile: string;
 
   constructor(public http: Http, public httpClient: HttpClient) {
     console.log("Hello RestProvider Provider");
