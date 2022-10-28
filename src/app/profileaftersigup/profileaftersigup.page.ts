@@ -86,6 +86,7 @@ export class ProfileaftersigupPage implements OnInit {
     public usersService: UsersService,
     public plateform: Platform,
     public imagePicker: ImagePicker,
+    public navCtrl:NavController
   ) {}
 
   ngOnInit() {
@@ -257,6 +258,7 @@ export class ProfileaftersigupPage implements OnInit {
             this.response.user_details.symbol
           );
 
+          this.navCtrl.navigateRoot('/');
           /* this.subjectEvents.publishSomeData({
           sidebar: 'sidebar'
         }); */
