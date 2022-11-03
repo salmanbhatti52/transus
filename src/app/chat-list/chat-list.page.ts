@@ -92,7 +92,8 @@ export class ChatListPage implements OnInit {
     });
   }
   Detail(user_id, profile_img, user_name, checkBooking) {
-    if (checkBooking > 0) {
+    // if (checkBooking > 0) {
+     if (true) {
       clearInterval(this.callInterval);
       console.log(profile_img, user_name);
 

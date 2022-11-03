@@ -105,6 +105,7 @@ export class CarBookingPage implements OnInit {
  
   }
   ngOnInit() {
+
     if(this.plateform.is('ios')){
       this.plateformCheck = "ios";
     }
