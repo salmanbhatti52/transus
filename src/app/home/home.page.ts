@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, NgZone, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { OneSignal } from "@ionic-native/onesignal/ngx";
 import { SocialSharing } from "@ionic-native/social-sharing/ngx";
@@ -59,7 +59,8 @@ export class HomePage implements OnInit {
     public gestureCtrl: GestureController,
     public socialSharing: SocialSharing,
     public usersService: UsersService,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    public ngZone:NgZone
   ) {
     this.pet = "cars";
     this.storage.set("base_urls", this.baseUrl);
@@ -118,7 +119,14 @@ export class HomePage implements OnInit {
               this.oneSignal.OSInFocusDisplayOption.Notification
             );
             this.oneSignal.handleNotificationReceived().subscribe(() => {});
-            this.oneSignal.handleNotificationOpened().subscribe(() => {});
+            this.oneSignal.handleNotificationOpened().subscribe((data) => {
+              ///ali
+              this.ngZone.run(() => this.router.navigate(['chat-list']));
+              console.log('data open notification-----', data);
+              alert('data=='+ data)
+              alert('data=='+ JSON.stringify(data))
+              //ali
+            });
             this.oneSignal.endInit();
             this.oneSignal.getIds().then((id) => {
               this.oneSignalData = id;
