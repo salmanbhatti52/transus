@@ -293,6 +293,7 @@ export class AppComponent implements OnInit {
         }
       }else{
         this.navCtrl.navigateRoot(['/profileaftersigup']);
+        // this.navCtrl.navigateRoot(['/']);
       }
         this.user_name = user_details.user_name;
         this.usersService.nameVar = this.user_name;

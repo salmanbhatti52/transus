@@ -48,6 +48,26 @@ export class HomePage implements OnInit {
   loadingPresent: any;
   shareText: any;
 
+  data1 =
+  {
+    "notification":
+    {
+      "shown": true,
+      "payload":
+      {
+        "body":"Your car rejected",
+        "additionalData":
+        {
+          "type_id":1,
+          "type_name":"Chat"
+        },
+        "notificationID":"notiid1234",
+        "actionbuttons":[],
+  
+      }
+    }
+  }
+
   constructor(
     public loadingController: LoadingController,
     private storage: Storage,
@@ -62,9 +82,13 @@ export class HomePage implements OnInit {
     public navCtrl: NavController,
     public ngZone:NgZone
   ) {
+ 
     this.pet = "cars";
     this.storage.set("base_urls", this.baseUrl);
     this.timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    console.log('Data-----',this.data1.notification.payload.additionalData.type_name);
+   
+    
   }
   ShowLoading: boolean = false;
   ngOnInit() {}
@@ -121,10 +145,30 @@ export class HomePage implements OnInit {
             this.oneSignal.handleNotificationReceived().subscribe(() => {});
             this.oneSignal.handleNotificationOpened().subscribe((data) => {
               ///ali
-              this.ngZone.run(() => this.router.navigate(['chat-list']));
-              console.log('data open notification-----', data);
-              alert('data=='+ data)
-              alert('data=='+ JSON.stringify(data))
+
+              if(data.notification.payload.additionalData.type_name == "Chat" || data.notification.payload.additionalData.type_name == "Chat Request"){
+                this.ngZone.run(() => this.router.navigate(['chat-list']));
+              }
+
+              if(data.notification.payload.additionalData.type_name == "Booking" || data.notification.payload.additionalData.type_name == "cancel_booking" || data.notification.payload.additionalData.type_name == "Reject_booking" ||
+              data.notification.payload.additionalData.type_name == "accept_booking"||
+              data.notification.payload.additionalData.type_name == "Rider Offer")
+              {
+                this.ngZone.run(() => this.router.navigate(['bookings']));
+              }
+
+              if(data.notification.payload.additionalData.type_name == "payment_done"){
+                this.ngZone.run(() => this.router.navigate(['earning']));
+              }
+
+
+              if(data.notification.payload.additionalData.type_name == "Car Approve" || data.notification.payload.additionalData.type_name == "Motor Approve" || data.notification.payload.additionalData.type_name == "Car Rejected" || data.notification.payload.additionalData.type_name == "Motor Rejected" || data.notification.payload.additionalData.type_name == "motor_added_successfuly"){
+                this.ngZone.run(() => this.router.navigate(['listed-car']));
+              }
+             
+              // console.log('data open notification-----', data);
+              // alert('data=='+ data)
+              // alert('data=='+ JSON.stringify(data))
               //ali
             });
             this.oneSignal.endInit();
