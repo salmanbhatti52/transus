@@ -13,6 +13,7 @@ import {
   FileTransferObject,
 } from '@ionic-native/file-transfer/ngx';
 import * as moment from 'moment';
+import { ImgsrService } from '../imgsr.service';
 
 @Component({
   selector: 'app-car-booking',
@@ -101,10 +102,13 @@ export class CarBookingPage implements OnInit {
      public restService: RestService, public alertCtrl: AlertController,
       public router: Router, public imageService: CameraimageService, 
       public imagePicker: ImagePicker,public plateform:Platform,
-      public location: Location,private transfer: FileTransfer) {
+      public location: Location,private transfer: FileTransfer,
+      public imgsr:ImgsrService) {
  
   }
   ngOnInit() {
+
+    this.document_one = this.imgsr.imagebase64data
 
     if(this.plateform.is('ios')){
       this.plateformCheck = "ios";
@@ -326,6 +330,8 @@ this.activatedRoute.queryParams.subscribe((res) => {
     
     // Booking on today an the select the previous time
     if(this.getFullDate(stD) == this.getFullDate(currentDate)){
+
+      //ali time work here check
       if(currentDate.getTime() > stD.getTime()){
         console.log("ionic debug-- current Time",currentDate.getTime());
         console.log("ionic debug-- Start Time",stD.getTime());
@@ -340,6 +346,7 @@ this.activatedRoute.queryParams.subscribe((res) => {
     } 
     else{ 
       this.printTimeError="";
+      this.pastdateCheck=true;
     }
     if(this.dayDiff < 1){
      if(stD.getTime() === etD.getTime()){
@@ -514,6 +521,10 @@ this.activatedRoute.queryParams.subscribe((res) => {
    }
 
   async allowsubmitForm() {
+    console.log('allow submit form');
+    console.log('start date',this.start_date);
+    console.log('end date', this.end_date);
+    
 
     this.printTimeErrorBoolen = false;
     this.sHours = document.querySelector(".s_hours .swiper-slide-active p").textContent;
@@ -525,7 +536,10 @@ this.activatedRoute.queryParams.subscribe((res) => {
 
     this.document_oneError = false;
 
-      if (this.start_date != '' && this.end_date != '' && this.document_one != null && this.document_one != "" && this.availableDate == false && this.pastdateCheck==true) {
+       if (this.start_date != '' && this.end_date != '' && this.document_one != null && this.document_one != "" && this.availableDate == false && this.pastdateCheck==true) {
+
+        
+      // if (this.start_date != '' && this.end_date != '' && this.document_one != null && this.document_one != "" && this.availableDate == false) {
   
         this.sHours = document.querySelector(".s_hours .swiper-slide-active p").textContent;
         this.sMints = document.querySelector(".s_mints .swiper-slide-active p").textContent;

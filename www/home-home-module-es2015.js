@@ -137,7 +137,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let HomePage = class HomePage {
-    constructor(loadingController, storage, router, menuCtrl, restService, popoverController, oneSignal, gestureCtrl, socialSharing, usersService, navCtrl) {
+    constructor(loadingController, storage, router, menuCtrl, restService, popoverController, oneSignal, gestureCtrl, socialSharing, usersService, navCtrl, ngZone) {
         this.loadingController = loadingController;
         this.storage = storage;
         this.router = router;
@@ -149,6 +149,7 @@ let HomePage = class HomePage {
         this.socialSharing = socialSharing;
         this.usersService = usersService;
         this.navCtrl = navCtrl;
+        this.ngZone = ngZone;
         this.pet = "puppies";
         this.option1 = {
             loop: true,
@@ -162,6 +163,20 @@ let HomePage = class HomePage {
         this.baseUrl = "https://app.transusdrives.com/";
         this.page_number_all = 0;
         this.currencies_id = "";
+        this.data1 = {
+            "notification": {
+                "shown": true,
+                "payload": {
+                    "body": "Your car rejected",
+                    "additionalData": {
+                        "type_id": 1,
+                        "type_name": "Chat"
+                    },
+                    "notificationID": "notiid1234",
+                    "actionbuttons": [],
+                }
+            }
+        };
         this.ShowLoading = false;
         this.New_car_types = [];
         this.page_number = 0;
@@ -169,12 +184,16 @@ let HomePage = class HomePage {
         this.pet = "cars";
         this.storage.set("base_urls", this.baseUrl);
         this.timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        console.log('Data-----', this.data1.notification.payload.additionalData.type_name);
     }
     ngOnInit() { }
     onMoveHandler(event) {
         if (event.deltaX < 0) {
             this.reloadRentedCars(true, event);
         }
+    }
+    ionViewWillEnter() {
+        this.restService.imageofuserprofile = localStorage.getItem('imageofuserprofile');
     }
     ionViewDidEnter() {
         const gesture = this.gestureCtrl.create({
@@ -197,7 +216,28 @@ let HomePage = class HomePage {
                     this.oneSignal.startInit(this.oneDataSet.onesignal_app_key, this.oneDataSet.onesignal_server_id);
                     this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
                     this.oneSignal.handleNotificationReceived().subscribe(() => { });
-                    this.oneSignal.handleNotificationOpened().subscribe(() => { });
+                    this.oneSignal.handleNotificationOpened().subscribe((data) => {
+                        ///ali
+                        if (data.notification.payload.additionalData.type_name == "Chat" || data.notification.payload.additionalData.type_name == "Chat Request") {
+                            this.ngZone.run(() => this.router.navigate(['chat-list']));
+                        }
+                        if (data.notification.payload.additionalData.type_name == "Booking" || data.notification.payload.additionalData.type_name == "cancel_booking" || data.notification.payload.additionalData.type_name == "Reject_booking" ||
+                            data.notification.payload.additionalData.type_name == "accept_booking" ||
+                            data.notification.payload.additionalData.type_name == "Rider Offer") {
+                            this.ngZone.run(() => this.router.navigate(['bookings']));
+                        }
+                        if (data.notification.payload.additionalData.type_name == "payment_done") {
+                            this.ngZone.run(() => this.router.navigate(['earning']));
+                        }
+                        if (data.notification.payload.additionalData.type_name == "Car Approve" || data.notification.payload.additionalData.type_name == "Motor Approve" || data.notification.payload.additionalData.type_name == "Car Rejected" || data.notification.payload.additionalData.type_name == "Motor Rejected" || data.notification.payload.additionalData.type_name == "motor_added_successfuly") {
+                            this.ngZone.run(() => this.router.navigate(['listed-car']));
+                        }
+                        console.log('data open notification-----', data);
+                        alert('data==' + data);
+                        alert('data==' + JSON.stringify(data));
+                        alert('type name==' + data.notification.payload.additionalData.type_name);
+                        //ali
+                    });
                     this.oneSignal.endInit();
                     this.oneSignal.getIds().then((id) => {
                         this.oneSignalData = id;
@@ -642,7 +682,8 @@ HomePage.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["GestureController"] },
     { type: _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_4__["SocialSharing"] },
     { type: _users_service__WEBPACK_IMPORTED_MODULE_9__["UsersService"] },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["NavController"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["NavController"] },
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"] }
 ];
 HomePage.propDecorators = {
     scroll: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"], args: ["scroll",] }]

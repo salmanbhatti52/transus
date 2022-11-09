@@ -531,9 +531,10 @@
 
                     _this2.subjectEvents.publishSomeData({
                       sidebar: "sidebar"
-                    });
+                    }); // this.navCtrl.navigateRoot("/");
 
-                    _this2.navCtrl.navigateRoot("/");
+
+                    _this2.navCtrl.navigateRoot("/profileaftersigup");
                   }
                 }); //this.userData = {email: profile['email'], first_name: profile['first_name'], picture: profile['picture_large']['data']['url'], username: profile['name']}
 

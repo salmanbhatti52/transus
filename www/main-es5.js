@@ -461,7 +461,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-app>\r\n  <ion-split-pane contentId=\"main-content\">\r\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\r\n      <ion-content>\r\n        <ion-row>\r\n          <ion-col size=\"4\" class=\"ion-text-center tp\" (click)=\"toggleMenu()\">\r\n            <img src=\"assets/img/cross.svg\" />\r\n          </ion-col>\r\n        </ion-row>\r\n        <ion-menu-toggle auto-hide=\"false\">\r\n          <ion-row class=\"text-white\" *ngIf=\"login\">\r\n            <ion-col size=\"3\"></ion-col>\r\n            <ion-col size=\"6\" class=\"profile_img ion-text-center\">\r\n              <ng-container *ngIf=\"profile_image\">\r\n                <img src=\"{{ profile_image }}\" (click)=\"goToProfile()\" />\r\n                <img\r\n                  (click)=\"goToProfile()\"\r\n                  src=\"assets/img/Edit_button.svg\"\r\n                  class=\"btn_edit_profile\"\r\n                />\r\n              </ng-container>\r\n              <ng-container\r\n                *ngIf=\"profile_image == undefined || profile_image == ''\"\r\n              >\r\n                <img src=\"assets/img/usericon.svg\" (click)=\"goToProfile()\" />\r\n                <img\r\n                  (click)=\"goToProfile()\"\r\n                  src=\"assets/img/Edit_button.svg\"\r\n                  class=\"btn_edit_profile\"\r\n                />\r\n              </ng-container>\r\n              <h3 (click)=\"goToProfile()\">{{ user_name }}</h3>\r\n              <!-- <p>{{ country }}</p> -->\r\n            </ion-col>\r\n            <ion-col size=\"3\"></ion-col>\r\n            <ng-container *ngFor=\"let p of withLogin; let i = index\">\r\n              <ion-col\r\n                size=\"4\"\r\n                class=\"ion-text-center ic_top\"\r\n                (click)=\"selectedIndex = i\"\r\n                (click)=\"goToPage(p.url)\"\r\n              >\r\n                <ion-badge\r\n                  class=\"notification-view\"\r\n                  *ngIf=\"p.title == 'Notification'\"\r\n                  color=\"danger\"\r\n                  >{{ this.usersService.noty_length }}</ion-badge\r\n                >\r\n                <img src=\"{{ p.icon }}\" />\r\n                <p>{{ p.title }}</p>\r\n              </ion-col>\r\n            </ng-container>\r\n          </ion-row>\r\n          <ion-row class=\"text-white\" *ngIf=\"login == false\">\r\n            <ng-container *ngFor=\"let p of withoutLogin; let i = index\">\r\n              <ion-col\r\n                size=\"4\"\r\n                class=\"ion-text-center ic_top\"\r\n                (click)=\"selectedIndex = i\"\r\n                (click)=\"goToPage(p.url)\"\r\n              >\r\n                <img src=\"{{ p.icon }}\" />\r\n                <p>{{ p.title }}</p>\r\n              </ion-col>\r\n            </ng-container>\r\n          </ion-row>\r\n        </ion-menu-toggle>\r\n        <!--ion-list id=\"inbox-list\">\r\n          <ion-list-header>Inbox</ion-list-header>\r\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages; let i = index\">\r\n\r\n            <ion-item (click)=\"selectedIndex = i\" routerDirection=\"root\" [routerLink]=\"[p.url]\" lines=\"none\" detail=\"false\" [class.selected]=\"selectedIndex == i\">\r\n              <ion-icon slot=\"start\" [ios]=\"p.icon + '-outline'\" [md]=\"p.icon + '-sharp'\"></ion-icon>\r\n              <ion-label>{{ p.title }}</ion-label>\r\n            </ion-item>\r\n          </ion-menu-toggle>\r\n        </ion-list-->\r\n      </ion-content>\r\n    </ion-menu>\r\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\r\n  </ion-split-pane>\r\n</ion-app>\r\n";
+      __webpack_exports__["default"] = "<ion-app>\r\n  <ion-split-pane contentId=\"main-content\">\r\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\r\n      <ion-content>\r\n        <ion-row>\r\n          <ion-col size=\"4\" class=\"ion-text-center tp\" (click)=\"toggleMenu()\">\r\n            <img src=\"assets/img/cross.svg\" />\r\n          </ion-col>\r\n        </ion-row>\r\n        <ion-menu-toggle auto-hide=\"false\">\r\n          <ion-row class=\"text-white\" *ngIf=\"login\">\r\n            <ion-col size=\"3\"></ion-col>\r\n            <ion-col size=\"6\" class=\"profile_img ion-text-center\">\r\n              <ng-container *ngIf=\"profile_image\">\r\n                <img src=\"{{ restService.imageofuserprofile }}\" (click)=\"goToProfile()\"  (error)=\"handleImgError($event, userIMG)\"/>\r\n                <img\r\n                  (click)=\"goToProfile()\"\r\n                  src=\"assets/img/Edit_button.svg\"\r\n                  class=\"btn_edit_profile\"\r\n                />\r\n              </ng-container>\r\n              <ng-container\r\n                *ngIf=\"profile_image == undefined || profile_image == ''\"\r\n              >\r\n                <img src=\"assets/img/usericon.svg\" (click)=\"goToProfile()\" />\r\n                <img\r\n                  (click)=\"goToProfile()\"\r\n                  src=\"assets/img/Edit_button.svg\"\r\n                  class=\"btn_edit_profile\"\r\n                />\r\n              </ng-container>\r\n              <h3 (click)=\"goToProfile()\">{{ user_name }}</h3>\r\n              <!-- <p>{{ country }}</p> -->\r\n            </ion-col>\r\n            <ion-col size=\"3\"></ion-col>\r\n            <ng-container *ngFor=\"let p of withLogin; let i = index\">\r\n              <ion-col\r\n                size=\"4\"\r\n                class=\"ion-text-center ic_top\"\r\n                (click)=\"selectedIndex = i\"\r\n                (click)=\"goToPage(p.url)\"\r\n              >\r\n                <ion-badge\r\n                  class=\"notification-view\"\r\n                  *ngIf=\"p.title == 'Notification'\"\r\n                  color=\"danger\"\r\n                  >{{ this.usersService.noty_length }}</ion-badge\r\n                >\r\n                <img src=\"{{ p.icon }}\" />\r\n                <p>{{ p.title }}</p>\r\n              </ion-col>\r\n            </ng-container>\r\n          </ion-row>\r\n          <ion-row class=\"text-white\" *ngIf=\"login == false\">\r\n            <ng-container *ngFor=\"let p of withoutLogin; let i = index\">\r\n              <ion-col\r\n                size=\"4\"\r\n                class=\"ion-text-center ic_top\"\r\n                (click)=\"selectedIndex = i\"\r\n                (click)=\"goToPage(p.url)\"\r\n              >\r\n                <img src=\"{{ p.icon }}\" />\r\n                <p>{{ p.title }}</p>\r\n              </ion-col>\r\n            </ng-container>\r\n          </ion-row>\r\n        </ion-menu-toggle>\r\n        <!--ion-list id=\"inbox-list\">\r\n          <ion-list-header>Inbox</ion-list-header>\r\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages; let i = index\">\r\n\r\n            <ion-item (click)=\"selectedIndex = i\" routerDirection=\"root\" [routerLink]=\"[p.url]\" lines=\"none\" detail=\"false\" [class.selected]=\"selectedIndex == i\">\r\n              <ion-icon slot=\"start\" [ios]=\"p.icon + '-outline'\" [md]=\"p.icon + '-sharp'\"></ion-icon>\r\n              <ion-label>{{ p.title }}</ion-label>\r\n            </ion-item>\r\n          </ion-menu-toggle>\r\n        </ion-list-->\r\n      </ion-content>\r\n    </ion-menu>\r\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\r\n  </ion-split-pane>\r\n</ion-app>\r\n";
       /***/
     },
 
@@ -1538,6 +1538,17 @@
             return m.ViewImagePageModule;
           });
         }
+      }, {
+        path: 'profileaftersigup',
+        loadChildren: function loadChildren() {
+          return Promise.all(
+          /*! import() | profileaftersigup-profileaftersigup-module */
+          [__webpack_require__.e("common"), __webpack_require__.e("profileaftersigup-profileaftersigup-module")]).then(__webpack_require__.bind(null,
+          /*! ./profileaftersigup/profileaftersigup.module */
+          "./src/app/profileaftersigup/profileaftersigup.module.ts")).then(function (m) {
+            return m.ProfileaftersigupPageModule;
+          });
+        }
       }];
 
       var AppRoutingModule = /*#__PURE__*/_createClass(function AppRoutingModule() {
@@ -1848,12 +1859,11 @@
 
                 _this3.login = true;
                 console.log('my gmail loginnnnnnnnn----', _this3.login);
-              });
+              }); // this.subjectEvents.getImgObservable().subscribe((data) => {
+              //   console.log('img Data received', data);
+              //   this.profile_image = data;
+              // });
 
-              _this3.subjectEvents.getImgObservable().subscribe(function (data) {
-                console.log('img Data received', data);
-                _this3.profile_image = data;
-              });
 
               _this3.subjectEvents.getCityObservable().subscribe(function (data) {
                 console.log('City Data received', data);
@@ -1896,6 +1906,13 @@
              } */
           }
         }, {
+          key: "handleImgError",
+          value: function handleImgError(ev, item, url) {
+            var source = ev.srcElement;
+            var imgSrc = "assets/img/placeholder.jpg";
+            source.src = imgSrc;
+          }
+        }, {
           key: "getProfileData",
           value: function getProfileData() {
             var _this4 = this;
@@ -1903,41 +1920,51 @@
             this.storage.get('user_details').then(function (user_details) {
               console.log('my user detail ====', user_details);
 
+              _this4.storage.get('base_urls').then(function (base_url) {
+                console.log('base_url ====', base_url);
+              });
+
               if (user_details) {
                 _this4.userData = user_details;
                 console.log(user_details);
 
-                if (user_details) {
-                  _this4.storage.get('profile_img_url').then(function (profile_img_url) {
-                    _this4.storage.get('base_urls').then(function (base_url) {
-                      _this4.profile_image = base_url + "" + profile_img_url;
-                      _this4.usersService.profileVar = _this4.profile_image;
-                      _this4.profile_image = _this4.usersService.profileVar; // this.profile_image = this.usersService.getUserData();
-                      // localStorage.setItem("email", this.userData.email);
+                if (user_details.ghanacard) {
+                  if (user_details) {
+                    _this4.storage.get('profile_img_url').then(function (profile_img_url) {
+                      _this4.storage.get('base_urls').then(function (base_url) {
+                        _this4.profile_image = _this4.restService.baseURLforProfileimg + "" + user_details.profile_image; // this.profile_image = base_url + "" + profile_img_url;
+                        // this.usersService.profileVar = this.profile_image;
+                        // this.profile_image = this.usersService.profileVar;
+                        // this.profile_image = this.usersService.getUserData();
+                        // localStorage.setItem("email", this.userData.email);
+                      });
                     });
-                  });
 
-                  var stringfy = JSON.stringify({
-                    requestType: 'get_all',
-                    usersID: _this4.userData.users_id,
-                    limit: '',
-                    offset: '',
-                    readFilter: 'Unread',
-                    timeZone: _this4.timeZone
-                  });
-                  console.log(stringfy);
+                    var stringfy = JSON.stringify({
+                      requestType: 'get_all',
+                      usersID: _this4.userData.users_id,
+                      limit: '',
+                      offset: '',
+                      readFilter: 'Unread',
+                      timeZone: _this4.timeZone
+                    });
+                    console.log(stringfy);
 
-                  _this4.restService.notifications(stringfy).subscribe(function (response) {
-                    var _a; //   console.log(JSON.parse(response['_body']),"from app component page");
+                    _this4.restService.notifications(stringfy).subscribe(function (response) {
+                      var _a; //   console.log(JSON.parse(response['_body']),"from app component page");
 
 
-                    _this4.Notification = JSON.parse(response['_body']);
-                    console.log(_this4.Notification);
-                    _this4.usersService.noty_length = (_a = _this4.Notification.notifications) === null || _a === void 0 ? void 0 : _a.length;
-                    console.log(_this4.usersService.noty_length, 'this.usersService.noty_lengththis.usersService.noty_length_first');
-                  });
+                      _this4.Notification = JSON.parse(response['_body']);
+                      console.log(_this4.Notification);
+                      _this4.usersService.noty_length = (_a = _this4.Notification.notifications) === null || _a === void 0 ? void 0 : _a.length;
+                      console.log(_this4.usersService.noty_length, 'this.usersService.noty_lengththis.usersService.noty_length_first');
+                    });
+                  } else {
+                    _this4.profile_image = 'assets/img/usericon.svg';
+                  }
                 } else {
-                  _this4.profile_image = 'assets/img/usericon.svg';
+                  _this4.navCtrl.navigateRoot(['/profileaftersigup']); // this.navCtrl.navigateRoot(['/']);
+
                 }
 
                 _this4.user_name = user_details.user_name;
@@ -2888,7 +2915,8 @@
 
           this.domain = "https://app.transusdrives.com/webservices/";
           this.domainOfCar = "https://app.transusdrives.com/uploads/vehicles/";
-          this.ghanacardBaseURL = "https://app.transusdrives.com/uploads/users/ghanacard/"; //https://app.transusdrives.com/
+          this.ghanacardBaseURL = "https://app.transusdrives.com/uploads/users/ghanacard/";
+          this.baseURLforProfileimg = "https://app.transusdrives.com/uploads/users/profile_pic/"; //https://app.transusdrives.com/
 
           this.fromHomeToSearch = null;
           this.sourceToSearch = null;
@@ -3733,7 +3761,7 @@
     /***/
     function _(module, exports, __webpack_require__) {
       module.exports = __webpack_require__(
-      /*! /Volumes/Office/Ali/github/transus2/src/main.ts */
+      /*! /Volumes/Office/Ali/github/transusali/src/main.ts */
       "./src/main.ts");
       /***/
     }

@@ -336,11 +336,13 @@
                   _this.presentToast("Login successfully!");
 
                   localStorage.setItem("users_id", _this.response.user_details.users_id);
-                  console.log("login detailssss----", _this.response.user_details);
+                  localStorage.setItem('imageofuserprofile', _this.restService.baseURLforProfileimg + "" + _this.response.user_details.profile_image);
+                  _this.restService.imageofuserprofile = _this.restService.baseURLforProfileimg + "" + _this.response.user_details.profile_image;
+                  console.log("login detailssss----", _this.response);
 
                   _this.storage.set("user_details", _this.response.user_details);
 
-                  _this.storage.set("profile_img_url", _this.response.profile_img_url);
+                  _this.storage.set("profile_img_url", _this.response.user_details.profile_image);
 
                   _this.storage.set("country_name", _this.response.country_name);
 

@@ -166,9 +166,11 @@ export class HomePage implements OnInit {
                 this.ngZone.run(() => this.router.navigate(['listed-car']));
               }
              
-              // console.log('data open notification-----', data);
-              // alert('data=='+ data)
-              // alert('data=='+ JSON.stringify(data))
+              console.log('data open notification-----', data);
+              alert('data=='+ data)
+              alert('data=='+ JSON.stringify(data))
+              alert('type name=='+  data.notification.payload.additionalData.type_name )
+             
               //ali
             });
             this.oneSignal.endInit();

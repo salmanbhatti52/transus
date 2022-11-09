@@ -443,7 +443,7 @@
                 _this3.dismiss();
               }
 
-              console.log(_this3.response);
+              console.log("other booking data----", _this3.response);
 
               if (type == "previous") {
                 if (isFirstLoad == false) {
@@ -533,7 +533,7 @@
 
               _this4.page_number = _this4.page_number + 3;
               _this4.response = JSON.parse(response['_body']);
-              console.log(_this4.response);
+              console.log("incoming data---", _this4.response);
               _this4.previousBooking = _this4.response.previous_bookings;
               _this4.cancelsBooking = _this4.response.canceled_bookings;
               _this4.currentBooking = _this4.response.current_bookings;

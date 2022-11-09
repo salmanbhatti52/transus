@@ -206,6 +206,7 @@ let BookingListPage = class BookingListPage {
             if (event) {
                 event.target.complete();
             }
+            console.log('incoming res---', this.response);
             this.cancelsBooking = this.response.canceled_bookings;
             this.previousBooking = this.response.previous_bookings;
             this.upcomingBooking = this.response.upcoming_bookings;

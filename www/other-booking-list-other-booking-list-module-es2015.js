@@ -257,7 +257,7 @@ let OtherBookingListPage = class OtherBookingListPage {
             if (loader) {
                 this.dismiss();
             }
-            console.log(this.response);
+            console.log("other booking data----", this.response);
             if (type == "previous") {
                 if (isFirstLoad == false) {
                     this.previousBooking = [];
@@ -335,7 +335,7 @@ let OtherBookingListPage = class OtherBookingListPage {
             }
             this.page_number = this.page_number + 3;
             this.response = JSON.parse(response['_body']);
-            console.log(this.response);
+            console.log("incoming data---", this.response);
             this.previousBooking = this.response.previous_bookings;
             this.cancelsBooking = this.response.canceled_bookings;
             this.currentBooking = this.response.current_bookings;

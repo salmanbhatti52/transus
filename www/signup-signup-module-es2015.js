@@ -379,7 +379,8 @@ let SignupPage = class SignupPage {
                         this.subjectEvents.publishSomeData({
                             sidebar: "sidebar",
                         });
-                        this.navCtrl.navigateRoot("/");
+                        // this.navCtrl.navigateRoot("/");
+                        this.navCtrl.navigateRoot("/profileaftersigup");
                     }
                 });
                 //this.userData = {email: profile['email'], first_name: profile['first_name'], picture: profile['picture_large']['data']['url'], username: profile['name']}

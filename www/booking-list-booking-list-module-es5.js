@@ -347,6 +347,7 @@
                 event.target.complete();
               }
 
+              console.log('incoming res---', _this3.response);
               _this3.cancelsBooking = _this3.response.canceled_bookings;
               _this3.previousBooking = _this3.response.previous_bookings;
               _this3.upcomingBooking = _this3.response.upcoming_bookings;

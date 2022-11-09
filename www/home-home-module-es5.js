@@ -260,7 +260,7 @@
       "./src/app/users.service.ts");
 
       var HomePage = /*#__PURE__*/function () {
-        function HomePage(loadingController, storage, router, menuCtrl, restService, popoverController, oneSignal, gestureCtrl, socialSharing, usersService, navCtrl) {
+        function HomePage(loadingController, storage, router, menuCtrl, restService, popoverController, oneSignal, gestureCtrl, socialSharing, usersService, navCtrl, ngZone) {
           _classCallCheck(this, HomePage);
 
           this.loadingController = loadingController;
@@ -274,6 +274,7 @@
           this.socialSharing = socialSharing;
           this.usersService = usersService;
           this.navCtrl = navCtrl;
+          this.ngZone = ngZone;
           this.pet = "puppies";
           this.option1 = {
             loop: true,
@@ -287,6 +288,20 @@
           this.baseUrl = "https://app.transusdrives.com/";
           this.page_number_all = 0;
           this.currencies_id = "";
+          this.data1 = {
+            "notification": {
+              "shown": true,
+              "payload": {
+                "body": "Your car rejected",
+                "additionalData": {
+                  "type_id": 1,
+                  "type_name": "Chat"
+                },
+                "notificationID": "notiid1234",
+                "actionbuttons": []
+              }
+            }
+          };
           this.ShowLoading = false;
           this.New_car_types = [];
           this.page_number = 0;
@@ -294,6 +309,7 @@
           this.pet = "cars";
           this.storage.set("base_urls", this.baseUrl);
           this.timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+          console.log('Data-----', this.data1.notification.payload.additionalData.type_name);
         }
 
         _createClass(HomePage, [{
@@ -305,6 +321,11 @@
             if (event.deltaX < 0) {
               this.reloadRentedCars(true, event);
             }
+          }
+        }, {
+          key: "ionViewWillEnter",
+          value: function ionViewWillEnter() {
+            this.restService.imageofuserprofile = localStorage.getItem('imageofuserprofile');
           }
         }, {
           key: "ionViewDidEnter",
@@ -339,7 +360,37 @@
 
                   _this.oneSignal.handleNotificationReceived().subscribe(function () {});
 
-                  _this.oneSignal.handleNotificationOpened().subscribe(function () {});
+                  _this.oneSignal.handleNotificationOpened().subscribe(function (data) {
+                    ///ali
+                    if (data.notification.payload.additionalData.type_name == "Chat" || data.notification.payload.additionalData.type_name == "Chat Request") {
+                      _this.ngZone.run(function () {
+                        return _this.router.navigate(['chat-list']);
+                      });
+                    }
+
+                    if (data.notification.payload.additionalData.type_name == "Booking" || data.notification.payload.additionalData.type_name == "cancel_booking" || data.notification.payload.additionalData.type_name == "Reject_booking" || data.notification.payload.additionalData.type_name == "accept_booking" || data.notification.payload.additionalData.type_name == "Rider Offer") {
+                      _this.ngZone.run(function () {
+                        return _this.router.navigate(['bookings']);
+                      });
+                    }
+
+                    if (data.notification.payload.additionalData.type_name == "payment_done") {
+                      _this.ngZone.run(function () {
+                        return _this.router.navigate(['earning']);
+                      });
+                    }
+
+                    if (data.notification.payload.additionalData.type_name == "Car Approve" || data.notification.payload.additionalData.type_name == "Motor Approve" || data.notification.payload.additionalData.type_name == "Car Rejected" || data.notification.payload.additionalData.type_name == "Motor Rejected" || data.notification.payload.additionalData.type_name == "motor_added_successfuly") {
+                      _this.ngZone.run(function () {
+                        return _this.router.navigate(['listed-car']);
+                      });
+                    }
+
+                    console.log('data open notification-----', data);
+                    alert('data==' + data);
+                    alert('data==' + JSON.stringify(data));
+                    alert('type name==' + data.notification.payload.additionalData.type_name); //ali
+                  });
 
                   _this.oneSignal.endInit();
 
@@ -949,6 +1000,8 @@
           type: _users_service__WEBPACK_IMPORTED_MODULE_9__["UsersService"]
         }, {
           type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["NavController"]
+        }, {
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"]
         }];
       };
 
