@@ -146,31 +146,28 @@ let BookingListPage = class BookingListPage {
         this.alertController = alertController;
         this.loadingController = loadingController;
         this.navController = navController;
-        this.pet = 'puppies';
+        this.pet = 'current';
         this.page_number_all = 0;
     }
     ngOnInit() {
-        // this.pet = 'request';
-        this.activatedRoute.queryParams.subscribe((res) => {
-            this.valres = res.value;
-            console.log(res);
-            console.log(this.valres);
-            if (this.valres) {
-                if (this.valres == 'request') {
-                    this.pet = 'request';
-                }
-                else if (this.valres == 'upcoming') {
-                    this.pet = 'upcoming';
-                }
-                else if (this.valres == 'cancel') {
-                    this.pet = 'cancel';
-                }
-            }
-            else {
-                this.pet = 'request';
-                console.log('request');
-            }
-        });
+        //  this.pet = 'request';
+        // this.activatedRoute.queryParams.subscribe((res) => {
+        //   this.valres = res.value;
+        //   console.log(res);
+        //   console.log(this.valres);
+        //   if (this.valres) {
+        //     if (this.valres == 'request') {
+        //       this.pet = 'request';
+        //     } else if (this.valres == 'upcoming') {
+        //       this.pet = 'upcoming';
+        //     } else if (this.valres == 'cancel') {
+        //       this.pet = 'cancel';
+        //     }
+        //   } else {
+        //     this.pet = 'request';
+        //     console.log('request');
+        //   }
+        // });
     }
     ionViewWillEnter() {
         this.storage.get('user_details').then((user_details) => {

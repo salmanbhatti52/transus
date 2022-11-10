@@ -268,54 +268,50 @@
           this.alertController = alertController;
           this.loadingController = loadingController;
           this.navController = navController;
-          this.pet = 'puppies';
+          this.pet = 'current';
           this.page_number_all = 0;
         }
 
         _createClass(BookingListPage, [{
           key: "ngOnInit",
-          value: function ngOnInit() {
-            var _this = this;
-
-            // this.pet = 'request';
-            this.activatedRoute.queryParams.subscribe(function (res) {
-              _this.valres = res.value;
-              console.log(res);
-              console.log(_this.valres);
-
-              if (_this.valres) {
-                if (_this.valres == 'request') {
-                  _this.pet = 'request';
-                } else if (_this.valres == 'upcoming') {
-                  _this.pet = 'upcoming';
-                } else if (_this.valres == 'cancel') {
-                  _this.pet = 'cancel';
-                }
-              } else {
-                _this.pet = 'request';
-                console.log('request');
-              }
-            });
+          value: function ngOnInit() {//  this.pet = 'request';
+            // this.activatedRoute.queryParams.subscribe((res) => {
+            //   this.valres = res.value;
+            //   console.log(res);
+            //   console.log(this.valres);
+            //   if (this.valres) {
+            //     if (this.valres == 'request') {
+            //       this.pet = 'request';
+            //     } else if (this.valres == 'upcoming') {
+            //       this.pet = 'upcoming';
+            //     } else if (this.valres == 'cancel') {
+            //       this.pet = 'cancel';
+            //     }
+            //   } else {
+            //     this.pet = 'request';
+            //     console.log('request');
+            //   }
+            // });
           }
         }, {
           key: "ionViewWillEnter",
           value: function ionViewWillEnter() {
-            var _this2 = this;
+            var _this = this;
 
             this.storage.get('user_details').then(function (user_details) {
               console.log(user_details);
-              _this2.userID = user_details.users_id;
-              _this2.Email = user_details.email;
-              _this2.currencyID = user_details.currencies_id;
+              _this.userID = user_details.users_id;
+              _this.Email = user_details.email;
+              _this.currencyID = user_details.currencies_id;
 
-              _this2.getCarList();
+              _this.getCarList();
 
-              _this2.storage.get('base_urls').then(function (base_url) {
-                _this2.base_url = base_url;
+              _this.storage.get('base_urls').then(function (base_url) {
+                _this.base_url = base_url;
               });
 
-              _this2.storage.get('currency_symbol').then(function (currency_symbol) {
-                _this2.currency_symbol = currency_symbol;
+              _this.storage.get('currency_symbol').then(function (currency_symbol) {
+                _this.currency_symbol = currency_symbol;
               });
             });
             /*  this.menuCtrl.enable(false); */
@@ -329,7 +325,7 @@
         }, {
           key: "getCarList",
           value: function getCarList(event) {
-            var _this3 = this;
+            var _this2 = this;
 
             this.present();
             var stringy = JSON.stringify({
@@ -339,48 +335,48 @@
             });
             console.log(stringy);
             this.restService.bookings(stringy).subscribe(function (response) {
-              _this3.response = JSON.parse(response['_body']);
+              _this2.response = JSON.parse(response['_body']);
 
-              _this3.dismiss();
+              _this2.dismiss();
 
               if (event) {
                 event.target.complete();
               }
 
-              console.log('incoming res---', _this3.response);
-              _this3.cancelsBooking = _this3.response.canceled_bookings;
-              _this3.previousBooking = _this3.response.previous_bookings;
-              _this3.upcomingBooking = _this3.response.upcoming_bookings;
-              _this3.currentBooking = _this3.response.current_bookings;
-              _this3.requested_bookings = _this3.response.requested_bookings;
+              console.log('incoming res---', _this2.response);
+              _this2.cancelsBooking = _this2.response.canceled_bookings;
+              _this2.previousBooking = _this2.response.previous_bookings;
+              _this2.upcomingBooking = _this2.response.upcoming_bookings;
+              _this2.currentBooking = _this2.response.current_bookings;
+              _this2.requested_bookings = _this2.response.requested_bookings;
 
-              if (_this3.currentBooking) {
-                if (_this3.currentBooking[0].bookings_id == null) {
-                  _this3.currentBooking = [];
+              if (_this2.currentBooking) {
+                if (_this2.currentBooking[0].bookings_id == null) {
+                  _this2.currentBooking = [];
                 }
               }
 
-              if (_this3.cancelsBooking) {
-                if (_this3.cancelsBooking[0].bookings_id == null) {
-                  _this3.cancelsBooking = [];
+              if (_this2.cancelsBooking) {
+                if (_this2.cancelsBooking[0].bookings_id == null) {
+                  _this2.cancelsBooking = [];
                 }
               }
 
-              if (_this3.previousBooking) {
-                if (_this3.previousBooking[0].bookings_id == null) {
-                  _this3.previousBooking = [];
+              if (_this2.previousBooking) {
+                if (_this2.previousBooking[0].bookings_id == null) {
+                  _this2.previousBooking = [];
                 }
               }
 
-              if (_this3.upcomingBooking) {
-                if (_this3.upcomingBooking[0].bookings_id == null) {
-                  _this3.upcomingBooking = [];
+              if (_this2.upcomingBooking) {
+                if (_this2.upcomingBooking[0].bookings_id == null) {
+                  _this2.upcomingBooking = [];
                 }
               }
 
-              if (_this3.requested_bookings) {
-                if (_this3.requested_bookings[0].bookings_id == null) {
-                  _this3.requested_bookings = [];
+              if (_this2.requested_bookings) {
+                if (_this2.requested_bookings[0].bookings_id == null) {
+                  _this2.requested_bookings = [];
                 }
               }
             }, function (err) {});
@@ -388,7 +384,7 @@
         }, {
           key: "finalAction",
           value: function finalAction(actionType, bookingDetails, type, index) {
-            var _this4 = this;
+            var _this3 = this;
 
             console.log("bookingDetails----", bookingDetails); // this.currentBooking[0].owner_response = 'Delivered';
 
@@ -403,13 +399,13 @@
             });
             console.log(stringy);
             this.restService.booking_action(stringy).subscribe(function (response) {
-              _this4.response = JSON.parse(response['_body']);
+              _this3.response = JSON.parse(response['_body']);
 
-              _this4.dismiss();
+              _this3.dismiss();
 
-              console.log("this.response------ booking action", _this4.response);
+              console.log("this.response------ booking action", _this3.response);
 
-              if (_this4.response.status == 'success') {
+              if (_this3.response.status == 'success') {
                 if (type == 'Deliver') {
                   bookingDetails.owner_response = 'Delivered';
                 }
@@ -417,9 +413,9 @@
                 if (type == 'Recevie') {
                   bookingDetails.owner_response = 'Recevied';
 
-                  _this4.currentBooking.splice(index, 1);
+                  _this3.currentBooking.splice(index, 1);
 
-                  _this4.pet = "previous";
+                  _this3.pet = "previous";
                 }
               }
             }, function (err) {});
@@ -437,7 +433,7 @@
         }, {
           key: "BookNow",
           value: function BookNow() {
-            var _this5 = this;
+            var _this4 = this;
 
             this.present();
             var stringy = JSON.stringify({
@@ -449,20 +445,20 @@
             });
             console.log(stringy);
             this.restService.filters(stringy).subscribe(function (response) {
-              _this5.response = JSON.parse(response['_body']);
+              _this4.response = JSON.parse(response['_body']);
 
-              if (_this5.response.status == 'NotFound') {
-                _this5.presentToast('Data Not Found!');
-              } else if (_this5.response.status == 'Found') {
-                console.log(_this5.response.cars_list_result);
+              if (_this4.response.status == 'NotFound') {
+                _this4.presentToast('Data Not Found!');
+              } else if (_this4.response.status == 'Found') {
+                console.log(_this4.response.cars_list_result);
                 var myData = JSON.stringify({
-                  cars_list_result: _this5.response.cars_list_result
+                  cars_list_result: _this4.response.cars_list_result
                 });
-                _this5.restService.fromHomeToSearch = myData;
+                _this4.restService.fromHomeToSearch = myData;
 
-                _this5.dismiss();
+                _this4.dismiss();
 
-                _this5.router.navigate(['/car-list']);
+                _this4.router.navigate(['/car-list']);
               }
             }, function (err) {});
           }
@@ -496,7 +492,7 @@
           key: "action",
           value: function action(bookingId, _action, userID, OwnerID, petValue) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-              var _this6 = this;
+              var _this5 = this;
 
               var popover;
               return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -523,9 +519,9 @@
                         console.log(data.data.val);
 
                         if (data.data.val == 'ok') {
-                          _this6.getCarList();
+                          _this5.getCarList();
 
-                          _this6.pet = petValue;
+                          _this5.pet = petValue;
                         }
                       });
                       _context.next = 6;
@@ -681,7 +677,7 @@
         }, {
           key: "chatRequest",
           value: function chatRequest(pageType, tabType, bookingDetails) {
-            var _this7 = this;
+            var _this6 = this;
 
             console.log("bookingDetails", bookingDetails);
             var current_date = new Date();
@@ -707,29 +703,29 @@
 
                 console.log(stringy);
                 this.restService.update_messages(stringy).subscribe(function (response) {
-                  _this7.response = JSON.parse(response['_body']);
-                  console.log(_this7.response);
+                  _this6.response = JSON.parse(response['_body']);
+                  console.log(_this6.response);
 
-                  if (_this7.response.status == 'error') {} else if (_this7.response.status == 'AlreadySent' || _this7.response.status == 'RequestSend') {
+                  if (_this6.response.status == 'error') {} else if (_this6.response.status == 'AlreadySent' || _this6.response.status == 'RequestSend') {
                     if (pageType == "listed_booking") {
                       var myData = JSON.stringify({
                         otherUserId: bookingDetails.booked_by_users_id,
-                        userID: _this7.userID,
-                        user_name: _this7.response.user_name,
-                        profile_img: _this7.response.profile_img
+                        userID: _this6.userID,
+                        user_name: _this6.response.user_name,
+                        profile_img: _this6.response.profile_img
                       });
                     } else {
                       var myData = JSON.stringify({
                         otherUserId: bookingDetails.veh_users_id,
-                        userID: _this7.userID,
-                        user_name: _this7.response.user_name,
-                        profile_img: _this7.response.profile_img
+                        userID: _this6.userID,
+                        user_name: _this6.response.user_name,
+                        profile_img: _this6.response.profile_img
                       });
                     }
 
                     console.log(myData);
 
-                    _this7.router.navigate(['/chat-detail'], {
+                    _this6.router.navigate(['/chat-detail'], {
                       queryParams: {
                         value: myData
                       }

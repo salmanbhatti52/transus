@@ -19,7 +19,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./booking-list.page.scss'],
 })
 export class BookingListPage implements OnInit {
-  pet: string = 'puppies';
+  pet: string = 'current';
   response: any;
   userID: any;
   Email: any;
@@ -50,24 +50,24 @@ export class BookingListPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.pet = 'request';
-    this.activatedRoute.queryParams.subscribe((res) => {
-      this.valres = res.value;
-      console.log(res);
-      console.log(this.valres);
-      if (this.valres) {
-        if (this.valres == 'request') {
-          this.pet = 'request';
-        } else if (this.valres == 'upcoming') {
-          this.pet = 'upcoming';
-        } else if (this.valres == 'cancel') {
-          this.pet = 'cancel';
-        }
-      } else {
-        this.pet = 'request';
-        console.log('request');
-      }
-    });
+    //  this.pet = 'request';
+    // this.activatedRoute.queryParams.subscribe((res) => {
+    //   this.valres = res.value;
+    //   console.log(res);
+    //   console.log(this.valres);
+    //   if (this.valres) {
+    //     if (this.valres == 'request') {
+    //       this.pet = 'request';
+    //     } else if (this.valres == 'upcoming') {
+    //       this.pet = 'upcoming';
+    //     } else if (this.valres == 'cancel') {
+    //       this.pet = 'cancel';
+    //     }
+    //   } else {
+    //     this.pet = 'request';
+    //     console.log('request');
+    //   }
+    // });
   }
 
   ionViewWillEnter() {

@@ -150,32 +150,32 @@ let OtherBookingListPage = class OtherBookingListPage {
         this.plateform = plateform;
         this.loadingController = loadingController;
         this.navController = navController;
-        this.pet = "puppies";
+        this.pet = "current";
         this.page_number = 0;
         this.page_number_all = 0;
     }
     ionViewWillEnter() {
         /*   this.menuCtrl.enable(false); */
-        this.activatedRoute.queryParams.subscribe((res) => {
-            this.valres = res.value;
-            console.log(res);
-            console.log(this.valres);
-            if (this.valres) {
-                if (this.valres == "pending") {
-                    this.pet = 'pending';
-                }
-                else if (this.valres == "upcoming") {
-                    this.pet = 'upcoming';
-                }
-                else if (this.valres == "cancel") {
-                    this.pet = 'cancel';
-                }
-            }
-            else {
-                this.pet = 'pending';
-                console.log('pending');
-            }
-        });
+        // this.activatedRoute.queryParams.subscribe((res)=>{
+        //   this.valres =  res.value;
+        //   console.log(res);
+        //   console.log(this.valres);
+        //   if(this.valres){
+        //     if(this.valres == "pending"){
+        //       this.pet = 'pending';
+        //     }
+        //     else if(this.valres == "upcoming"){
+        //       this.pet = 'upcoming';
+        //     }
+        //     else if(this.valres == "cancel"){
+        //       this.pet = 'cancel';
+        //     }
+        //   }
+        //   else  {
+        //     this.pet = 'pending';
+        //     console.log('pending')
+        //   }
+        // })
         this.storage.get('user_details').then((user_details) => {
             console.log(user_details);
             this.userID = user_details.users_id;

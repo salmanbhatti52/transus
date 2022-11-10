@@ -347,8 +347,7 @@
           value: function ngOnInit() {
             var _this = this;
 
-            this.document_one = this.imgsr.imagebase64data;
-
+            //this.document_one = this.imgsr.imagebase64data
             if (this.plateform.is('ios')) {
               this.plateformCheck = "ios";
             } else {
