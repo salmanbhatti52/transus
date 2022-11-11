@@ -41,6 +41,6 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-<string>Allow Photo Library to update your photos</string>
+<string>We use camera to scan documents of user and upload car images.</string>
 </dict>
 </plist>
