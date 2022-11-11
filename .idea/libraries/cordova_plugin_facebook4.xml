@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="cordova-plugin-facebook4">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/plugins/cordova-plugin-facebook4.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

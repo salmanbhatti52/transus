@@ -1,14 +1,6 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
   module.exports = [
     {
-      "id": "com-sarriaroman-photoviewer.PhotoViewer",
-      "file": "plugins/com-sarriaroman-photoviewer/www/PhotoViewer.js",
-      "pluginId": "com-sarriaroman-photoviewer",
-      "clobbers": [
-        "PhotoViewer"
-      ]
-    },
-    {
       "id": "cordova-plugin-camera.Camera",
       "file": "plugins/cordova-plugin-camera/www/CameraConstants.js",
       "pluginId": "cordova-plugin-camera",
@@ -332,6 +324,15 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
+      "id": "ionic-plugin-deeplinks.deeplink",
+      "file": "plugins/ionic-plugin-deeplinks/www/deeplink.js",
+      "pluginId": "ionic-plugin-deeplinks",
+      "clobbers": [
+        "IonicDeeplink"
+      ],
+      "runs": true
+    },
+    {
       "id": "es6-promise-plugin.Promise",
       "file": "plugins/es6-promise-plugin/www/promise.js",
       "pluginId": "es6-promise-plugin",
@@ -346,33 +347,46 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
+      "id": "onesignal-cordova-plugin.OneSignalPlugin",
+      "file": "plugins/onesignal-cordova-plugin/dist/index.js",
+      "pluginId": "onesignal-cordova-plugin",
+      "clobbers": [
+        "OneSignal"
+      ]
+    },
+    {
+      "id": "onesignal-cordova-plugin.NotificationReceivedEvent",
+      "file": "plugins/onesignal-cordova-plugin/dist/NotificationReceivedEvent.js",
+      "pluginId": "onesignal-cordova-plugin"
+    },
+    {
+      "id": "onesignal-cordova-plugin.Subscription",
+      "file": "plugins/onesignal-cordova-plugin/dist/Subscription.js",
+      "pluginId": "onesignal-cordova-plugin"
+    },
+    {
+      "id": "onesignal-cordova-plugin.OSNotification",
+      "file": "plugins/onesignal-cordova-plugin/dist/OSNotification.js",
+      "pluginId": "onesignal-cordova-plugin"
+    },
+    {
+      "id": "com-sarriaroman-photoviewer.PhotoViewer",
+      "file": "plugins/com-sarriaroman-photoviewer/www/PhotoViewer.js",
+      "pluginId": "com-sarriaroman-photoviewer",
+      "clobbers": [
+        "PhotoViewer"
+      ]
+    },
+    {
       "id": "cordova-sqlite-storage.SQLitePlugin",
       "file": "plugins/cordova-sqlite-storage/www/SQLitePlugin.js",
       "pluginId": "cordova-sqlite-storage",
       "clobbers": [
         "SQLitePlugin"
       ]
-    },
-    {
-      "id": "ionic-plugin-deeplinks.deeplink",
-      "file": "plugins/ionic-plugin-deeplinks/www/deeplink.js",
-      "pluginId": "ionic-plugin-deeplinks",
-      "clobbers": [
-        "IonicDeeplink"
-      ],
-      "runs": true
-    },
-    {
-      "id": "onesignal-cordova-plugin.OneSignal",
-      "file": "plugins/onesignal-cordova-plugin/www/OneSignal.js",
-      "pluginId": "onesignal-cordova-plugin",
-      "clobbers": [
-        "OneSignal"
-      ]
     }
   ];
   module.exports.metadata = {
-    "com-sarriaroman-photoviewer": "1.2.4",
     "cordova-plugin-add-swift-support": "2.0.2",
     "cordova-plugin-androidx-adapter": "1.1.3",
     "cordova-plugin-camera": "5.0.2",
@@ -391,10 +405,11 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-stripe": "1.5.3",
     "cordova-plugin-telerik-imagepicker": "2.3.5",
     "cordova-plugin-whitelist": "1.3.3",
-    "es6-promise-plugin": "4.2.2",
-    "cordova-plugin-x-socialsharing": "6.0.3",
-    "cordova-sqlite-storage": "5.1.0",
     "ionic-plugin-deeplinks": "1.0.22",
-    "onesignal-cordova-plugin": "2.11.3"
+    "es6-promise-plugin": "4.2.2",
+    "cordova-plugin-x-socialsharing": "6.0.4",
+    "onesignal-cordova-plugin": "3.2.0",
+    "com-sarriaroman-photoviewer": "1.2.4",
+    "cordova-sqlite-storage": "6.0.0"
   };
 });

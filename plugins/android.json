@@ -7,9 +7,6 @@
     "files": {}
   },
   "installed_plugins": {
-    "com-sarriaroman-photoviewer": {
-      "PACKAGE_NAME": "com.transus.app"
-    },
     "cordova-plugin-androidx-adapter": {
       "PACKAGE_NAME": "com.transus.app"
     },
@@ -70,12 +67,6 @@
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.transus.app"
     },
-    "cordova-plugin-x-socialsharing": {
-      "PACKAGE_NAME": "com.transus.app"
-    },
-    "cordova-sqlite-storage": {
-      "PACKAGE_NAME": "com.transus.app"
-    },
     "ionic-plugin-deeplinks": {
       "URL_SCHEME": "tranus",
       "DEEPLINK_SCHEME": "https",
@@ -95,7 +86,16 @@
       "DEEPLINK_5_HOST": " ",
       "PACKAGE_NAME": "com.transus.app"
     },
+    "cordova-plugin-x-socialsharing": {
+      "PACKAGE_NAME": "com.transus.app"
+    },
     "onesignal-cordova-plugin": {
+      "PACKAGE_NAME": "com.transus.app"
+    },
+    "com-sarriaroman-photoviewer": {
+      "PACKAGE_NAME": "com.transus.app"
+    },
+    "cordova-sqlite-storage": {
       "PACKAGE_NAME": "com.transus.app"
     }
   },

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/plugins/cordova-plugin-telerik-imagepicker/src/android/Library/Library.iml" filepath="$PROJECT_DIR$/plugins/cordova-plugin-telerik-imagepicker/src/android/Library/Library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/cordova-plugin-telerik-imagepicker/src/android/com/com.iml" filepath="$PROJECT_DIR$/plugins/cordova-plugin-telerik-imagepicker/src/android/com/com.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/com-sarriaroman-photoviewer/com-sarriaroman-photoviewer.iml" filepath="$PROJECT_DIR$/plugins/com-sarriaroman-photoviewer/com-sarriaroman-photoviewer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/cordova-plugin-camera/cordova-plugin-camera.iml" filepath="$PROJECT_DIR$/plugins/cordova-plugin-camera/cordova-plugin-camera.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/cordova-plugin-device/cordova-plugin-device.iml" filepath="$PROJECT_DIR$/plugins/cordova-plugin-device/cordova-plugin-device.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/cordova-plugin-facebook4/cordova-plugin-facebook4.iml" filepath="$PROJECT_DIR$/plugins/cordova-plugin-facebook4/cordova-plugin-facebook4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/cordova-plugin-file/src/cordova-plugin-file.iml" filepath="$PROJECT_DIR$/plugins/cordova-plugin-file/src/cordova-plugin-file.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/cordova-plugin-file-transfer/cordova-plugin-file-transfer.iml" filepath="$PROJECT_DIR$/plugins/cordova-plugin-file-transfer/cordova-plugin-file-transfer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/cordova-plugin-geolocation/cordova-plugin-geolocation.iml" filepath="$PROJECT_DIR$/plugins/cordova-plugin-geolocation/cordova-plugin-geolocation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/cordova-plugin-googleplus/cordova-plugin-googleplus.iml" filepath="$PROJECT_DIR$/plugins/cordova-plugin-googleplus/cordova-plugin-googleplus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/cordova-plugin-inappbrowser/cordova-plugin-inappbrowser.iml" filepath="$PROJECT_DIR$/plugins/cordova-plugin-inappbrowser/cordova-plugin-inappbrowser.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/cordova-plugin-ionic-keyboard/cordova-plugin-ionic-keyboard.iml" filepath="$PROJECT_DIR$/plugins/cordova-plugin-ionic-keyboard/cordova-plugin-ionic-keyboard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/cordova-plugin-ionic-webview/cordova-plugin-ionic-webview.iml" filepath="$PROJECT_DIR$/plugins/cordova-plugin-ionic-webview/cordova-plugin-ionic-webview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/cordova-plugin-nativegeocoder/cordova-plugin-nativegeocoder.iml" filepath="$PROJECT_DIR$/plugins/cordova-plugin-nativegeocoder/cordova-plugin-nativegeocoder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/cordova-plugin-splashscreen/cordova-plugin-splashscreen.iml" filepath="$PROJECT_DIR$/plugins/cordova-plugin-splashscreen/cordova-plugin-splashscreen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/cordova-plugin-statusbar/cordova-plugin-statusbar.iml" filepath="$PROJECT_DIR$/plugins/cordova-plugin-statusbar/cordova-plugin-statusbar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/cordova-plugin-stripe/cordova-plugin-stripe.iml" filepath="$PROJECT_DIR$/plugins/cordova-plugin-stripe/cordova-plugin-stripe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/cordova-plugin-whitelist/cordova-plugin-whitelist.iml" filepath="$PROJECT_DIR$/plugins/cordova-plugin-whitelist/cordova-plugin-whitelist.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/cordova-plugin-x-socialsharing/cordova-plugin-x-socialsharing.iml" filepath="$PROJECT_DIR$/plugins/cordova-plugin-x-socialsharing/cordova-plugin-x-socialsharing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/cordova-sqlite-storage/cordova-sqlite-storage.iml" filepath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/cordova-sqlite-storage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/ionic-plugin-deeplinks/ionic-plugin-deeplinks.iml" filepath="$PROJECT_DIR$/plugins/ionic-plugin-deeplinks/ionic-plugin-deeplinks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/onesignal-cordova-plugin/onesignal-cordova-plugin.iml" filepath="$PROJECT_DIR$/plugins/onesignal-cordova-plugin/onesignal-cordova-plugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/plugins/cordova-plugin-file/tests/tests.iml" filepath="$PROJECT_DIR$/plugins/cordova-plugin-file/tests/tests.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/transusali.iml" filepath="$PROJECT_DIR$/.idea/transusali.iml" />
+    </modules>
+  </component>
+</project>

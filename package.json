@@ -21,7 +21,6 @@
     "@angular/platform-browser-dynamic": "~10.0.0",
     "@angular/router": "~10.0.0",
     "@google-pay/button-angular": "^2.4.0",
-    "angular4-paystack": "^3.0.2",
     "@ionic-native/camera": "^5.33.0",
     "@ionic-native/core": "^5.0.0",
     "@ionic-native/deeplinks": "^5.33.1",
@@ -44,8 +43,9 @@
     "@ionic/storage": "^2.3.1",
     "@mobiscroll/angular-lite": "^4.10.9",
     "@mobiscroll/cli": "^1.6.0",
+    "angular4-paystack": "^3.0.2",
     "chart.js": "^2.9.4",
-    "cordova-android": "9.1.0",
+    "com-sarriaroman-photoviewer": "1.2.5",
     "cordova-ios": "6.1.1",
     "cordova-plugin-androidx": "^2.0.0",
     "cordova-plugin-androidx-adapter": "^1.1.3",
@@ -54,8 +54,9 @@
     "cordova-plugin-inappbrowser": "5.0.0",
     "cordova-plugin-stripe": "1.5.3",
     "cordova-plugin-telerik-imagepicker": "git+https://github.com/Telerik-Verified-Plugins/ImagePicker.git",
-    "cordova-plugin-x-socialsharing": "^6.0.3",
-    "es6-promise-plugin": "^4.2.2",
+    "cordova-plugin-x-socialsharing": "6.0.4",
+    "cordova-sqlite-storage": "6.0.0",
+    "es6-promise-plugin": "4.2.2",
     "ion2-calendar": "^3.0.0-rc.0",
     "ionic-plugin-deeplinks": "1.0.22",
     "mobiscroll-angular": "^4.0.0",
@@ -63,7 +64,7 @@
     "ng-otp-input": "^1.7.1",
     "ng2-charts": "^2.4.2",
     "ngx-image-compress": "^11.0.3",
-    "onesignal-cordova-plugin": "2.11.1",
+    "onesignal-cordova-plugin": "3.2.0",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
@@ -80,7 +81,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
-    "com-sarriaroman-photoviewer": "^1.2.5",
+    "cordova-android": "^10.1.2",
     "cordova-plugin-add-swift-support": "^2.0.2",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-file-transfer": "git+https://github.com/sitewaerts/cordova-plugin-file-transfer.git",
@@ -92,7 +93,6 @@
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-statusbar": "^2.4.2",
     "cordova-plugin-whitelist": "^1.3.3",
-    "cordova-sqlite-storage": "^5.1.0",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.0.0",
@@ -108,7 +108,6 @@
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
-      "cordova-sqlite-storage": {},
       "cordova-plugin-whitelist": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},
@@ -124,8 +123,6 @@
         "WEB_APPLICATION_CLIENT_ID": "527678882812-84rjo0d1mu2eu6er4rifm5vbvpaobc67.apps.googleusercontent.com",
         "PLAY_SERVICES_VERSION": "15.0.1"
       },
-      "com-sarriaroman-photoviewer": {},
-      "onesignal-cordova-plugin": {},
       "cordova-plugin-androidx": {},
       "cordova-plugin-androidx-adapter": {},
       "cordova-plugin-telerik-imagepicker": {
@@ -135,7 +132,6 @@
       "cordova-plugin-camera": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       },
-      "cordova-plugin-x-socialsharing": {},
       "ionic-plugin-deeplinks": {
         "URL_SCHEME": "tranus",
         "DEEPLINK_SCHEME": "https",
@@ -163,7 +159,11 @@
         "APP_NAME": "TransUs",
         "FACEBOOK_HYBRID_APP_EVENTS": "false",
         "FACEBOOK_ANDROID_SDK_VERSION": "5.13.0"
-      }
+      },
+      "cordova-plugin-x-socialsharing": {},
+      "onesignal-cordova-plugin": {},
+      "com-sarriaroman-photoviewer": {},
+      "cordova-sqlite-storage": {}
     },
     "platforms": [
       "ios",
