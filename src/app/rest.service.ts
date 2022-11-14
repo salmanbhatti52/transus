@@ -9,8 +9,9 @@ export class RestService {
   // https://cors-anywhere.herokuapp.com/
   domain = "https://app.transusdrives.com/webservices/";
   domainOfCar = "https://app.transusdrives.com/uploads/vehicles/";
-  ghanacardBaseURL = "https://app.transusdrives.com/uploads/users/ghanacard/"
-  baseURLforProfileimg = "https://app.transusdrives.com/uploads/users/profile_pic/"
+  ghanacardBaseURL = "https://app.transusdrives.com/uploads/users/ghanacard/";
+  baseURLforProfileimg =
+    "https://app.transusdrives.com/uploads/users/profile_pic/";
 
   //https://app.transusdrives.com/
 
@@ -179,6 +180,10 @@ export class RestService {
 
   getyourDraftCarAPI(data) {
     return this.http.post(this.domain + "get_draft_car", data);
+  }
+
+  get_social_media_login(data) {
+    return this.http.post(this.domain + "get_social_media_login", data);
   }
 
   listYourDraftCarAPI(data) {

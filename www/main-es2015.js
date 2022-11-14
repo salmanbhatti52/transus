@@ -1154,44 +1154,44 @@ let AppComponent = class AppComponent {
         this.login = false;
         this.withLogin = [
             {
-                title: 'Browse',
-                url: '/',
-                icon: 'assets/img/search.svg',
+                title: "Browse",
+                url: "/",
+                icon: "assets/img/search.svg",
             },
             {
-                title: 'Messages',
-                url: '/chat-list',
-                icon: 'assets/img/messages.svg',
+                title: "Messages",
+                url: "/chat-list",
+                icon: "assets/img/messages.svg",
             },
             {
-                title: 'Customer Support',
-                url: '/contact-support',
-                icon: 'assets/img/support.svg',
+                title: "Customer Support",
+                url: "/contact-support",
+                icon: "assets/img/support.svg",
             },
             {
-                title: 'Notification',
-                url: '/view-all-notifications',
-                icon: 'assets/img/bell.svg',
+                title: "Notification",
+                url: "/view-all-notifications",
+                icon: "assets/img/bell.svg",
             },
             {
-                title: 'Favorities',
-                url: '/favorite',
-                icon: 'assets/img/menu_heart.svg',
+                title: "Favorities",
+                url: "/favorite",
+                icon: "assets/img/menu_heart.svg",
             },
             {
-                title: 'Booking',
-                url: '/bookings',
-                icon: 'assets/img/booking.svg',
+                title: "Booking",
+                url: "/bookings",
+                icon: "assets/img/booking.svg",
             },
             {
-                title: 'Listed cars',
-                url: '/listed-car',
-                icon: 'assets/img/menu_check.svg',
+                title: "Listed cars",
+                url: "/listed-car",
+                icon: "assets/img/menu_check.svg",
             },
             {
-                title: 'Top Destinations',
-                url: '/topdest',
-                icon: 'assets/img/topdest.svg',
+                title: "Top Destinations",
+                url: "/topdest",
+                icon: "assets/img/topdest.svg",
             },
             // {
             //   title: 'Listed motors',
@@ -1199,48 +1199,49 @@ let AppComponent = class AppComponent {
             //   icon: 'assets/img/menu_check.svg'
             // },
             {
-                title: 'Ratings & Reviews',
-                url: '/rating',
-                icon: 'assets/img/Star.svg',
+                title: "Ratings & Reviews",
+                url: "/rating",
+                icon: "assets/img/Star.svg",
             },
             {
-                title: 'Earnings',
-                url: '/earning',
-                icon: 'assets/img/Earning.svg',
+                title: "Earnings",
+                url: "/earning",
+                icon: "assets/img/Earning.svg",
             },
             {
-                title: 'Setting',
-                url: '/setting',
-                icon: 'assets/img/setting.svg',
+                title: "Setting",
+                url: "/setting",
+                icon: "assets/img/setting.svg",
             },
             {
-                title: 'Logout',
-                url: '/logout',
-                icon: 'assets/img/login.svg',
+                title: "Logout",
+                url: "/logout",
+                icon: "assets/img/login.svg",
             },
         ];
         this.withoutLogin = [
             {
-                title: 'Browse',
-                url: '/',
-                icon: 'assets/img/search.svg',
+                title: "Browse",
+                url: "/",
+                icon: "assets/img/search.svg",
             },
             {
-                title: 'Contact Support',
-                url: '/contact-support',
-                icon: 'assets/img/support.svg',
+                title: "Contact Support",
+                url: "/contact-support",
+                icon: "assets/img/support.svg",
             },
             {
-                title: 'Login or Signup',
-                url: '/login',
-                icon: 'assets/img/login.svg',
+                title: "Login or Signup",
+                url: "/login",
+                icon: "assets/img/login.svg",
             },
         ];
-        this.baseUrl = 'https://app.transusdrives.com/';
+        this.baseUrl = "https://app.transusdrives.com/";
         this.Notification = [];
+        this.getsocialmediainfo();
         this.initializeApp();
         this.timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        console.log(this.timeZone, 'timeZonetimeZone');
+        console.log(this.timeZone, "timeZonetimeZone");
     }
     action(bookingId, action, userID, OwnerID) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
@@ -1258,12 +1259,12 @@ let AppComponent = class AppComponent {
             popover.onWillDismiss().then((data) => {
                 console.log(data);
                 console.log(data.data.val);
-                if (data.data.val == 'ok') {
-                    localStorage.setItem('users_id', null);
-                    this.storage.set('user_details', null);
-                    this.storage.set('profile_img_url', null);
-                    this.presentToast('Logout successfully!');
-                    this.navCtrl.navigateRoot('/');
+                if (data.data.val == "ok") {
+                    localStorage.setItem("users_id", null);
+                    this.storage.set("user_details", null);
+                    this.storage.set("profile_img_url", null);
+                    this.presentToast("Logout successfully!");
+                    this.navCtrl.navigateRoot("/");
                     this.login = false;
                 }
             });
@@ -1275,7 +1276,7 @@ let AppComponent = class AppComponent {
             this.statusBar.styleDefault();
             this.splashScreen.hide();
             this.statusBar.overlaysWebView(false);
-            this.statusBar.backgroundColorByHexString('000000');
+            this.statusBar.backgroundColorByHexString("000000");
             this.statusBar.styleLightContent();
             this.getProfileData();
             /*this.events.subscribe('sidebar', sidebar => {
@@ -1283,34 +1284,34 @@ let AppComponent = class AppComponent {
               this.login =true;
               }) */
             this.subjectEvents.getObservable().subscribe((data) => {
-                console.log('Data received', data);
+                console.log("Data received", data);
                 this.getProfileData();
                 this.login = true;
-                console.log('my gmail loginnnnnnnnn----', this.login);
+                console.log("my gmail loginnnnnnnnn----", this.login);
             });
             // this.subjectEvents.getImgObservable().subscribe((data) => {
             //   console.log('img Data received', data);
             //   this.profile_image = data;
             // });
             this.subjectEvents.getCityObservable().subscribe((data) => {
-                console.log('City Data received', data);
+                console.log("City Data received", data);
                 this.country = data;
             });
-            this.storage.set('base_urls', this.baseUrl);
+            this.storage.set("base_urls", this.baseUrl);
             // "URL_SCHEME": "tranus",
             // "DEEPLINK_SCHEME": "https",
             // "DEEPLINK_HOST": "trans.com",
             this.deeplinks
                 .route({
-                '/about-us': 'AboutPage',
-                '/universal-links-test': 'AboutPage',
-                '/products/:productId': 'ProductPage',
+                "/about-us": "AboutPage",
+                "/universal-links-test": "AboutPage",
+                "/products/:productId": "ProductPage",
             })
                 .subscribe((match) => {
                 // match.$route - the route we matched, which is the matched entry from the arguments to route()
                 // match.$args - the args passed in the link
                 // match.$link - the full link data
-                console.log('Successfully matched route', match);
+                console.log("Successfully matched route", match);
             }, (nomatch) => {
                 // nomatch.$link - the full link data
                 console.error("Got a deeplink that didn't match", nomatch);
@@ -1318,10 +1319,10 @@ let AppComponent = class AppComponent {
         });
         var data = JSON.stringify({});
         this.restService.get_carmd_infoAPI(data).subscribe((res) => {
-            var response = JSON.parse(res['_body']);
-            localStorage.setItem('carmd', response[0].description);
-            localStorage.setItem('carmd_authorization', response[1].description);
-            localStorage.setItem('carmd_partner_token', response[2].description);
+            var response = JSON.parse(res["_body"]);
+            localStorage.setItem("carmd", response[0].description);
+            localStorage.setItem("carmd_authorization", response[1].description);
+            localStorage.setItem("carmd_partner_token", response[2].description);
         });
     }
     ngOnInit() {
@@ -1336,19 +1337,22 @@ let AppComponent = class AppComponent {
         source.src = imgSrc;
     }
     getProfileData() {
-        this.storage.get('user_details').then((user_details) => {
-            console.log('my user detail ====', user_details);
-            this.storage.get('base_urls').then((base_url) => {
-                console.log('base_url ====', base_url);
+        this.storage.get("user_details").then((user_details) => {
+            console.log("my user detail ====", user_details);
+            this.storage.get("base_urls").then((base_url) => {
+                console.log("base_url ====", base_url);
             });
             if (user_details) {
                 this.userData = user_details;
                 console.log(user_details);
                 if (user_details.ghanacard) {
                     if (user_details) {
-                        this.storage.get('profile_img_url').then((profile_img_url) => {
-                            this.storage.get('base_urls').then((base_url) => {
-                                this.profile_image = this.restService.baseURLforProfileimg + "" + user_details.profile_image;
+                        this.storage.get("profile_img_url").then((profile_img_url) => {
+                            this.storage.get("base_urls").then((base_url) => {
+                                this.profile_image =
+                                    this.restService.baseURLforProfileimg +
+                                        "" +
+                                        user_details.profile_image;
                                 // this.profile_image = base_url + "" + profile_img_url;
                                 // this.usersService.profileVar = this.profile_image;
                                 // this.profile_image = this.usersService.profileVar;
@@ -1357,41 +1361,41 @@ let AppComponent = class AppComponent {
                             });
                         });
                         var stringfy = JSON.stringify({
-                            requestType: 'get_all',
+                            requestType: "get_all",
                             usersID: this.userData.users_id,
-                            limit: '',
-                            offset: '',
-                            readFilter: 'Unread',
+                            limit: "",
+                            offset: "",
+                            readFilter: "Unread",
                             timeZone: this.timeZone,
                         });
                         console.log(stringfy);
                         this.restService.notifications(stringfy).subscribe((response) => {
                             var _a;
                             //   console.log(JSON.parse(response['_body']),"from app component page");
-                            this.Notification = JSON.parse(response['_body']);
+                            this.Notification = JSON.parse(response["_body"]);
                             console.log(this.Notification);
                             this.usersService.noty_length = (_a = this.Notification.notifications) === null || _a === void 0 ? void 0 : _a.length;
-                            console.log(this.usersService.noty_length, 'this.usersService.noty_lengththis.usersService.noty_length_first');
+                            console.log(this.usersService.noty_length, "this.usersService.noty_lengththis.usersService.noty_length_first");
                         });
                     }
                     else {
-                        this.profile_image = 'assets/img/usericon.svg';
+                        this.profile_image = "assets/img/usericon.svg";
                     }
                 }
                 else {
-                    this.navCtrl.navigateRoot(['/profileaftersigup']);
+                    this.navCtrl.navigateRoot(["/profileaftersigup"]);
                     // this.navCtrl.navigateRoot(['/']);
                 }
                 this.user_name = user_details.user_name;
                 this.usersService.nameVar = this.user_name;
                 this.user_name = this.usersService.nameVar;
-                this.storage.get('country_name').then((country_name) => {
-                    console.log('country_name: ' + country_name);
+                this.storage.get("country_name").then((country_name) => {
+                    console.log("country_name: " + country_name);
                     if (country_name) {
                         this.country = country_name;
                     }
                     else {
-                        this.country = '-';
+                        this.country = "-";
                     }
                     this.usersService.cityVar = this.country;
                     this.country = this.usersService.cityVar;
@@ -1400,27 +1404,27 @@ let AppComponent = class AppComponent {
             }
             else {
                 this.login = false;
-                console.log('login-----', this.login);
+                console.log("login-----", this.login);
             }
         });
     }
     goToPage(param) {
-        console.log(param, 'paramparamparamparam');
-        if (param == '/logout') {
-            this.action(2, 'logout', 1, 1);
+        console.log(param, "paramparamparamparam");
+        if (param == "/logout") {
+            this.action(2, "logout", 1, 1);
         }
-        else if (param == '/view-all-notifications') {
+        else if (param == "/view-all-notifications") {
             var readall = JSON.stringify({
-                requestType: 'read_all',
+                requestType: "read_all",
                 usersID: this.userData.users_id,
             });
             this.restService.notifications(readall).subscribe((res) => {
                 this.navCtrl.navigateRoot([param]);
-                console.log(res, 'read all');
+                console.log(res, "read all");
                 this.usersService.noty_length = 0;
                 /* this.noty_length = 0; */
-                console.log(this.usersService.noty_length, 'this.usersService.noty_lengththis.usersService.noty_length');
-                this.navCtrl.navigateRoot(['/view-all-notifications']);
+                console.log(this.usersService.noty_length, "this.usersService.noty_lengththis.usersService.noty_length");
+                this.navCtrl.navigateRoot(["/view-all-notifications"]);
             }, (err) => {
                 console.log(err);
             });
@@ -1430,7 +1434,7 @@ let AppComponent = class AppComponent {
         }
     }
     goToProfile() {
-        this.navCtrl.navigateRoot(['/profile']);
+        this.navCtrl.navigateRoot(["/profile"]);
     }
     toggleMenu() {
         this.menuCtrl.toggle();
@@ -1440,9 +1444,17 @@ let AppComponent = class AppComponent {
             const toast = yield this.toastController.create({
                 message: msg,
                 duration: 2000,
-                position: 'top',
+                position: "top",
             });
             toast.present();
+        });
+    }
+    getsocialmediainfo() {
+        var data = JSON.stringify({});
+        this.restService.get_social_media_login(data).subscribe((res) => {
+            var response = JSON.parse(res["_body"]);
+            console.log("get_social_media_login----", response[0].description);
+            localStorage.setItem("get_social_media_login", response[0].description);
         });
     }
 };
@@ -1463,7 +1475,7 @@ AppComponent.ctorParameters = () => [
 ];
 AppComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-root',
+        selector: "app-root",
         template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./app.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html")).default,
         styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./app.component.scss */ "./src/app/app.component.scss")).default]
     })
@@ -2067,6 +2079,9 @@ let RestService = class RestService {
     }
     getyourDraftCarAPI(data) {
         return this.http.post(this.domain + "get_draft_car", data);
+    }
+    get_social_media_login(data) {
+        return this.http.post(this.domain + "get_social_media_login", data);
     }
     listYourDraftCarAPI(data) {
         return this.http.post(this.domain + "get_draft_car", data);

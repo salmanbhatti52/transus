@@ -37,6 +37,7 @@ export class LoginPage implements OnInit {
   baseUrl: string = "https://app.transusdrives.com/";
   loading: HTMLIonLoadingElement;
   ShowLoading: boolean = false;
+  get_social_media_login: string;
   constructor(
     public navCtrl: NavController,
     public loadingController: LoadingController,
@@ -52,6 +53,12 @@ export class LoginPage implements OnInit {
   ) {}
 
   ngOnInit() {}
+
+  ionViewWillEnter() {
+    this.get_social_media_login = localStorage.getItem(
+      "get_social_media_login"
+    );
+  }
 
   submitForm() {
     // this.navCtrl.navigateForward('paymentest');
@@ -87,14 +94,23 @@ export class LoginPage implements OnInit {
               this.response.user_details.users_id
             );
 
-
-            localStorage.setItem('imageofuserprofile',this.restService.baseURLforProfileimg + "" +   this.response.user_details.profile_image)
-            this.restService.imageofuserprofile = this.restService.baseURLforProfileimg + "" +   this.response.user_details.profile_image;
-
+            localStorage.setItem(
+              "imageofuserprofile",
+              this.restService.baseURLforProfileimg +
+                "" +
+                this.response.user_details.profile_image
+            );
+            this.restService.imageofuserprofile =
+              this.restService.baseURLforProfileimg +
+              "" +
+              this.response.user_details.profile_image;
 
             console.log("login detailssss----", this.response);
             this.storage.set("user_details", this.response.user_details);
-            this.storage.set("profile_img_url", this.response.user_details.profile_image);
+            this.storage.set(
+              "profile_img_url",
+              this.response.user_details.profile_image
+            );
             this.storage.set("country_name", this.response.country_name);
             this.storage.set("base_urls", this.baseUrl);
             this.storage.set(

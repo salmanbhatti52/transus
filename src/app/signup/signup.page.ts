@@ -62,6 +62,7 @@ export class SignupPage implements OnInit {
   otpemail: any = "";
   responseOfOtp: any = "";
   platformIOS: boolean = false;
+  get_social_media_login: string;
 
   constructor(
     public navCtrl: NavController,
@@ -89,6 +90,12 @@ export class SignupPage implements OnInit {
     } else {
       this.platformIOS = false;
     }
+  }
+
+  ionViewWillEnter() {
+    this.get_social_media_login = localStorage.getItem(
+      "get_social_media_login"
+    );
   }
 
   submitForm() {

@@ -1698,77 +1698,78 @@
           this.selectedIndex = 0;
           this.login = false;
           this.withLogin = [{
-            title: 'Browse',
-            url: '/',
-            icon: 'assets/img/search.svg'
+            title: "Browse",
+            url: "/",
+            icon: "assets/img/search.svg"
           }, {
-            title: 'Messages',
-            url: '/chat-list',
-            icon: 'assets/img/messages.svg'
+            title: "Messages",
+            url: "/chat-list",
+            icon: "assets/img/messages.svg"
           }, {
-            title: 'Customer Support',
-            url: '/contact-support',
-            icon: 'assets/img/support.svg'
+            title: "Customer Support",
+            url: "/contact-support",
+            icon: "assets/img/support.svg"
           }, {
-            title: 'Notification',
-            url: '/view-all-notifications',
-            icon: 'assets/img/bell.svg'
+            title: "Notification",
+            url: "/view-all-notifications",
+            icon: "assets/img/bell.svg"
           }, {
-            title: 'Favorities',
-            url: '/favorite',
-            icon: 'assets/img/menu_heart.svg'
+            title: "Favorities",
+            url: "/favorite",
+            icon: "assets/img/menu_heart.svg"
           }, {
-            title: 'Booking',
-            url: '/bookings',
-            icon: 'assets/img/booking.svg'
+            title: "Booking",
+            url: "/bookings",
+            icon: "assets/img/booking.svg"
           }, {
-            title: 'Listed cars',
-            url: '/listed-car',
-            icon: 'assets/img/menu_check.svg'
+            title: "Listed cars",
+            url: "/listed-car",
+            icon: "assets/img/menu_check.svg"
           }, {
-            title: 'Top Destinations',
-            url: '/topdest',
-            icon: 'assets/img/topdest.svg'
+            title: "Top Destinations",
+            url: "/topdest",
+            icon: "assets/img/topdest.svg"
           }, // {
           //   title: 'Listed motors',
           //   url: '/listed-motor',
           //   icon: 'assets/img/menu_check.svg'
           // },
           {
-            title: 'Ratings & Reviews',
-            url: '/rating',
-            icon: 'assets/img/Star.svg'
+            title: "Ratings & Reviews",
+            url: "/rating",
+            icon: "assets/img/Star.svg"
           }, {
-            title: 'Earnings',
-            url: '/earning',
-            icon: 'assets/img/Earning.svg'
+            title: "Earnings",
+            url: "/earning",
+            icon: "assets/img/Earning.svg"
           }, {
-            title: 'Setting',
-            url: '/setting',
-            icon: 'assets/img/setting.svg'
+            title: "Setting",
+            url: "/setting",
+            icon: "assets/img/setting.svg"
           }, {
-            title: 'Logout',
-            url: '/logout',
-            icon: 'assets/img/login.svg'
+            title: "Logout",
+            url: "/logout",
+            icon: "assets/img/login.svg"
           }];
           this.withoutLogin = [{
-            title: 'Browse',
-            url: '/',
-            icon: 'assets/img/search.svg'
+            title: "Browse",
+            url: "/",
+            icon: "assets/img/search.svg"
           }, {
-            title: 'Contact Support',
-            url: '/contact-support',
-            icon: 'assets/img/support.svg'
+            title: "Contact Support",
+            url: "/contact-support",
+            icon: "assets/img/support.svg"
           }, {
-            title: 'Login or Signup',
-            url: '/login',
-            icon: 'assets/img/login.svg'
+            title: "Login or Signup",
+            url: "/login",
+            icon: "assets/img/login.svg"
           }];
-          this.baseUrl = 'https://app.transusdrives.com/';
+          this.baseUrl = "https://app.transusdrives.com/";
           this.Notification = [];
+          this.getsocialmediainfo();
           this.initializeApp();
           this.timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-          console.log(this.timeZone, 'timeZonetimeZone');
+          console.log(this.timeZone, "timeZonetimeZone");
         }
 
         _createClass(AppComponent, [{
@@ -1801,16 +1802,16 @@
                         console.log(data);
                         console.log(data.data.val);
 
-                        if (data.data.val == 'ok') {
-                          localStorage.setItem('users_id', null);
+                        if (data.data.val == "ok") {
+                          localStorage.setItem("users_id", null);
 
-                          _this2.storage.set('user_details', null);
+                          _this2.storage.set("user_details", null);
 
-                          _this2.storage.set('profile_img_url', null);
+                          _this2.storage.set("profile_img_url", null);
 
-                          _this2.presentToast('Logout successfully!');
+                          _this2.presentToast("Logout successfully!");
 
-                          _this2.navCtrl.navigateRoot('/');
+                          _this2.navCtrl.navigateRoot("/");
 
                           _this2.login = false;
                         }
@@ -1841,7 +1842,7 @@
 
               _this3.statusBar.overlaysWebView(false);
 
-              _this3.statusBar.backgroundColorByHexString('000000');
+              _this3.statusBar.backgroundColorByHexString("000000");
 
               _this3.statusBar.styleLightContent();
 
@@ -1853,12 +1854,12 @@
 
 
               _this3.subjectEvents.getObservable().subscribe(function (data) {
-                console.log('Data received', data);
+                console.log("Data received", data);
 
                 _this3.getProfileData();
 
                 _this3.login = true;
-                console.log('my gmail loginnnnnnnnn----', _this3.login);
+                console.log("my gmail loginnnnnnnnn----", _this3.login);
               }); // this.subjectEvents.getImgObservable().subscribe((data) => {
               //   console.log('img Data received', data);
               //   this.profile_image = data;
@@ -1866,24 +1867,24 @@
 
 
               _this3.subjectEvents.getCityObservable().subscribe(function (data) {
-                console.log('City Data received', data);
+                console.log("City Data received", data);
                 _this3.country = data;
               });
 
-              _this3.storage.set('base_urls', _this3.baseUrl); // "URL_SCHEME": "tranus",
+              _this3.storage.set("base_urls", _this3.baseUrl); // "URL_SCHEME": "tranus",
               // "DEEPLINK_SCHEME": "https",
               // "DEEPLINK_HOST": "trans.com",
 
 
               _this3.deeplinks.route({
-                '/about-us': 'AboutPage',
-                '/universal-links-test': 'AboutPage',
-                '/products/:productId': 'ProductPage'
+                "/about-us": "AboutPage",
+                "/universal-links-test": "AboutPage",
+                "/products/:productId": "ProductPage"
               }).subscribe(function (match) {
                 // match.$route - the route we matched, which is the matched entry from the arguments to route()
                 // match.$args - the args passed in the link
                 // match.$link - the full link data
-                console.log('Successfully matched route', match);
+                console.log("Successfully matched route", match);
               }, function (nomatch) {
                 // nomatch.$link - the full link data
                 console.error("Got a deeplink that didn't match", nomatch);
@@ -1891,10 +1892,10 @@
             });
             var data = JSON.stringify({});
             this.restService.get_carmd_infoAPI(data).subscribe(function (res) {
-              var response = JSON.parse(res['_body']);
-              localStorage.setItem('carmd', response[0].description);
-              localStorage.setItem('carmd_authorization', response[1].description);
-              localStorage.setItem('carmd_partner_token', response[2].description);
+              var response = JSON.parse(res["_body"]);
+              localStorage.setItem("carmd", response[0].description);
+              localStorage.setItem("carmd_authorization", response[1].description);
+              localStorage.setItem("carmd_partner_token", response[2].description);
             });
           }
         }, {
@@ -1917,11 +1918,11 @@
           value: function getProfileData() {
             var _this4 = this;
 
-            this.storage.get('user_details').then(function (user_details) {
-              console.log('my user detail ====', user_details);
+            this.storage.get("user_details").then(function (user_details) {
+              console.log("my user detail ====", user_details);
 
-              _this4.storage.get('base_urls').then(function (base_url) {
-                console.log('base_url ====', base_url);
+              _this4.storage.get("base_urls").then(function (base_url) {
+                console.log("base_url ====", base_url);
               });
 
               if (user_details) {
@@ -1930,8 +1931,8 @@
 
                 if (user_details.ghanacard) {
                   if (user_details) {
-                    _this4.storage.get('profile_img_url').then(function (profile_img_url) {
-                      _this4.storage.get('base_urls').then(function (base_url) {
+                    _this4.storage.get("profile_img_url").then(function (profile_img_url) {
+                      _this4.storage.get("base_urls").then(function (base_url) {
                         _this4.profile_image = _this4.restService.baseURLforProfileimg + "" + user_details.profile_image; // this.profile_image = base_url + "" + profile_img_url;
                         // this.usersService.profileVar = this.profile_image;
                         // this.profile_image = this.usersService.profileVar;
@@ -1941,11 +1942,11 @@
                     });
 
                     var stringfy = JSON.stringify({
-                      requestType: 'get_all',
+                      requestType: "get_all",
                       usersID: _this4.userData.users_id,
-                      limit: '',
-                      offset: '',
-                      readFilter: 'Unread',
+                      limit: "",
+                      offset: "",
+                      readFilter: "Unread",
                       timeZone: _this4.timeZone
                     });
                     console.log(stringfy);
@@ -1954,16 +1955,16 @@
                       var _a; //   console.log(JSON.parse(response['_body']),"from app component page");
 
 
-                      _this4.Notification = JSON.parse(response['_body']);
+                      _this4.Notification = JSON.parse(response["_body"]);
                       console.log(_this4.Notification);
                       _this4.usersService.noty_length = (_a = _this4.Notification.notifications) === null || _a === void 0 ? void 0 : _a.length;
-                      console.log(_this4.usersService.noty_length, 'this.usersService.noty_lengththis.usersService.noty_length_first');
+                      console.log(_this4.usersService.noty_length, "this.usersService.noty_lengththis.usersService.noty_length_first");
                     });
                   } else {
-                    _this4.profile_image = 'assets/img/usericon.svg';
+                    _this4.profile_image = "assets/img/usericon.svg";
                   }
                 } else {
-                  _this4.navCtrl.navigateRoot(['/profileaftersigup']); // this.navCtrl.navigateRoot(['/']);
+                  _this4.navCtrl.navigateRoot(["/profileaftersigup"]); // this.navCtrl.navigateRoot(['/']);
 
                 }
 
@@ -1971,13 +1972,13 @@
                 _this4.usersService.nameVar = _this4.user_name;
                 _this4.user_name = _this4.usersService.nameVar;
 
-                _this4.storage.get('country_name').then(function (country_name) {
-                  console.log('country_name: ' + country_name);
+                _this4.storage.get("country_name").then(function (country_name) {
+                  console.log("country_name: " + country_name);
 
                   if (country_name) {
                     _this4.country = country_name;
                   } else {
-                    _this4.country = '-';
+                    _this4.country = "-";
                   }
 
                   _this4.usersService.cityVar = _this4.country;
@@ -1987,7 +1988,7 @@
                 _this4.login = true;
               } else {
                 _this4.login = false;
-                console.log('login-----', _this4.login);
+                console.log("login-----", _this4.login);
               }
             });
           }
@@ -1996,25 +1997,25 @@
           value: function goToPage(param) {
             var _this5 = this;
 
-            console.log(param, 'paramparamparamparam');
+            console.log(param, "paramparamparamparam");
 
-            if (param == '/logout') {
-              this.action(2, 'logout', 1, 1);
-            } else if (param == '/view-all-notifications') {
+            if (param == "/logout") {
+              this.action(2, "logout", 1, 1);
+            } else if (param == "/view-all-notifications") {
               var readall = JSON.stringify({
-                requestType: 'read_all',
+                requestType: "read_all",
                 usersID: this.userData.users_id
               });
               this.restService.notifications(readall).subscribe(function (res) {
                 _this5.navCtrl.navigateRoot([param]);
 
-                console.log(res, 'read all');
+                console.log(res, "read all");
                 _this5.usersService.noty_length = 0;
                 /* this.noty_length = 0; */
 
-                console.log(_this5.usersService.noty_length, 'this.usersService.noty_lengththis.usersService.noty_length');
+                console.log(_this5.usersService.noty_length, "this.usersService.noty_lengththis.usersService.noty_length");
 
-                _this5.navCtrl.navigateRoot(['/view-all-notifications']);
+                _this5.navCtrl.navigateRoot(["/view-all-notifications"]);
               }, function (err) {
                 console.log(err);
               });
@@ -2025,7 +2026,7 @@
         }, {
           key: "goToProfile",
           value: function goToProfile() {
-            this.navCtrl.navigateRoot(['/profile']);
+            this.navCtrl.navigateRoot(["/profile"]);
           }
         }, {
           key: "toggleMenu",
@@ -2045,7 +2046,7 @@
                       return this.toastController.create({
                         message: msg,
                         duration: 2000,
-                        position: 'top'
+                        position: "top"
                       });
 
                     case 2:
@@ -2059,6 +2060,16 @@
                 }
               }, _callee4, this);
             }));
+          }
+        }, {
+          key: "getsocialmediainfo",
+          value: function getsocialmediainfo() {
+            var data = JSON.stringify({});
+            this.restService.get_social_media_login(data).subscribe(function (res) {
+              var response = JSON.parse(res["_body"]);
+              console.log("get_social_media_login----", response[0].description);
+              localStorage.setItem("get_social_media_login", response[0].description);
+            });
           }
         }]);
 
@@ -2096,7 +2107,7 @@
       };
 
       AppComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-root',
+        selector: "app-root",
         template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
         /*! raw-loader!./app.component.html */
         "./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html"))["default"],
@@ -3141,6 +3152,11 @@
           key: "getyourDraftCarAPI",
           value: function getyourDraftCarAPI(data) {
             return this.http.post(this.domain + "get_draft_car", data);
+          }
+        }, {
+          key: "get_social_media_login",
+          value: function get_social_media_login(data) {
+            return this.http.post(this.domain + "get_social_media_login", data);
           }
         }, {
           key: "listYourDraftCarAPI",
