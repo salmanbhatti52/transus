@@ -19,7 +19,7 @@ cordova plugin add cordova-plugin-nativegeocoder
 ## Configuration
 You can also configure the following variable to customize the iOS location plist entry
 
-- `LOCATION_WHEN_IN_USE_DESCRIPTION` for `NSLocationWhenInUseUsageDescription` (defaults to "Use geocoder service")
+- `LOCATION_WHEN_IN_USE_DESCRIPTION` for `NSLocationWhenInUseUsageDescription` (defaults to "This app requires location to get nearby cars and vehicles.")
 
 ## Supported Platforms
 - iOS

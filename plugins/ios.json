@@ -53,7 +53,7 @@
       "PACKAGE_NAME": "com.transus.app"
     },
     "cordova-plugin-nativegeocoder": {
-      "LOCATION_WHEN_IN_USE_DESCRIPTION": "Use geocoder service",
+      "LOCATION_WHEN_IN_USE_DESCRIPTION": "This app requires location to get nearby cars and vehicles.",
       "PACKAGE_NAME": "com.transus.app"
     },
     "cordova-plugin-splashscreen": {
@@ -73,8 +73,8 @@
       "PACKAGE_NAME": "com.transus.app"
     },
     "cordova-plugin-x-socialsharing": {
-      "PHOTO_LIBRARY_ADD_USAGE_DESCRIPTION": "This app requires photo library access to function properly.",
-      "PHOTO_LIBRARY_USAGE_DESCRIPTION": "This app requires photo library access to function properly.",
+      "PHOTO_LIBRARY_ADD_USAGE_DESCRIPTION": "This app requires photo library access to Upload Car Images.",
+      "PHOTO_LIBRARY_USAGE_DESCRIPTION": "This app requires photo library access to Upload Car Images.",
       "PACKAGE_NAME": "com.transus.app"
     },
     "cordova-sqlite-storage": {
