@@ -282,6 +282,10 @@ const routes: Routes = [
     path: 'profileaftersigup',
     loadChildren: () => import('./profileaftersigup/profileaftersigup.module').then( m => m.ProfileaftersigupPageModule)
   },
+  {
+    path: 'deleteaccount',
+    loadChildren: () => import('./deleteaccount/deleteaccount.module').then( m => m.DeleteaccountPageModule)
+  },
 
 
 

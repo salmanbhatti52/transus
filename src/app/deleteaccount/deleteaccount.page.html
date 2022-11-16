@@ -1,0 +1,50 @@
+<ion-header [class.ios-headers]="plateformCheck == 'ios'">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <img src="assets/img/Menu.svg" (click)="toggleMenu()" />
+    </ion-buttons>
+    <ion-title [class.globe_title]="plateformCheck == 'ios'"
+      >Delete Account</ion-title
+    >
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="wrapper">
+    <div class="thead">Why do you want to delete your Insurance account?</div>
+    <div class="flex-c" *ngFor="let checkboxes of Checkboxes">
+      <ion-checkbox
+        mode="md"
+        class="check"
+        [(ngModel)]="checkboxes.isItemChecked"
+        (ionChange)="verifyEvent(checkboxes)"
+      >
+      </ion-checkbox>
+      <span class="lbl">{{checkboxes.question}}</span>
+    </div>
+
+    <div style="color: #fff; margin-top: 10%; font-size: 14px">
+      Commnets(optional)
+    </div>
+
+    <ion-textarea
+      rows="10"
+      cols="5"
+      class="desc-area"
+      placeholder="Please provide additional information here..."
+      [(ngModel)]="desc"
+    ></ion-textarea>
+
+    <ion-row>
+      <ion-col size="2"></ion-col>
+      <ion-col size="8">
+        <ion-button
+          color="primary"
+          expand="block"
+          shape="round"
+          (click)="delete()"
+          >Delete</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

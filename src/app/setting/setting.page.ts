@@ -1,79 +1,79 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { MenuController, Platform } from '@ionic/angular';
-import { Storage } from '@ionic/storage';
-import { RestService } from '../rest.service';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { MenuController, Platform } from "@ionic/angular";
+import { Storage } from "@ionic/storage";
+import { RestService } from "../rest.service";
 @Component({
-  selector: 'app-setting',
-  templateUrl: './setting.page.html',
-  styleUrls: ['./setting.page.scss'],
+  selector: "app-setting",
+  templateUrl: "./setting.page.html",
+  styleUrls: ["./setting.page.scss"],
 })
 export class SettingPage implements OnInit {
   userID: any;
   notify: string;
   response: any;
-  Notifications: boolean=false;
-  plateformCheck:any;
+  Notifications: boolean = false;
+  plateformCheck: any;
   constructor(
-    public restService:RestService,
+    public restService: RestService,
     private storage: Storage,
-    public router:Router,
+    public router: Router,
     public menuCtrl: MenuController,
     public plateform: Platform
-    ) { }
-  
+  ) {}
+
   ngOnInit() {
-    if(this.plateform.is('ios')){
+    if (this.plateform.is("ios")) {
       this.plateformCheck = "ios";
-    }
-    else{
+    } else {
       this.plateformCheck = "android";
     }
-    this.storage.get('user_details').then((user_details) => {
+    this.storage.get("user_details").then((user_details) => {
       console.log(user_details);
       this.userID = user_details.users_id;
-     });
-     var notification = localStorage.getItem("enableNotification");
-     if(notification == "true"){
-       this.Notifications = true
-     }
-     else{
-      this.Notifications = false
-     }
+    });
+    var notification = localStorage.getItem("enableNotification");
+    if (notification == "true") {
+      this.Notifications = true;
+    } else {
+      this.Notifications = false;
+    }
   }
-  notifie(){
+  notifie() {
     console.log(this.Notifications);
-    if(this.Notifications){
-      this.notify = 'Yes';
+    if (this.Notifications) {
+      this.notify = "Yes";
       localStorage.setItem("enableNotification", "true");
-    }else{
-      this.notify = 'No';
+    } else {
+      this.notify = "No";
       localStorage.setItem("enableNotification", "false");
     }
     var stringy = JSON.stringify({
-      "requestType" : "notifications_status",
-      "usersID":this.userID,
-      "enable":this.notify
+      requestType: "notifications_status",
+      usersID: this.userID,
+      enable: this.notify,
     });
     console.log(stringy);
-   this.restService.editProfile(stringy).subscribe(response => {
-     this.response =  JSON.parse(response['_body']);
-    
-     
-     console.log(this.response);
-     
-    },err => {
-    
-    });
+    this.restService.editProfile(stringy).subscribe(
+      (response) => {
+        this.response = JSON.parse(response["_body"]);
+
+        console.log(this.response);
+      },
+      (err) => {}
+    );
   }
-  toggleMenu(){
+  toggleMenu() {
     this.menuCtrl.toggle();
-  } 
-  goToPayment(){
-    this.router.navigate(['/payment-detail']);
   }
-  goToChangePassword(){
-    this.router.navigate(['/change-password']);
+  goToPayment() {
+    this.router.navigate(["/payment-detail"]);
+  }
+  goToChangePassword() {
+    this.router.navigate(["/change-password"]);
   }
 
+  goToDeleteAcc() {
+    this.router.navigate(["/deleteaccount"]);
+  }
 }

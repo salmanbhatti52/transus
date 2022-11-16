@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
+import { ToastController } from "@ionic/angular";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class UsersService {
   sibarProfile: string;
@@ -13,7 +14,17 @@ export class UsersService {
 
   car_data: any;
 
-  topratedplace: any = '';
+  topratedplace: any = "";
 
-  constructor() {}
+  constructor(public toastctrl: ToastController) {}
+
+  presenttoast(message) {
+    this.toastctrl
+      .create({
+        message,
+        duration: 2000,
+        position: "bottom",
+      })
+      .then((res) => res.present());
+  }
 }

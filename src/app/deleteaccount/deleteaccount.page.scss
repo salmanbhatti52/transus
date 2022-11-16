@@ -1,0 +1,97 @@
+ion-toolbar {
+    padding: 0.8em 0.1em 0 0;
+    --background: #c4932f;
+}
+
+@media only screen and(min-height : 800px) {
+    ion-toolbar {
+        padding: 3em 0.1em 8px 0;
+        --background: #c4932f;
+    }
+}
+
+ion-title {
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+    padding-left: 0px;
+}
+.title{
+    text-align: center;
+      font-family: Bliss Pro;
+      font-size: 20px;
+      color: #1A206D;
+      font-weight: bold;
+  }
+  
+  p {
+    display: block;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
+  
+  .sc-ion-input-md-h {
+    --padding-top: 13px;
+    --padding-end: 13px;
+    --padding-bottom: 13px;
+    --padding-start: 13px;
+    font-size: inherit;
+  }
+  
+  .sc-ion-input-ios-h {
+    --padding-top: 13px;
+    --padding-end: 13px;
+    --padding-bottom: 13px;
+    --padding-start: 13px;
+    font-size: inherit;
+  }
+  
+  .wrapper{
+  width: 90%;
+  margin: 5% auto;
+  }
+  .thead{
+    color: #000000;
+    font-size: 17px;
+    font-weight: 500;
+    text-align: center;
+  }
+  .flex-c{
+    display:flex;
+    align-items:center;
+    margin-top:6%;
+  }
+  .lbl{
+    margin-left:3%;
+    color: rgb(0, 0, 0);
+    font-size: 15.5px;
+  }
+  .check{
+    --background: #ffffff;
+      --background-checked: #c4932f;
+      --checkmark-color: #ffffff;
+      --border-color-checked: #c4932f;
+      --size: 17px;
+      --border-color: #c4932f;
+  }
+  .desc-area{
+    font-size: 13px;
+    border: 1px solid #c4932f;
+    border-radius: 10px;
+    margin-top: 3%;
+  }
+  .btn {
+    width: 100%;
+    height: 48px;
+    margin-top: 24px;
+    --border-radius: 12px;
+    font-size: 20px;
+    font-family: Bliss Pro;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    --background: #c4932f;
+  }
+  
