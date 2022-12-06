@@ -188,10 +188,10 @@
     "is_top_level": true,
     "variables": {}
   },
-  "onesignal-cordova-plugin": {
+  "cordova-sqlite-storage": {
     "source": {
       "type": "registry",
-      "id": "onesignal-cordova-plugin"
+      "id": "cordova-sqlite-storage"
     },
     "is_top_level": true,
     "variables": {}
@@ -200,14 +200,6 @@
     "source": {
       "type": "registry",
       "id": "com-sarriaroman-photoviewer"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-sqlite-storage": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-sqlite-storage"
     },
     "is_top_level": true,
     "variables": {}

@@ -64,7 +64,6 @@
     "ng-otp-input": "^1.7.1",
     "ng2-charts": "^2.4.2",
     "ngx-image-compress": "^11.0.3",
-    "onesignal-cordova-plugin": "3.2.0",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
@@ -161,9 +160,8 @@
         "FACEBOOK_ANDROID_SDK_VERSION": "5.13.0"
       },
       "cordova-plugin-x-socialsharing": {},
-      "onesignal-cordova-plugin": {},
-      "com-sarriaroman-photoviewer": {},
-      "cordova-sqlite-storage": {}
+      "cordova-sqlite-storage": {},
+      "com-sarriaroman-photoviewer": {}
     },
     "platforms": [
       "ios",

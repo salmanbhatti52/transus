@@ -7,9 +7,6 @@
     "files": {}
   },
   "installed_plugins": {
-    "com-sarriaroman-photoviewer": {
-      "PACKAGE_NAME": "com.transus.app"
-    },
     "cordova-plugin-androidx": {
       "PACKAGE_NAME": "com.transus.app"
     },
@@ -86,7 +83,7 @@
       "DEEPLINK_HOST": "trans.com",
       "PACKAGE_NAME": "com.transus.app"
     },
-    "onesignal-cordova-plugin": {
+    "com-sarriaroman-photoviewer": {
       "PACKAGE_NAME": "com.transus.app"
     }
   },

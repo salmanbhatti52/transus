@@ -370,19 +370,19 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "pluginId": "onesignal-cordova-plugin"
     },
     {
-      "id": "com-sarriaroman-photoviewer.PhotoViewer",
-      "file": "plugins/com-sarriaroman-photoviewer/www/PhotoViewer.js",
-      "pluginId": "com-sarriaroman-photoviewer",
-      "clobbers": [
-        "PhotoViewer"
-      ]
-    },
-    {
       "id": "cordova-sqlite-storage.SQLitePlugin",
       "file": "plugins/cordova-sqlite-storage/www/SQLitePlugin.js",
       "pluginId": "cordova-sqlite-storage",
       "clobbers": [
         "SQLitePlugin"
+      ]
+    },
+    {
+      "id": "com-sarriaroman-photoviewer.PhotoViewer",
+      "file": "plugins/com-sarriaroman-photoviewer/www/PhotoViewer.js",
+      "pluginId": "com-sarriaroman-photoviewer",
+      "clobbers": [
+        "PhotoViewer"
       ]
     }
   ];
@@ -409,7 +409,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "es6-promise-plugin": "4.2.2",
     "cordova-plugin-x-socialsharing": "6.0.4",
     "onesignal-cordova-plugin": "3.2.0",
-    "com-sarriaroman-photoviewer": "1.2.4",
-    "cordova-sqlite-storage": "6.0.0"
+    "cordova-sqlite-storage": "6.0.0",
+    "com-sarriaroman-photoviewer": "1.2.4"
   };
 });

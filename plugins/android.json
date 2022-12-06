@@ -89,13 +89,10 @@
     "cordova-plugin-x-socialsharing": {
       "PACKAGE_NAME": "com.transus.app"
     },
-    "onesignal-cordova-plugin": {
+    "cordova-sqlite-storage": {
       "PACKAGE_NAME": "com.transus.app"
     },
     "com-sarriaroman-photoviewer": {
-      "PACKAGE_NAME": "com.transus.app"
-    },
-    "cordova-sqlite-storage": {
       "PACKAGE_NAME": "com.transus.app"
     }
   },

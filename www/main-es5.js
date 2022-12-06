@@ -1549,6 +1549,17 @@
             return m.ProfileaftersigupPageModule;
           });
         }
+      }, {
+        path: 'deleteaccount',
+        loadChildren: function loadChildren() {
+          return __webpack_require__.e(
+          /*! import() | deleteaccount-deleteaccount-module */
+          "deleteaccount-deleteaccount-module").then(__webpack_require__.bind(null,
+          /*! ./deleteaccount/deleteaccount.module */
+          "./src/app/deleteaccount/deleteaccount.module.ts")).then(function (m) {
+            return m.DeleteaccountPageModule;
+          });
+        }
       }];
 
       var AppRoutingModule = /*#__PURE__*/_createClass(function AppRoutingModule() {
@@ -3327,19 +3338,45 @@
       var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
       /*! @angular/core */
       "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+      /* harmony import */
 
-      var UsersService = /*#__PURE__*/_createClass(function UsersService() {
-        _classCallCheck(this, UsersService);
 
-        this.topratedplace = '';
-      });
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! @ionic/angular */
+      "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+
+      var UsersService = /*#__PURE__*/function () {
+        function UsersService(toastctrl) {
+          _classCallCheck(this, UsersService);
+
+          this.toastctrl = toastctrl;
+          this.topratedplace = "";
+        }
+
+        _createClass(UsersService, [{
+          key: "presenttoast",
+          value: function presenttoast(message) {
+            this.toastctrl.create({
+              message: message,
+              duration: 2000,
+              position: "bottom"
+            }).then(function (res) {
+              return res.present();
+            });
+          }
+        }]);
+
+        return UsersService;
+      }();
 
       UsersService.ctorParameters = function () {
-        return [];
+        return [{
+          type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]
+        }];
       };
 
       UsersService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
+        providedIn: "root"
       })], UsersService);
       /***/
     },

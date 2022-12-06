@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header [class.ios-headers]=\"plateformCheck == 'ios'\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <img src=\"assets/img/Menu.svg\" (click)=\"toggleMenu()\">\n    </ion-buttons>\n    <ion-title [class.globe_title]=\"plateformCheck == 'ios'\">Settings</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-row class=\"notify bg_grey\">\n    <ion-col size=\"6\">\n      <h4>Notifications</h4>\n      <p>Enable your notifications</p>\n    </ion-col>\n    <ion-col class=\"ion-text-right arrow_right\">\n      <ion-item lines=\"none\">\n        <ion-toggle slot=\"start\" color=\"tertiary\" (ionChange)=\"notifie()\" [(ngModel)]=\"Notifications\"></ion-toggle>\n      </ion-item>\n    </ion-col>\n  </ion-row>\n  <!--ion-row class=\"notify\">\n    <ion-col size=\"6\">\n        <h4>Payment Details</h4>\n        <p>Lorem Ipsum Dolar sit</p>\n    </ion-col>\n    <ion-col class=\"ion-text-right arrow_right\">\n      <img src=\"assets/img/Arrow_right.svg\" (click)=\"goToPayment()\">\n    </ion-col>\n  </ion-row-->\n  <ion-row class=\"notify bg_grey\" (click)=\"goToChangePassword()\">\n    <ion-col size=\"10\">\n      <h4>Change Password</h4>\n      <!-- <p>Lorem Ipsum Dolar sit</p> -->\n      <p>Click here to change your password</p>\n\n    </ion-col>\n    <!-- <ion-col class=\"ion-text-right arrow_right\"> -->\n\n    <ion-col size=\"2\" style=\"text-align: center;\">\n      <img src=\"assets/img/Arrow_right.svg\" style=\"height: 25px;\">\n    </ion-col>\n  </ion-row>\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header [class.ios-headers]=\"plateformCheck == 'ios'\">\n  <ion-toolbar>\n    <ion-buttons slot=\"start\">\n      <img src=\"assets/img/Menu.svg\" (click)=\"toggleMenu()\" />\n    </ion-buttons>\n    <ion-title [class.globe_title]=\"plateformCheck == 'ios'\"\n      >Settings</ion-title\n    >\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-row class=\"notify bg_grey\">\n    <ion-col size=\"6\">\n      <h4>Notifications</h4>\n      <p>Enable your notifications</p>\n    </ion-col>\n    <ion-col class=\"ion-text-right arrow_right\">\n      <ion-item lines=\"none\">\n        <ion-toggle\n          slot=\"start\"\n          color=\"tertiary\"\n          (ionChange)=\"notifie()\"\n          [(ngModel)]=\"Notifications\"\n        ></ion-toggle>\n      </ion-item>\n    </ion-col>\n  </ion-row>\n  <!--ion-row class=\"notify\">\n    <ion-col size=\"6\">\n        <h4>Payment Details</h4>\n        <p>Lorem Ipsum Dolar sit</p>\n    </ion-col>\n    <ion-col class=\"ion-text-right arrow_right\">\n      <img src=\"assets/img/Arrow_right.svg\" (click)=\"goToPayment()\">\n    </ion-col>\n  </ion-row-->\n  <ion-row class=\"notify bg_grey\" (click)=\"goToChangePassword()\">\n    <ion-col size=\"10\">\n      <h4>Change Password</h4>\n      <!-- <p>Lorem Ipsum Dolar sit</p> -->\n      <p>Click here to change your password</p>\n    </ion-col>\n    <!-- <ion-col class=\"ion-text-right arrow_right\"> -->\n\n    <ion-col size=\"2\" style=\"text-align: center\">\n      <img src=\"assets/img/Arrow_right.svg\" style=\"height: 25px\" />\n    </ion-col>\n  </ion-row>\n\n  <ion-row class=\"notify bg_grey\" (click)=\"goToDeleteAcc()\">\n    <ion-col size=\"10\">\n      <h4>Delete your account</h4>\n      <!-- <p>Lorem Ipsum Dolar sit</p> -->\n      <p>Click here to delete your account</p>\n    </ion-col>\n    <!-- <ion-col class=\"ion-text-right arrow_right\"> -->\n\n    <ion-col size=\"2\" style=\"text-align: center\">\n      <img src=\"assets/img/Arrow_right.svg\" style=\"height: 25px\" />\n    </ion-col>\n  </ion-row>\n</ion-content>\n");
 
 /***/ }),
 
@@ -137,13 +137,13 @@ let SettingPage = class SettingPage {
         this.Notifications = false;
     }
     ngOnInit() {
-        if (this.plateform.is('ios')) {
+        if (this.plateform.is("ios")) {
             this.plateformCheck = "ios";
         }
         else {
             this.plateformCheck = "android";
         }
-        this.storage.get('user_details').then((user_details) => {
+        this.storage.get("user_details").then((user_details) => {
             console.log(user_details);
             this.userID = user_details.users_id;
         });
@@ -158,33 +158,35 @@ let SettingPage = class SettingPage {
     notifie() {
         console.log(this.Notifications);
         if (this.Notifications) {
-            this.notify = 'Yes';
+            this.notify = "Yes";
             localStorage.setItem("enableNotification", "true");
         }
         else {
-            this.notify = 'No';
+            this.notify = "No";
             localStorage.setItem("enableNotification", "false");
         }
         var stringy = JSON.stringify({
-            "requestType": "notifications_status",
-            "usersID": this.userID,
-            "enable": this.notify
+            requestType: "notifications_status",
+            usersID: this.userID,
+            enable: this.notify,
         });
         console.log(stringy);
-        this.restService.editProfile(stringy).subscribe(response => {
-            this.response = JSON.parse(response['_body']);
+        this.restService.editProfile(stringy).subscribe((response) => {
+            this.response = JSON.parse(response["_body"]);
             console.log(this.response);
-        }, err => {
-        });
+        }, (err) => { });
     }
     toggleMenu() {
         this.menuCtrl.toggle();
     }
     goToPayment() {
-        this.router.navigate(['/payment-detail']);
+        this.router.navigate(["/payment-detail"]);
     }
     goToChangePassword() {
-        this.router.navigate(['/change-password']);
+        this.router.navigate(["/change-password"]);
+    }
+    goToDeleteAcc() {
+        this.router.navigate(["/deleteaccount"]);
     }
 };
 SettingPage.ctorParameters = () => [
@@ -196,7 +198,7 @@ SettingPage.ctorParameters = () => [
 ];
 SettingPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-setting',
+        selector: "app-setting",
         template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! raw-loader!./setting.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/setting/setting.page.html")).default,
         styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(/*! ./setting.page.scss */ "./src/app/setting/setting.page.scss")).default]
     })

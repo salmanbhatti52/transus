@@ -1070,6 +1070,10 @@ const routes = [
         path: 'profileaftersigup',
         loadChildren: () => Promise.all(/*! import() | profileaftersigup-profileaftersigup-module */[__webpack_require__.e("common"), __webpack_require__.e("profileaftersigup-profileaftersigup-module")]).then(__webpack_require__.bind(null, /*! ./profileaftersigup/profileaftersigup.module */ "./src/app/profileaftersigup/profileaftersigup.module.ts")).then(m => m.ProfileaftersigupPageModule)
     },
+    {
+        path: 'deleteaccount',
+        loadChildren: () => __webpack_require__.e(/*! import() | deleteaccount-deleteaccount-module */ "deleteaccount-deleteaccount-module").then(__webpack_require__.bind(null, /*! ./deleteaccount/deleteaccount.module */ "./src/app/deleteaccount/deleteaccount.module.ts")).then(m => m.DeleteaccountPageModule)
+    },
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -2179,17 +2183,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UsersService", function() { return UsersService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/__ivy_ngcc__/fesm2015/ionic-angular.js");
+
 
 
 let UsersService = class UsersService {
-    constructor() {
-        this.topratedplace = '';
+    constructor(toastctrl) {
+        this.toastctrl = toastctrl;
+        this.topratedplace = "";
+    }
+    presenttoast(message) {
+        this.toastctrl
+            .create({
+            message,
+            duration: 2000,
+            position: "bottom",
+        })
+            .then((res) => res.present());
     }
 };
-UsersService.ctorParameters = () => [];
+UsersService.ctorParameters = () => [
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"] }
+];
 UsersService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root',
+        providedIn: "root",
     })
 ], UsersService);
 
